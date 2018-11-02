@@ -1,27 +1,32 @@
 # assn3-javafx
 JavaFX starter code
 
+## Developers
+
+Kaitlin Erb,
+Reed Orpen
+
 ## Contribute to the Repo
 
 ### Creating a Branch and Making Changes
 
 ```bash
 // Creating a branch
-git checkout -b new-branch-name_solving_issue
+git checkout -b branch-name
 
 // Make changes and see what files differ from master
 git status
 
 // Add modified files one at a time
 git add {$specific file names}
-// OR (Danger, danger! Do this sparingly) add ALL files at once
+// OR to add all files
 git add .
 ```
 
 Once small changes have been made, commit and push them.
 ```bash
 git commit -m "Description of Changes"
-git push origin your-branch-name
+git push origin branch-name
 ```
 
 When all changes are made, create a PR and wait for the review/approval process.
@@ -29,25 +34,32 @@ When all changes are made, create a PR and wait for the review/approval process.
 ### Merging Code
 
 ```bash
-// After committing changes, go to master
-git checkout master
-
-// Optional: done if someone has merged code between the creation of the branch and your changes, or 
-// you haven't been rebasing your branch. These commands updates local master to origin master.
+# update your origin/* pointers
 git fetch
-git reset --hard origin/master
-git checkout your-branch-name
-git rebase origin/master         // Takes your changes and puts them on top of any new changes
-git push origin your-branch-name // Update local branch if you've need needed to recieve changes
-git checkout master              // Back to master to continue the merge
+ 
+# checkout the branch you’re merging in (assumes branch-name points to origin/branch-name)
+git checkout branch-name
+ 
+# rebase the whole branch onto master:
+git rebase origin/master
 
-// Merge your branch from master
-git merge --no-ff your-branch-name -m "Merge 'your-branch-name'"
+# update origin/branch name to the new rebased head
+git push --force-with-lease origin branch-name
+ 
+# point your master branch to latest origin/master
+git checkout master && git fetch && git reset --hard origin/master
+ 
+# merge in the branch and force a ‘merge commit’
+git merge --no-ff branch-name -m "Merge 'your-branch-name'"
+ 
+# push your changes; this will automagically resolve the Github PR
 git push origin master
-
-// Optional: clean up your branches by deleting them (on git, then locally)
-git push origin :your-branch-name // Double check master is OK before net step
-git branch -d your-branch-name
+ 
+# if no issue with merge, you can now delete the branch locally
+git branch -d branch-name
+ 
+# put this deleted branch back into origin
+git push origin :branch-name
 ```
 
 See https://github.com/SENG330/course/blob/master/assignment3.md
