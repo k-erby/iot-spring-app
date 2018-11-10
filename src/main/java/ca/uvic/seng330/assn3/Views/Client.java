@@ -1,4 +1,4 @@
-package ca.uvic.seng330.assn3.Views;
+package ca.uvic.seng330.assn3.views;
 
 import java.util.UUID;
 
@@ -6,7 +6,7 @@ import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import ca.uvic.seng330.assn3.Models.Hub;
+import ca.uvic.seng330.assn3.models.Hub;
 
 public abstract class Client {
 

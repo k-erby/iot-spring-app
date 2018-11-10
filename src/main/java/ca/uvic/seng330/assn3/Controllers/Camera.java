@@ -1,8 +1,8 @@
-package ca.uvic.seng330.assn3.Controllers;
+package ca.uvic.seng330.assn3.controllers;
 
-import ca.uvic.seng330.assn3.Models.HubRegistrationException;
-import ca.uvic.seng330.assn3.Models.Mediator;
-import ca.uvic.seng330.assn3.Models.Status;
+import ca.uvic.seng330.assn3.models.HubRegistrationException;
+import ca.uvic.seng330.assn3.models.Mediator;
+import ca.uvic.seng330.assn3.models.Status;
 
 public class Camera extends Device {
 
