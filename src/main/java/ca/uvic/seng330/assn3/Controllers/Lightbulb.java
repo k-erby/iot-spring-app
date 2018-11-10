@@ -1,7 +1,6 @@
-package ca.uvic.seng330.assn3.Controllers;
+package ca.uvic.seng330.assn3.controllers;
 
-import ca.uvic.seng330.assn3.Models.HubRegistrationException;
-import ca.uvic.seng330.assn3.Models.Mediator;
+import ca.uvic.seng330.assn3.models.*;
 
 public class Lightbulb extends Device implements SwitchableDevice {
 

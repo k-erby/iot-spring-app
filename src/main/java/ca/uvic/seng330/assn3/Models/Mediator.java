@@ -1,7 +1,7 @@
-package ca.uvic.seng330.assn3.Models;
+package ca.uvic.seng330.assn3.models;
 
-import ca.uvic.seng330.assn3.Controllers.Devices;
-import ca.uvic.seng330.assn3.Views.Client;
+import ca.uvic.seng330.assn3.controllers.Device;
+import ca.uvic.seng330.assn3.views.Client;
 
 public interface Mediator {
 
