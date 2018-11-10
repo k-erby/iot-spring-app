@@ -8,7 +8,7 @@ Reed Orpen
 
 ## Contribute to the Repo
 
-### Creating a Branch and Making Changes
+#### Creating a Branch and Making Changes
 
 ```bash
 // Creating a branch
@@ -31,7 +31,7 @@ git push origin branch-name
 
 When all changes are made, create a PR and wait for the review/approval process.
 
-### Merging Code
+#### Merging Code
 
 ```bash
 # update your origin/* pointers
