@@ -2,7 +2,6 @@ package ca.uvic.seng330.assn3.models.devices;
 
 import ca.uvic.seng330.assn3.exceptions.CameraFullException;
 import ca.uvic.seng330.assn3.exceptions.HubRegistrationException;
-import ca.uvic.seng330.assn3.models.Mediator;
 import ca.uvic.seng330.assn3.util.Status;
 
 public class Camera extends Device {

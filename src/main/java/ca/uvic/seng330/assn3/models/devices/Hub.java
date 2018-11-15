@@ -1,11 +1,10 @@
-package ca.uvic.seng330.assn3.models;
+package ca.uvic.seng330.assn3.models.devices;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
 import ca.uvic.seng330.assn3.exceptions.HubRegistrationException;
-import ca.uvic.seng330.assn3.models.devices.Device;
 import ca.uvic.seng330.assn3.util.JSONMessaging;
 import ca.uvic.seng330.assn3.views.Client;
 import org.json.JSONObject;

@@ -1,7 +1,8 @@
-package ca.uvic.seng330.assn3.views;
+package ca.uvic.seng330.assn3.util;
 
 import ca.uvic.seng330.assn3.exceptions.HubRegistrationException;
-import ca.uvic.seng330.assn3.models.Mediator;
+import ca.uvic.seng330.assn3.models.devices.Mediator;
+import ca.uvic.seng330.assn3.views.Client;
 import org.json.JSONObject;
 
 public class WebClient extends Client {
