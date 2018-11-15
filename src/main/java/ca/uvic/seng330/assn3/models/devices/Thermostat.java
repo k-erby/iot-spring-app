@@ -1,8 +1,9 @@
-package ca.uvic.seng330.assn3.controllers;
+package ca.uvic.seng330.assn3.models.devices;
 
+import ca.uvic.seng330.assn3.util.Temperature;
+import ca.uvic.seng330.assn3.exceptions.HubRegistrationException;
 import ca.uvic.seng330.assn3.models.Mediator;
-import ca.uvic.seng330.assn3.models.Status;
-import ca.uvic.seng330.assn3.models.HubRegistrationException;
+import ca.uvic.seng330.assn3.util.Status;
 
 public class Thermostat extends Device {
     private final Mediator aMed;

@@ -1,7 +1,7 @@
 package ca.uvic.seng330.assn3.models;
 
-import ca.uvic.seng330.assn3.controllers.Device;
-import ca.uvic.seng330.assn3.views.Client;
+import ca.uvic.seng330.assn3.exceptions.HubRegistrationException;
+import ca.uvic.seng330.assn3.models.devices.Device;
 
 public interface Mediator {
 
