@@ -1,4 +1,4 @@
-package ca.uvic.seng330.assn3.controllers;
+package ca.uvic.seng330.assn3.util;
 
 public class Temperature {
 

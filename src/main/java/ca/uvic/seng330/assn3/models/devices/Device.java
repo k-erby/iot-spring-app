@@ -1,6 +1,7 @@
-package ca.uvic.seng330.assn3.controllers;
+package ca.uvic.seng330.assn3.models.devices;
 
-import ca.uvic.seng330.assn3.models.*;
+import ca.uvic.seng330.assn3.util.Status;
+
 import java.util.UUID;
 
 public abstract class Device {

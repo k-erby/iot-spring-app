@@ -4,12 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import ca.uvic.seng330.assn3.controllers.Device;
+import ca.uvic.seng330.assn3.exceptions.HubRegistrationException;
+import ca.uvic.seng330.assn3.models.devices.Device;
+import ca.uvic.seng330.assn3.util.JSONMessaging;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import ca.uvic.seng330.assn3.views.Client;
 
 public class Hub extends Device implements Mediator {
 

@@ -1,6 +1,6 @@
-package ca.uvic.seng330.assn3.models;
+package ca.uvic.seng330.assn3.util;
 
-import ca.uvic.seng330.assn3.controllers.Device;
+import ca.uvic.seng330.assn3.models.devices.Device;
 import org.json.JSONObject;
 
 import java.util.Date;
