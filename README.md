@@ -6,6 +6,16 @@ JavaFX starter code
 Kaitlin Erb,
 Reed Orpen
 
+## Run Repo
+
+```bash
+// Clone the repo
+git clone https://github.com/SENG330/assn3-team-orpenerb.git
+
+// In root of project
+gradle bootRun
+```
+
 ## Contribute to the Repo
 
 #### Creating a Branch and Making Changes

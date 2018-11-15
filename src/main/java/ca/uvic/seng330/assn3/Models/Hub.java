@@ -7,6 +7,7 @@ import java.util.UUID;
 import ca.uvic.seng330.assn3.exceptions.HubRegistrationException;
 import ca.uvic.seng330.assn3.models.devices.Device;
 import ca.uvic.seng330.assn3.util.JSONMessaging;
+import ca.uvic.seng330.assn3.views.Client;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
