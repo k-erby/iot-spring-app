@@ -11,12 +11,19 @@ import ca.uvic.seng330.assn3.views.Client;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Bean;
 
 public class Hub extends Device implements Mediator {
+
+    public static int test = 4;
 
     private HashMap<UUID, Device> aDevices = new HashMap<UUID, Device>();
     private HashMap<UUID, Client> aClients = new HashMap<UUID, Client>();
     private Logger logger = LoggerFactory.getLogger(Hub.class);
+
+    public int getTest() {
+        return this.test;
+    }
 
     public void startup() {
         // some logic about sending init messages or somethng.

@@ -1,5 +1,5 @@
-# assn3-javafx
-JavaFX starter code
+# assn3-orpenerb
+This repo uses SpringMVC instead of JavaFX.
 
 ## Developers
 
@@ -9,27 +9,29 @@ Reed Orpen
 ## Run Repo
 
 ```bash
-// Clone the repo
+# Clone the repo
 git clone https://github.com/SENG330/assn3-team-orpenerb.git
 
-// In root of project
+# In root of project
 gradle bootRun
 ```
+
+Once everything has compiled, you can open up a browser to `localhost:8080`
 
 ## Contribute to the Repo
 
 #### Creating a Branch and Making Changes
 
 ```bash
-// Creating a branch
+# Creating a branch
 git checkout -b branch-name
 
-// Make changes and see what files differ from master
+# Make changes and see what files differ from master
 git status
 
-// Add modified files one at a time
+# Add modified files one at a time
 git add {$specific file names}
-// OR to add all files
+# OR to add all files
 git add .
 ```
 

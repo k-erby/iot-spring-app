@@ -3,12 +3,14 @@ package ca.uvic.seng330.assn3.models.devices;
 import ca.uvic.seng330.assn3.exceptions.CameraFullException;
 import ca.uvic.seng330.assn3.exceptions.HubRegistrationException;
 import ca.uvic.seng330.assn3.models.Mediator;
+import ca.uvic.seng330.assn3.util.DeviceType;
 import ca.uvic.seng330.assn3.util.Status;
 
 public class Camera extends Device {
 
     private boolean isRecording;
     private int diskSize;
+    private DeviceType aDeviceType;
 
     private final Mediator aMed;
 
@@ -16,6 +18,8 @@ public class Camera extends Device {
         super();
         aMed = med;
         diskSize = 999;
+        aDeviceType = DeviceType.CAMERA;
+
         try {
             aMed.register(this);
         } catch (HubRegistrationException e) {
