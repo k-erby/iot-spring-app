@@ -1,6 +1,6 @@
-package ca.uvic.seng330.assn3.controllers.auth;
+package ca.uvic.seng330.assn3.controllers.users;
 
-public interface AuthController {
+public interface UserController {
     void register();
 
     void unregister();

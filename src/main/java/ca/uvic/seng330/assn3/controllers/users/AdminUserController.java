@@ -1,6 +1,6 @@
-package ca.uvic.seng330.assn3.controllers.auth;
+package ca.uvic.seng330.assn3.controllers.users;
 
-public class AdminAuthController implements AuthController {
+public class AdminUserController implements UserController {
 
     public void register() { }
 

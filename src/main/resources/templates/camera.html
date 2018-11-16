@@ -1,0 +1,12 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>IoT Device Hub</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<p th:text="'Hub says, hello, ' + ${name} + '!'" />
+
+Camera status: <span th:text="${status}"></span>
+</body>
+</html>
