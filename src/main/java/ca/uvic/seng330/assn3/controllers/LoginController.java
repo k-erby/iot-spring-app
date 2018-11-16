@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class LoginController {
 
-    @GetMapping(value = "")
     @RequestMapping(value = "/login", method=RequestMethod.GET)
     public String login(ModelMap map) {
         return "login";
@@ -20,10 +19,10 @@ public class LoginController {
         return "logout";
     }
 
-    @RequestMapping(value = "/loginError", method=RequestMethod.GET)
+    @RequestMapping(value = "/login_error", method=RequestMethod.GET)
     public String loginError(ModelMap map) {
         map.addAttribute("error", true);
-        return "loginError";
+        return "login_error";
     }
 
 }
