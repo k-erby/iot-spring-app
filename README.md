@@ -6,17 +6,11 @@ This repo uses SpringMVC instead of JavaFX.
 Kaitlin Erb,
 Reed Orpen
 
-## Run Repo
+## Design Document
 
-```bash
-# Clone the repo
-git clone https://github.com/SENG330/assn3-team-orpenerb.git
-
-# In root of project
-gradle bootRun
-```
-
-Once everything has compiled, you can open up a browser to `localhost:8080`
+The design document is held on the Wiki for this repo. 
+Each page represents a different aspect of this project. Quick access link is
+here: https://github.com/SENG330/assn3-team-orpenerb/wiki
 
 ## Contribute to the Repo
 

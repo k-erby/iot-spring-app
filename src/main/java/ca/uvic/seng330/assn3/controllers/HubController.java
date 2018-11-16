@@ -1,9 +1,7 @@
 package ca.uvic.seng330.assn3.controllers;
 
-import ca.uvic.seng330.assn3.models.Hub;
 import ca.uvic.seng330.assn3.models.Mediator;
 import ca.uvic.seng330.assn3.models.devices.Device;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
