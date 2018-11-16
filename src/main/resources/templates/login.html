@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>IoT Device Hub</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="./css/main.css" th:href="@{./css/main.css}">
+</head>
+<body>
+    <h2>Devices</h2>
+    <table>
+        <tr th:each="data: ${devices}">
+            <td><a th:href="@{'/hub/camera?id=' + ${data}}" th:text="${data}"></a></td>
+            <!--<td><a th:href="@{'/hub/' + ${data.deviceType} + '?id=' + ${data.id}}" th:text="${data}"></a></td>-->
+        </tr>
+    </table>
+</body>
+</html>

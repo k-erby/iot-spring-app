@@ -1,0 +1,86 @@
+/* -------------------------------------------
+				Flexbox Basics
+
+    CSS code pulled from my perons SCSS -> CSS
+------------------------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+._space-between {
+  justify-content: space-between;
+  align-content: space-between;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex; }
+
+._space-around {
+  justify-content: space-around;
+  align-content: space-around;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex; }
+
+._direction-column {
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex; }
+
+._direction-row {
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex; }
+
+._justify-center {
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex; }
+
+._justify-right {
+  justify-content: flex-end;
+  align-content: flex-end;
+  align-items: flex-end;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex; }
+
+/* ----------------------------------------------
+				  Main Container
+---------------------------------------------- */
+body {
+  -webkit-font-smoothing: antialiased;
+  height: 100%;
+  width: 100%;
+  padding: 20em;
+}
+
+h1 {
+  font-size: 3em;
+}
+
+
+
+
+
