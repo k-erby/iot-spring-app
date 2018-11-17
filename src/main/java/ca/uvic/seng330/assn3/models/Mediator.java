@@ -9,8 +9,6 @@ import java.util.UUID;
 
 public interface Mediator {
 
-    int getTest();
-
     void unregister(Device device) throws HubRegistrationException;
 
     void unregister(Client client) throws HubRegistrationException;

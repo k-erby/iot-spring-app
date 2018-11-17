@@ -8,13 +8,13 @@
 <div>
     <main class="container _justify-center">
         <form class="form-signin _direction-column _justify-center" method="post">
-            <h1 class="form-signin-heading _justify-center">Login</h1>
+            <h1 class="form-signin-heading _justify-center">New User</h1>
             <input type="text" class="form-control" placeholder=" Username" id="username" name="username" />
             <input type="password" class="form-control" placeholder=" Password" id="password" name="password"/>
 
-            <div class="_direction-row">
-                <a class="btn" type="submit" th:href="@{/new_user}">Sign Up</a>
-                <a class="btn" type="submit" th:href="@{/hub}">Sign In</a>
+            <div class="_direction-row _space-around">
+                <a class="btn" type="submit" th:href="@{/login}">Cancel</a>
+                <a class="btn" type="submit" th:href="@{/hub}">Create</a>
             </div>
         </form>
     </main>

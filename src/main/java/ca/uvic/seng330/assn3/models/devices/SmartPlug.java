@@ -8,7 +8,7 @@ public class SmartPlug extends Device implements SwitchableDevice {
 
     private final Mediator aMed;
     private boolean isOn = false;
-    private DeviceType aDeviceType;
+    public DeviceType aDeviceType;
 
     public SmartPlug(Mediator med) {
         super();
@@ -32,5 +32,9 @@ public class SmartPlug extends Device implements SwitchableDevice {
     @Override
     public String toString() {
         return "Smartplug id " + super.getIdentifier().toString();
+    }
+
+    public String getDeviceType() {
+        return aDeviceType.toString().toLowerCase();
     }
 }

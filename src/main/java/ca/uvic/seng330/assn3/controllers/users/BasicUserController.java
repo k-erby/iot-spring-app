@@ -1,6 +1,6 @@
 package ca.uvic.seng330.assn3.controllers.users;
 
-public class BasicUserController implements UserController {
+public class BasicUserController {
 
     public void register() { }
 

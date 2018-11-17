@@ -8,7 +8,7 @@ public class Lightbulb extends Device implements SwitchableDevice {
 
     private boolean isOn = false;
     private final Mediator aMed;
-    private DeviceType aDeviceType;
+    public DeviceType aDeviceType;
 
     public Lightbulb(Mediator pMed) {
         super();
@@ -36,5 +36,9 @@ public class Lightbulb extends Device implements SwitchableDevice {
     @Override
     public String toString() {
         return "Lightbulb id " + super.getIdentifier().toString();
+    }
+
+    public String getDeviceType() {
+        return aDeviceType.toString().toLowerCase();
     }
 }

@@ -9,7 +9,7 @@ public abstract class Device {
 
     private final UUID aUuid = UUID.randomUUID();
     private Status aStatus; // This can't be NULL!
-    private DeviceType aDeviceType;
+    public DeviceType aDeviceType;
 
     public UUID getIdentifier() {
         return aUuid;
@@ -30,6 +30,8 @@ public abstract class Device {
         return aUuid.toString();
     }
 
-    public DeviceType getDeviceType() { return aDeviceType; }
+    public String getDeviceType() {
+        return aDeviceType.toString().toLowerCase();
+    }
 
 }

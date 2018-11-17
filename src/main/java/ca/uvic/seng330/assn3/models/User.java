@@ -22,4 +22,20 @@ public class User {
     public String getName() {
         return name;
     }
+
+    public void register() {
+
+    }
+
+    public void unregister() {
+
+    }
+
+    public boolean signIn() {
+        return true;
+    }
+
+    public boolean signOut() {
+        return true;
+    }
  }

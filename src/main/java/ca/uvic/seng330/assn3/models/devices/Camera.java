@@ -10,7 +10,7 @@ public class Camera extends Device {
 
     private boolean isRecording;
     private int diskSize;
-    private DeviceType aDeviceType;
+    public DeviceType aDeviceType;
 
     private final Mediator aMed;
 
@@ -48,6 +48,10 @@ public class Camera extends Device {
     @Override
     public String toString() {
         return "Camera id " + super.getIdentifier().toString();
+    }
+
+    public String getDeviceType() {
+        return aDeviceType.toString().toLowerCase();
     }
 }
 
