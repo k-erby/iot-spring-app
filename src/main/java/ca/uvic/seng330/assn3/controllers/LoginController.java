@@ -2,7 +2,6 @@ package ca.uvic.seng330.assn3.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -21,7 +20,6 @@ public class LoginController {
 
     @RequestMapping(value = "/login_error", method=RequestMethod.GET)
     public String loginError(ModelMap map) {
-        map.addAttribute("error", true);
         return "login_error";
     }
 

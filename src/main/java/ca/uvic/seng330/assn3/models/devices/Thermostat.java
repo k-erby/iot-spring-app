@@ -11,7 +11,7 @@ public class Thermostat extends Device {
     private final Mediator aMed;
     private Status status = Status.NORMAL;
     private Temperature setPoint;
-    private DeviceType aDeviceType;
+    public DeviceType aDeviceType;
 
     {
         try {
@@ -46,5 +46,9 @@ public class Thermostat extends Device {
         setPoint = t;
         aMed.alert(this, "Setting temp to " + t.getTemperature());
         status = Status.NORMAL;
+    }
+
+    public String getDeviceType() {
+        return aDeviceType.toString().toLowerCase();
     }
 }

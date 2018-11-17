@@ -3,15 +3,16 @@
 <head>
     <title>IoT Device Hub</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" type="text/css" href="./css/main.css" th:href="@{./css/main.css}">
+    <link rel="stylesheet" type="text/css" href="/css/main.css" th:href="@{/css/main.css}">
+    <link rel="stylesheet" type="text/css" href="/css/hub.css" th:href="@{/css/hub.css}">
 </head>
 <body>
     <main class="container">
         <h2>Devices</h2>
-        <table>
-            <tr th:each="data: ${devices}">
-                <td><a th:href="@{'/hub/camera?id=' + ${data}}" th:text="${data}"></a></td>
-                <!--<td><a th:href="@{'/hub/' + ${data.deviceType} + '?id=' + ${data.id}}" th:text="${data}"></a></td>-->
+        <table class="table-container">
+            <tr th:each="data: ${devices}" class="table-devices">
+                <td class="table-devices"><a th:href="@{'/hub/camera?id=' + ${data}}" th:text="${data}"></a></td>
+                <!--<td><a th:href="@{'/hub/' + ${data.getDeviceType()} + '?id=' + ${data.id}}" th:text="${data}"></a></td>-->
             </tr>
         </table>
     </main>
