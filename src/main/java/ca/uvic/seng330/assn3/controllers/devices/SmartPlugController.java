@@ -22,7 +22,6 @@ public class SmartPlugController {
 
     @GetMapping("/hub/smartplug")
     public String smartplug(@RequestParam(name="id", required=true) String id, Model model) {
-
         Map<UUID, Device> devices = this.hub.getDevices();
         Device device = devices.get(UUID.fromString(id));
         SmartPlug smartplug = (SmartPlug)device;
@@ -33,7 +32,7 @@ public class SmartPlugController {
         // get smartplug status
         String status;
         switch (smartplug.getStatus()) {
-            case OFF: status = "OFF"; break;
+            case OFF: status = "Turned Off"; break;
             case ON: status = "Turned On"; break;
             case ERROR: status = "ERROR"; break;
             case NORMAL: status = "The smartplug is operating normally."; break;

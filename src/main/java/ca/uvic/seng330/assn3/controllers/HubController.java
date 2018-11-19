@@ -71,6 +71,6 @@ public class HubController {
         } catch (HubRegistrationException e) {
             model.addAttribute("message", "Registered with following error: " + e.getMessage());
         }
-        return "unregistered";
+        return "registered";
     }
 }

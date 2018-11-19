@@ -22,7 +22,6 @@ public class LightbulbController {
 
     @GetMapping("/hub/lightbulb")
     public String lightbulb(@RequestParam(name="id", required=true) String id, Model model) {
-
         Map<UUID, Device> devices = this.hub.getDevices();
         Device device = devices.get(UUID.fromString(id));
         Lightbulb lightbulb = (Lightbulb)device;

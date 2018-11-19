@@ -22,13 +22,8 @@ public class ThermostatController {
 
     @GetMapping("/hub/thermostat")
     public String thermostat(@RequestParam(name="id", required=true) String id, Model model) {
-
         Map<UUID, Device> devices = this.hub.getDevices();
         Device device = devices.get(UUID.fromString(id));
-//        System.out.println(device.getDeviceType());
-//        if (device.getDeviceType() != DeviceType.CAMERA) {
-//            return "device_error";
-//        }
         Thermostat thermostat = (Thermostat) device;
 
         // get thermostat details

@@ -9,7 +9,7 @@ public class UserConfig {
 
     @Bean
     public User user() {
-        User user = new User("johngoodman");
+        User user = new User("admin", "seng330", true);
         return user;
     }
 
