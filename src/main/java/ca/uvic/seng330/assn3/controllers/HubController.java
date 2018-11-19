@@ -2,10 +2,15 @@ package ca.uvic.seng330.assn3.controllers;
 
 import ca.uvic.seng330.assn3.exceptions.HubRegistrationException;
 import ca.uvic.seng330.assn3.models.Mediator;
+import ca.uvic.seng330.assn3.models.devices.Camera;
 import ca.uvic.seng330.assn3.models.devices.Device;
+import ca.uvic.seng330.assn3.models.devices.Lightbulb;
+import ca.uvic.seng330.assn3.models.devices.SmartPlug;
+import ca.uvic.seng330.assn3.models.devices.Thermostat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
@@ -44,7 +49,6 @@ public class HubController {
         model.addAttribute("lightbulbDevices", lightbulbIds);
         model.addAttribute("smartplugDevices", smartplugIds);
         model.addAttribute("thermostatDevices", thermostatIds);
-
         return "hub";
     }
 
@@ -56,20 +60,33 @@ public class HubController {
             model.addAttribute("message", "Unregistered successfully!");
             hub.unregister(device);
         } catch (HubRegistrationException e) {
-            model.addAttribute("message", "Device not unregistered with following error: " + e.getMessage());
+            model.addAttribute("message", "Unable to unregister with following error: " + e.getMessage());
         }
         return "unregistered";
     }
 
-    @GetMapping("/register")
-    public String register(@RequestParam(name="id", required=false) String id, Model model) {
-        Map<UUID, Device> devices = this.hub.getDevices();
-        Device device = devices.get(UUID.fromString(id));
-        try {
-            model.addAttribute("message", "Registered successfully!");
-            hub.unregister(device);
-        } catch (HubRegistrationException e) {
-            model.addAttribute("message", "Registered with following error: " + e.getMessage());
+    @GetMapping("/new_device")
+    public String new_device() {
+        return "new_device";
+    }
+
+    @PostMapping("/register_device")
+    public String register_device(@RequestParam(name="device", required=true) String device, Model model) {
+        switch (device) {
+            case "Camera":
+                new Camera(this.hub);
+                break;
+            case "Lightbulb":
+                new Lightbulb(this.hub);
+                break;
+            case "SmartPlug":
+                new SmartPlug(this.hub);
+                break;
+            case "Thermostat":
+                new Thermostat(this.hub);
+                break;
+            default:
+                // TODO: write a statement here
         }
         return "registered";
     }

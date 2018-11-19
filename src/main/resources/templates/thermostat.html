@@ -17,7 +17,12 @@
             <section class = "device-information">
                 <p>ID: <em><span th:text="${name}"></span></em></p>
                 <p>STATUS: <em><span th:text="${status}"></span></em></p>
+                <p>TEMP: <em><span th:text="${temp}"></span></em></p>
             </section>
+
+            <div class="_direction-row">
+                <a class="btn" type="submit" th:href="@{/hub}">Back to Hub</a>
+            </div>
         </section>
     </main>
 </body>

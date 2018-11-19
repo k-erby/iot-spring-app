@@ -28,6 +28,7 @@ public class CameraController {
 
         // get camera details
         model.addAttribute("name", camera.toString());
+        model.addAttribute("recording", camera.isRecording());
 
         // get camera status
         String status;

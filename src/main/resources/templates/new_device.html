@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="../static/css/main.css" th:href="@{/css/main.css}" rel="stylesheet" />
+    <link href="../static/css/login.css" th:href="@{/css/login.css}" rel="stylesheet" />
+</head>
+<body>
+<div>
+    <main class="container _justify-center">
+        <form class="form-signin _direction-column _justify-center" th:action="@{/register_device}" method="post">
+            <h1 class="form-signin-heading _justify-center">New Device Registration</h1>
+            <div class="drop-down">
+                <select class="drop-down-menu" id="device" name="device">
+                    <option value="Camera">Camera</option>
+                    <option value="Lightbulb">Lightbulb</option>
+                    <option value="SmartPlug">SmartPlug</option>
+                    <option value="Thermostat">Thermostat</option>
+                </select>
+            </div>
+            <div class="_direction-row _space-around">
+                <a class="btn" th:href="@{/hub}">Cancel</a>
+                <input class="btn" type="submit" value="Create"/>
+            </div>
+        </form>
+    </main>
+</div>
+</body>
+</html>

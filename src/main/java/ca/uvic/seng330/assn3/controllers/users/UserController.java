@@ -2,11 +2,7 @@ package ca.uvic.seng330.assn3.controllers.users;
 
 import ca.uvic.seng330.assn3.models.User;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Map;
-import java.util.UUID;
 
 @Controller
 public class UserController {

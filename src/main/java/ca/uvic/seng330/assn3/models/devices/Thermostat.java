@@ -35,6 +35,16 @@ public class Thermostat extends Device {
         return status;
     }
 
+    public String getTemperature() {
+        String temp =  Double.toString(setPoint.getTemperature());
+        if (setPoint.getUnit() == Temperature.Unit.FAHRENHEIT) {
+            temp = temp + " F";
+        } else {
+            temp = temp + " C";
+        }
+        return temp;
+    }
+
     @Override
     public String toString() {
         return super.getIdentifier().toString();
