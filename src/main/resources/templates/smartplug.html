@@ -10,8 +10,18 @@
     <main class="container">
         <h2>Devices > SmartPlug</h2>
         <section class="device-container">
-            <p>SmartPlug id: <em><span th:text="${name}"></span></em></p>
-            <p>SmartPlug status: <em><span th:text="${status}"></span></em></p>
+            <div class="_direction-row">
+                <a class="btn" type="submit" th:href="@{'/unregister?id=' + ${name}}">Unregister This Device</a>
+            </div>
+
+            <section class = "device-information">
+                <p>ID: <em><span th:text="${name}"></span></em></p>
+                <p>STATUS: <em><span th:text="${status}"></span></em></p>
+            </section>
+
+            <div class="_direction-row">
+                <a class="btn" type="submit" th:href="@{'/hub/smartplug/toggle?id=' + ${name}}">Toggle Status</a>
+            </div>
         </section>
     </main>
 </body>

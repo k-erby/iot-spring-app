@@ -37,10 +37,11 @@ public class ThermostatController {
         // get thermostat status
         String status;
         switch (thermostat.getStatus()) {
-            case OFF: status = "The thermostat is off"; break;
-            case ERROR: status = "The thermostat is having a bad day"; break;
-            case NOT_AVAILABLE: status = "thermostat data is not available"; break;
-            default: status = "The thermostat is operating normally";
+            case OFF: status = "Turned Off"; break;
+            case ON: status = "Turned On"; break;
+            case ERROR: status = "ERROR"; break;
+            case NORMAL: status = "The thermostat is operating normally."; break;
+            default: status = "Status is unavailable.";
         }
         model.addAttribute("status", status);
 
