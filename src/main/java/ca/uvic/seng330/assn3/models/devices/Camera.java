@@ -10,6 +10,7 @@ public class Camera extends Device {
 
     private boolean isRecording;
     private int diskSize;
+    private Status status = Status.OFF;
     public DeviceType aDeviceType;
 
     private final Mediator aMed;
@@ -34,24 +35,30 @@ public class Camera extends Device {
 
     public void record() throws CameraFullException {
         isRecording = true;
+        status = Status.ON;
         aMed.alert(this, "Started recording");
         if(Math.random()*1000 > diskSize) {
+            status = Status.ERROR;
             throw new CameraFullException("Camera Full");
         }
     }
 
     @Override
     public Status getStatus() {
-        return Status.ERROR;
+        return status;
     }
 
     @Override
     public String toString() {
-        return "Camera id " + super.getIdentifier().toString();
+        return super.getIdentifier().toString();
     }
 
     public String getDeviceType() {
         return aDeviceType.toString().toLowerCase();
+    }
+
+    public DeviceType getDeviceTypeEnum() {
+        return aDeviceType;
     }
 }
 

@@ -22,13 +22,8 @@ public class SmartPlugController {
 
     @GetMapping("/hub/smartplug")
     public String smartplug(@RequestParam(name="id", required=true) String id, Model model) {
-
         Map<UUID, Device> devices = this.hub.getDevices();
         Device device = devices.get(UUID.fromString(id));
-//        System.out.println(device.getDeviceType());
-//        if (device.getDeviceType() != DeviceType.CAMERA) {
-//            return "device_error";
-//        }
         SmartPlug smartplug = (SmartPlug)device;
 
         // get smartplug details
@@ -37,14 +32,23 @@ public class SmartPlugController {
         // get smartplug status
         String status;
         switch (smartplug.getStatus()) {
-            case OFF: status = "The smartplug is off"; break;
-            case ERROR: status = "The smartplug is having a bad day"; break;
-            case NOT_AVAILABLE: status = "smartplug data is not available"; break;
-            default: status = "The smartplug is operating normally";
+            case OFF: status = "Turned Off"; break;
+            case ON: status = "Turned On"; break;
+            case ERROR: status = "ERROR"; break;
+            case NORMAL: status = "The smartplug is operating normally."; break;
+            default: status = "Status is unavailable.";
         }
         model.addAttribute("status", status);
 
         return "smartplug";
+    }
+
+    @GetMapping("/hub/smartplug/toggle")
+    public String toggle(@RequestParam(name="id", required=true) String id, Model model) {
+        Map<UUID, Device> devices = this.hub.getDevices();
+        Device device = devices.get(UUID.fromString(id));
+        ((SmartPlug) device).toggle();
+        return smartplug(id, model);
     }
 
 }

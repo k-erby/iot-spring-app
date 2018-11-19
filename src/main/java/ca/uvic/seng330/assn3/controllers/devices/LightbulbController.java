@@ -22,13 +22,8 @@ public class LightbulbController {
 
     @GetMapping("/hub/lightbulb")
     public String lightbulb(@RequestParam(name="id", required=true) String id, Model model) {
-
         Map<UUID, Device> devices = this.hub.getDevices();
         Device device = devices.get(UUID.fromString(id));
-//        System.out.println(device.getDeviceType());
-//        if (device.getDeviceType() != DeviceType.CAMERA) {
-//            return "device_error";
-//        }
         Lightbulb lightbulb = (Lightbulb)device;
 
         // get lightbulb details
@@ -37,14 +32,23 @@ public class LightbulbController {
         // get lightbulb status
         String status;
         switch (lightbulb.getStatus()) {
-            case OFF: status = "The lightbulb is off"; break;
-            case ERROR: status = "The lightbulb is having a bad day"; break;
-            case NOT_AVAILABLE: status = "lightbulb data is not available"; break;
-            default: status = "The lightbulb is operating normally";
+            case OFF: status = "Off"; break;
+            case ON: status = "On"; break;
+            case ERROR: status = "ERROR"; break;
+            case NORMAL: status = "The lightbulb is operating normally."; break;
+            default: status = "Status is unavailable.";
         }
         model.addAttribute("status", status);
 
         return "lightbulb";
+    }
+
+    @GetMapping("/hub/lightbulb/toggle")
+    public String toggle(@RequestParam(name="id", required=true) String id, Model model) {
+        Map<UUID, Device> devices = this.hub.getDevices();
+        Device device = devices.get(UUID.fromString(id));
+        ((Lightbulb) device).toggle();
+        return lightbulb(id, model);
     }
 
 }

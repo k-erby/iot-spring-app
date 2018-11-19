@@ -3,7 +3,6 @@ package ca.uvic.seng330.assn3.controllers.devices;
 import ca.uvic.seng330.assn3.models.Mediator;
 import ca.uvic.seng330.assn3.models.devices.Camera;
 import ca.uvic.seng330.assn3.models.devices.Device;
-import ca.uvic.seng330.assn3.util.DeviceType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,14 +22,9 @@ public class CameraController {
 
     @GetMapping("/hub/camera")
     public String camera(@RequestParam(name="id", required=true) String id, Model model) {
-
         Map<UUID, Device> devices = this.hub.getDevices();
         Device device = devices.get(UUID.fromString(id));
-//        System.out.println(device.getDeviceType());
-//        if (device.getDeviceType() != DeviceType.CAMERA) {
-//            return "device_error";
-//        }
-        Camera camera = (Camera)device;
+        Camera camera = (Camera) device;
 
         // get camera details
         model.addAttribute("name", camera.toString());
@@ -38,10 +32,11 @@ public class CameraController {
         // get camera status
         String status;
         switch (camera.getStatus()) {
-            case OFF: status = "The camera is off"; break;
-            case ERROR: status = "The camera is having a bad day"; break;
-            case NOT_AVAILABLE: status = "camera data is not available"; break;
-            default: status = "The camera is operating normally";
+            case OFF: status = "OFF"; break;
+            case ON: status = "ON"; break;
+            case ERROR: status = "ERROR"; break;
+            case NORMAL: status = "The camera is operating normally."; break;
+            default: status = "Status is unavailable.";
         }
         model.addAttribute("status", status);
 

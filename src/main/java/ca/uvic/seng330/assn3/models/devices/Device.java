@@ -34,4 +34,8 @@ public abstract class Device {
         return aDeviceType.toString().toLowerCase();
     }
 
+    public DeviceType getDeviceTypeEnum() {
+        return aDeviceType;
+    }
+
 }

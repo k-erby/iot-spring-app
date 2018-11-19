@@ -1,7 +1,6 @@
 package ca.uvic.seng330.assn3.models.devices;
 
 import ca.uvic.seng330.assn3.models.Mediator;
-import ca.uvic.seng330.assn3.models.devices.Device;
 import ca.uvic.seng330.assn3.util.DeviceType;
 import ca.uvic.seng330.assn3.util.Temperature;
 import ca.uvic.seng330.assn3.exceptions.HubRegistrationException;
@@ -9,7 +8,7 @@ import ca.uvic.seng330.assn3.util.Status;
 
 public class Thermostat extends Device {
     private final Mediator aMed;
-    private Status status = Status.NORMAL;
+    private Status status = Status.OFF;
     private Temperature setPoint;
     public DeviceType aDeviceType;
 
@@ -32,14 +31,13 @@ public class Thermostat extends Device {
         }
     }
 
-    @Override
     public Status getStatus() {
         return status;
     }
 
     @Override
     public String toString() {
-        return "Thermostat id " + super.getIdentifier().toString();
+        return super.getIdentifier().toString();
     }
 
     public void setTemp(Temperature t) {
@@ -50,5 +48,9 @@ public class Thermostat extends Device {
 
     public String getDeviceType() {
         return aDeviceType.toString().toLowerCase();
+    }
+
+    public DeviceType getDeviceTypeEnum() {
+        return aDeviceType;
     }
 }
