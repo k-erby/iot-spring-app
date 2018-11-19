@@ -29,6 +29,16 @@
             <a th:each="data: ${thermostatDevices}" class="table-devices _direction-column">
                 <a th:href="@{'/hub/thermostat?id=' + ${data}}" th:text="${data}"></a>
             </a>
+
+            <div class="_direction-row register-device">
+                <a class="btn" type="submit" th:href="@{/new_device}">Register New Device</a>
+            </div>
+
+            <h3>Users</h3>
+            <a th:each="data: ${users}" class="table-devices">
+                <a th:href="@{'/'}" th:text="${data}"></a>
+            </a>
+
         </section>
     </main>
 </body>

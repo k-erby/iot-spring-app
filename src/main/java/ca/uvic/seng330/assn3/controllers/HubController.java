@@ -3,6 +3,7 @@ package ca.uvic.seng330.assn3.controllers;
 import ca.uvic.seng330.assn3.exceptions.HubRegistrationException;
 import ca.uvic.seng330.assn3.models.Mediator;
 import ca.uvic.seng330.assn3.models.devices.Camera;
+import ca.uvic.seng330.assn3.models.User;
 import ca.uvic.seng330.assn3.models.devices.Device;
 import ca.uvic.seng330.assn3.models.devices.Lightbulb;
 import ca.uvic.seng330.assn3.models.devices.SmartPlug;
@@ -19,37 +20,64 @@ import java.util.UUID;
 
 @Controller
 public class HubController {
-
+	private User currentUser = null;
     private Mediator hub;
-
-    HubController (Mediator hub) {
+    private Map<String, User>  users;
+    HubController (Mediator hub, Map<String, User>  users) {
         this.hub = hub;
+        this.users = users;
     }
 
     @GetMapping("/hub")
-    public String hub(@RequestParam(name="name", required=false, defaultValue="Hub") String name, Model model) {
-
-        Map<UUID, Device> devices = this.hub.getDevices();
-        ArrayList<String> cameraIds = new ArrayList();
-        ArrayList<String> lightbulbIds = new ArrayList();
-        ArrayList<String> smartplugIds = new ArrayList();
-        ArrayList<String> thermostatIds = new ArrayList();
-
-        for (Device device : devices.values()) {
-            switch (device.getDeviceTypeEnum()) {
-                case CAMERA: cameraIds.add(device.getIdentifier().toString()); break;
-                case LIGHTBULB: lightbulbIds.add(device.getIdentifier().toString()); break;
-                case SMARTPLUG: smartplugIds.add(device.getIdentifier().toString()); break;
-                case THERMOSTAT: thermostatIds.add(device.getIdentifier().toString()); break;
-                default: break;
-            }
-        }
-
-        model.addAttribute("cameraDevices", cameraIds);
-        model.addAttribute("lightbulbDevices", lightbulbIds);
-        model.addAttribute("smartplugDevices", smartplugIds);
-        model.addAttribute("thermostatDevices", thermostatIds);
-        return "hub";
+    public String hub(@RequestParam(name="username", required=false, defaultValue="null") String name, @RequestParam(name="password", required=false, defaultValue="null") String password, Model model) {
+    	
+    	if(name.equals("null")||password.equals("null")) {
+    		if (currentUser == null) {
+    			return "login";
+    		}
+    	}else {
+    		if(!this.users.containsKey(name)) {
+        		return "login_error";
+        	}
+        	if(!this.users.get(name).checkPassword(password)){
+        		return "login_error";
+        	}
+        	this.currentUser = this.users.get(name);
+    	}
+    	
+    	if(currentUser.getIsAdmin()) {
+    				
+	        Map<UUID, Device> devices = this.hub.getDevices();
+	        ArrayList<String> cameraIds = new ArrayList();
+	        ArrayList<String> lightbulbIds = new ArrayList();
+	        ArrayList<String> smartplugIds = new ArrayList();
+	        ArrayList<String> thermostatIds = new ArrayList();
+	
+	        for (Device device : devices.values()) {
+	            switch (device.getDeviceTypeEnum()) {
+	                case CAMERA: cameraIds.add(device.getIdentifier().toString()); break;
+	                case LIGHTBULB: lightbulbIds.add(device.getIdentifier().toString()); break;
+	                case SMARTPLUG: smartplugIds.add(device.getIdentifier().toString()); break;
+	                case THERMOSTAT: thermostatIds.add(device.getIdentifier().toString()); break;
+	                default: break;
+	            }
+	        }
+	
+	        model.addAttribute("cameraDevices", cameraIds);
+	        model.addAttribute("lightbulbDevices", lightbulbIds);
+	        model.addAttribute("smartplugDevices", smartplugIds);
+	        model.addAttribute("thermostatDevices", thermostatIds);
+	        
+	        ArrayList<String> userNames = new ArrayList();
+	        for(User user : this.users.values()) {
+	        	userNames.add(user.getUsername());
+	        }
+	        model.addAttribute("users", userNames);
+	        
+	        return "hub_admin";
+    	}else {
+    		return "hub";
+    	}
     }
 
     @GetMapping("/unregister")
