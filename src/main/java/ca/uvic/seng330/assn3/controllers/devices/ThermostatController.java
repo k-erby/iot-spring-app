@@ -28,6 +28,7 @@ public class ThermostatController {
 
         // get thermostat details
         model.addAttribute("name", thermostat.toString());
+        model.addAttribute("temp", thermostat.getTemperature());
 
         // get thermostat status
         String status;

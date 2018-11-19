@@ -43,6 +43,10 @@ public class Camera extends Device {
         }
     }
 
+    public boolean isRecording() {
+        return isRecording;
+    }
+
     @Override
     public Status getStatus() {
         return status;
