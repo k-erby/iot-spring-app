@@ -9,7 +9,7 @@
 <body>
     <main class="container">
         <h2>Devices Hub</h2>
-        <section class="table-container">
+        <section class="view-container-lg">
             <h3>Cameras</h3>
             <a th:each="data: ${cameraDevices}" class="table-devices _direction-column">
                 <a th:href="@{'/hub/camera?id=' + ${data}}" th:text="${data}"></a>
