@@ -2,15 +2,14 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <link href="../static/css/main.css" th:href="@{/css/main.css}" rel="stylesheet" />
-    <link href="../static/css/login.css" th:href="@{/css/login.css}" rel="stylesheet" />
 </head>
 <body>
 <div>
     <main class="container _justify-center">
-        <form class="form-logout _direction-column _justify-center">
-            <h1 class="form-logout-heading _justify-center">Logout</h1>
+        <form class="mini-msg-container _direction-column _justify-center">
+            <h1 class="mini-msg-container-header _justify-center">Logout</h1>
             <span class="logout-msg">You have been successfully logged out.</span>
-            <a class="btn" type="submit" th:href="@{/login}">Login</a>
+            <a class="btn btn-link" type="submit" th:href="@{/}">Login</a>
         </form>
     </main>
 </div>

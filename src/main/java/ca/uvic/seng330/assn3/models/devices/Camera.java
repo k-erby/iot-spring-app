@@ -43,6 +43,11 @@ public class Camera extends Device {
         }
     }
 
+    public void stopRecording() {
+        isRecording = false;
+        status = Status.OFF;
+    }
+
     public boolean isRecording() {
         return isRecording;
     }

@@ -10,7 +10,7 @@ public class LoginController {
 
     @RequestMapping(value = "/login", method=RequestMethod.GET)
     public String login(ModelMap map) {
-        return "login";
+        return "'/'";
     }
 
     @RequestMapping(value = "/logout", method=RequestMethod.GET)

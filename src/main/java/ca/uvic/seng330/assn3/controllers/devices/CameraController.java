@@ -1,5 +1,6 @@
 package ca.uvic.seng330.assn3.controllers.devices;
 
+import ca.uvic.seng330.assn3.exceptions.CameraFullException;
 import ca.uvic.seng330.assn3.models.Mediator;
 import ca.uvic.seng330.assn3.models.devices.Camera;
 import ca.uvic.seng330.assn3.models.devices.Device;
@@ -42,6 +43,27 @@ public class CameraController {
         model.addAttribute("status", status);
 
         return "camera";
+    }
+
+    @GetMapping("/hub/camera/toggleOn")
+    public String toggleOn(@RequestParam(name="id", required=true) String id, Model model) {
+        Map<UUID, Device> devices = this.hub.getDevices();
+        Device device = devices.get(UUID.fromString(id));
+        try {
+            ((Camera) device).record();
+        } catch (CameraFullException e) {
+            // TODO: log stuff here.
+            System.out.println("Log here");
+        }
+        return camera(id, model);
+    }
+
+    @GetMapping("/hub/camera/toggleOff")
+    public String toggleOff(@RequestParam(name="id", required=true) String id, Model model) {
+        Map<UUID, Device> devices = this.hub.getDevices();
+        Device device = devices.get(UUID.fromString(id));
+        ((Camera) device).stopRecording();
+        return camera(id, model);
     }
 
 }

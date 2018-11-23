@@ -103,15 +103,14 @@ h2 {
   padding-bottom: 0.5em;
 }
 
-a {
-  text-decoration: none;
-  color: #000;
-}
-
 .err-msg,
 .logout-msg {
     width: auto;
     margin-bottom: 1.2em;
+}
+
+.checkbox {
+    margin-bottom: 10px;
 }
 
 /* ----------------------------------------------
@@ -132,19 +131,77 @@ a {
 }
 
 .btn:hover {
- cursor: pointer;
- background-color: #1eb3b8;
+  cursor: pointer;
+  background-color: #1eb3b8;
+}
+
+.btn-link {
+  text-decoration: none;
+  color: #000;
 }
 
 .drop-down {
- border: 2px solid #66E2E6;
- width: 120px;
- border-radius: 3px;
+  border: 2px solid #66E2E6;
+  width: 120px;
+  border-radius: 3px;
 }
 
 .drop-down-menu {
- padding: 8px 8px;
- width: 100%;
- border: none;
- background: transparent;
+  padding: 8px 8px;
+  width: 100%;
+  border: none;
+  background: transparent;
+}
+
+.back-to-hub-btn {
+  margin-top: 2em;
+}
+
+/* ----------------------------------------------
+				  Containers
+---------------------------------------------- */
+
+.view-container-lg {
+    width: 90vw;
+    height: auto;
+    padding: 30px 40px;
+    background-color: #FFFFFF;
+    -webkit-border-radius: 5px;
+       -moz-border-radius: 5px;
+            border-radius: 5px;
+}
+
+.view-container-md {
+    width: 60vw;
+    height: auto;
+    padding: 30px 40px;
+    background-color: #FFFFFF;
+    -webkit-border-radius: 5px;
+       -moz-border-radius: 5px;
+            border-radius: 5px;
+}
+
+.view-container-sm {
+    width: 30vw;
+    height: auto;
+    padding: 30px 40px;
+    margin-left: 2em;
+    background-color: #FFFFFF;
+    -webkit-border-radius: 5px;
+       -moz-border-radius: 5px;
+            border-radius: 5px;
+}
+
+.mini-msg-container {
+    width: 500px;
+    padding: 30px 40px;
+    margin-bottom: 10px;
+    background-color: #FFFFFF;
+    -webkit-border-radius: 5px;
+       -moz-border-radius: 5px;
+            border-radius: 5px;
+}
+
+.mini-msg-container-header {
+    margin-bottom: 10px;
 }

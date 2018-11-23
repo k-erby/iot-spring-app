@@ -9,21 +9,33 @@
 <body>
     <main class="container">
         <h2>Devices > Camera</h2>
-        <section class="device-container">
-            <div class="_direction-row">
-                <a class="btn" type="submit" th:href="@{'/unregister?id=' + ${name}}">Unregister This Device</a>
-            </div>
+        <div class="_direction-row">
+            <section class="view-container-md">
+                <div class="_direction-row">
+                    <a class="btn btn-link" type="submit" th:href="@{'/unregister?id=' + ${name}}">Unregister This Device</a>
+                </div>
 
-            <section class = "device-information">
-                <p>ID: <em><span th:text="${name}"></span></em></p>
-                <p>STATUS: <em><span th:text="${status}"></span></em></p>
-                <p>RECORDING: <em><span th:text="${recording}"></span></em></p>
+                <section class = "device-information">
+                    <p>ID: <em><span th:text="${name}"></span></em></p>
+                    <p>STATUS: <em><span th:text="${status}"></span></em></p>
+                    <p>RECORDING: <em><span th:text="${recording}"></span></em></p>
+                </section>
+
+                <div class="_direction-row">
+                    <a class="btn btn-link" type="submit" th:href="@{'/hub/camera/toggleOn?id=' + ${name}}">Turn Camera On</a>
+                    <a class="btn btn-link" type="submit" th:href="@{'/hub/camera/toggleOff?id=' + ${name}}">Turn Camera OFF</a>
+                </div>
+                <div class="back-to-hub-btn">
+                    <a class="btn btn-link" type="submit" th:href="@{/hub}">Back to Hub</a>
+                </div>
             </section>
-
-            <div class="_direction-row">
-                <a class="btn" type="submit" th:href="@{/hub}">Back to Hub</a>
-            </div>
-        </section>
+            <section class="view-container-sm">
+                <!-- TODO: actually do this section -->
+                <iframe src="https://www.youtube.com/embed/d44nfo0L_ZA" frameborder="0"
+                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>${model.videoInfo}</iframe>
+            </section>
+        </div>
     </main>
 </body>
 </html>

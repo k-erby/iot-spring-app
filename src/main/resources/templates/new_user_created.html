@@ -2,14 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <link href="../static/css/main.css" th:href="@{/css/main.css}" rel="stylesheet" />
-    <link href="../static/css/login.css" th:href="@{/css/login.css}" rel="stylesheet" />
 </head>
 <body>
 <div>
     <main class="container _justify-center">
-        <form class="form-signin-error _direction-column _justify-center">
-            <h1 class="form-signin-error-heading _justify-center">Welcome!</h1>
-            <a class="btn" type="submit" th:href="@{/hub}">Go to Hub</a>
+        <form class="mini-msg-container _direction-column _justify-center">
+            <h1 class="mini-msg-container-header _justify-center">New user created!</h1>
+            <a class="btn btn-link" type="submit" th:href="@{/}">Login</a>
         </form>
     </main>
 </div>
