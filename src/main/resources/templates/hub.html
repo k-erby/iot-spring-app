@@ -12,22 +12,22 @@
         <section class="view-container-lg">
             <h3>Cameras</h3>
             <a th:each="data: ${cameraDevices}" class="table-devices _direction-column">
-                <a th:href="@{'/hub/camera?id=' + ${data}}" th:text="${data}"></a>
+                <a class="device-link" th:href="@{'/hub/camera?id=' + ${data}}" th:text="${data}"></a>
             </a>
 
             <h3>Lightbulbs</h3>
             <a th:each="data: ${lightbulbDevices}" class="table-devices _direction-column">
-                <a th:href="@{'/hub/lightbulb?id=' + ${data}}" th:text="${data}"></a>
+                <a class="device-link" th:href="@{'/hub/lightbulb?id=' + ${data}}" th:text="${data}"></a>
             </a>
 
             <h3>SmartPlugs</h3>
             <a th:each="data: ${smartplugDevices}" class="table-devices _direction-column">
-                <a th:href="@{'/hub/smartplug?id=' + ${data}}" th:text="${data}"></a>
+                <a class="device-link" th:href="@{'/hub/smartplug?id=' + ${data}}" th:text="${data}"></a>
             </a>
 
             <h3>Thermostat</h3>
             <a th:each="data: ${thermostatDevices}" class="table-devices _direction-column">
-                <a th:href="@{'/hub/thermostat?id=' + ${data}}" th:text="${data}"></a>
+                <a class="device-link" th:href="@{'/hub/thermostat?id=' + ${data}}" th:text="${data}"></a>
             </a>
         </section>
     </main>

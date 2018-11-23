@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <link href="../static/css/main.css" th:href="@{/css/main.css}" rel="stylesheet" />
-    <link href="../static/css/login.css" th:href="@{/css/login.css}" rel="stylesheet" />
+    <link href="../static/css/form.css" th:href="@{/css/form.css}" rel="stylesheet" />
 </head>
 <body>
 <div>
@@ -13,8 +13,8 @@
             <input type="password" class="form-control" placeholder=" Password" id="password" name="password"/>
 
             <div class="_direction-row _space-around">
-                <a class="btn" th:href="@{/login}">Cancel</a>
-                <input class="btn" type="submit" value="Create"/>
+                <a class="btn btn-link" th:href="@{/}">Cancel</a>
+                <input class="btn btn-link" type="submit" value="Create"/>
             </div>
         </form>
     </main>

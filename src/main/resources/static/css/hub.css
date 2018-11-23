@@ -5,3 +5,14 @@ h3:nth-child(n+2) {
 .register-device {
     margin: 1em 0;
 }
+
+.user-links {
+    color: #20c0c5;
+    margin-left: 1em;
+}
+
+.device-link {
+    color: #20c0c5;
+    margin-left: 1em;
+    text-decoration: none;
+}

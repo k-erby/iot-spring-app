@@ -13,32 +13,32 @@
             <section class="view-container-md">
                 <h3>Cameras</h3>
                 <a th:each="data: ${cameraDevices}" class="table-devices _direction-column">
-                    <a th:href="@{'/hub/camera?id=' + ${data}}" th:text="${data}"></a>
+                    <a class="device-link" th:href="@{'/hub/camera?id=' + ${data}}" th:text="${data}"></a>
                 </a>
 
                 <h3>Lightbulbs</h3>
                 <a th:each="data: ${lightbulbDevices}" class="table-devices _direction-column">
-                    <a th:href="@{'/hub/lightbulb?id=' + ${data}}" th:text="${data}"></a>
+                    <a class="device-link" th:href="@{'/hub/lightbulb?id=' + ${data}}" th:text="${data}"></a>
                 </a>
 
                 <h3>SmartPlugs</h3>
                 <a th:each="data: ${smartplugDevices}" class="table-devices _direction-column">
-                    <a th:href="@{'/hub/smartplug?id=' + ${data}}" th:text="${data}"></a>
+                    <a class="device-link" th:href="@{'/hub/smartplug?id=' + ${data}}" th:text="${data}"></a>
                 </a>
 
                 <h3>Thermostat</h3>
                 <a th:each="data: ${thermostatDevices}" class="table-devices _direction-column">
-                    <a th:href="@{'/hub/thermostat?id=' + ${data}}" th:text="${data}"></a>
+                    <a class="device-link" th:href="@{'/hub/thermostat?id=' + ${data}}" th:text="${data}"></a>
                 </a>
 
                 <div class="_direction-row register-device">
-                    <a class="btn" type="submit" th:href="@{/new_device}">Register New Device</a>
+                    <a class="btn btn-link" type="submit" th:href="@{/new_device}">Register New Device</a>
                 </div>
             </section>
             <section class="view-container-sm">
                 <h3>Users</h3>
-                <a th:each="data: ${users}">
-                    <a th:href="@{'/'}" th:text="${data}"></a>
+                <a th:each="data: ${users}" class="_direction-column">
+                    <a class="btn-link user-links" th:href="@{'/'}" th:text="${data}"></a>
                 </a>
             </section>
         </div>
