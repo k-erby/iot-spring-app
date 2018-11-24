@@ -1,11 +1,13 @@
 package ca.uvic.seng330.assn3.models.devices;
 
 import ca.uvic.seng330.assn3.exceptions.HubRegistrationException;
+import ca.uvic.seng330.assn3.models.Hub;
 import ca.uvic.seng330.assn3.models.Hub.LogLevel;
 import ca.uvic.seng330.assn3.models.Mediator;
 import ca.uvic.seng330.assn3.util.DeviceType;
 import ca.uvic.seng330.assn3.util.Status;
 import ca.uvic.seng330.assn3.util.Temperature;
+import ca.uvic.seng330.assn3.util.Temperature.TemperatureOutofBoundsException;
 import ca.uvic.seng330.assn3.util.Temperature.Unit;
 
 public class Thermostat extends Device {
@@ -47,6 +49,10 @@ public class Thermostat extends Device {
       Temperature t = new Temperature(temp.getTemperature(), temp.getScale());
 
       return t;
+    }
+    
+    public Unit getMode() {
+      return mode;
     }
     
     //switch between C/F
@@ -120,6 +126,21 @@ public class Thermostat extends Device {
         
         return true;
     }
+    
+    /**
+     * Temp automatically changed from outside climate
+     * @param t -> the outside temperature
+     * @throws TemperatureOutofBoundsException 
+     */
+    public void dynamicActivity(Temperature t) throws TemperatureOutofBoundsException {
+      
+      double factor = this.getTemp().compareTemp(t);
+      if(activityDetected) {
+       
+        setTemp(new Temperature(getTemp().getTemperature() * factor, getMode()));
+        Hub.log(LogLevel.INFO, "Setting temperature dynamically.");
+      }
+    }
 
     public void shutdown() {
       
@@ -161,4 +182,5 @@ public class Thermostat extends Device {
       System.out.println(t.getState());
     }
 
+   
 }

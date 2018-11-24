@@ -8,7 +8,9 @@ import java.util.UUID;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ca.uvic.seng330.assn3.exceptions.HubRegistrationException;
+import ca.uvic.seng330.assn3.models.devices.Camera;
 import ca.uvic.seng330.assn3.models.devices.Device;
+import ca.uvic.seng330.assn3.util.DeviceType;
 import ca.uvic.seng330.assn3.util.JSONMessaging;
 import ca.uvic.seng330.assn3.views.Client;
 
@@ -104,11 +106,8 @@ public class Hub extends Device implements Mediator{
       for(Device d: u.getDevices()) {
         d.shutdown();
         log(LogLevel.INFO, "...success!");
-
       }
-      
       u.signOut();
-      
     }
     
     /*
@@ -370,11 +369,47 @@ public class Hub extends Device implements Mediator{
       }
       log(l, message);
     }
+    
+    
+    /**
+     * 
+     * If a device detects activity, it asks the Hub to check if any actions should be taken with the other devices
+     * e.g. if Camera detects activity and Lightbulbs are off then turn lights on or 
+     * if Camera doesn't detect activity and Lightbulbs are on then turn lights off or
+     * User has settings that when Lightbulb turn on in a room and it is Winter, raise Thermostat or
+     * etc.
+     * 
+     * @param activity -> was activityDetected?
+     * @param pDevice -> the device that detected activity
+     */
+    public void dynamicActivity(boolean activity, Device pDevice) {
+      
+      for(User u: aUsers.values()) {
+        if(u.getDevices().contains(pDevice)) {
+          for(Device d: u.getDevices()) {
+            if(pDevice.getDeviceTypeEnum() == DeviceType.CAMERA) {
+                if(d.getDeviceTypeEnum() == DeviceType.LIGHTBULB) {
+                  if(activity && d.isPowerOn()) {
+                    log(LogLevel.WARN, "Lightbulb already on.");
+                  }else if(activity && !d.isPowerOn()) {
+                    d.toggle();
+                  }else if(!activity && d.isPowerOn()) {
+                    d.toggle();
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    
 
     public Map<UUID, Device> getDevices() {
       
         return new HashMap<UUID, Device>(aDevices);
     }
+
+  
 
    
 }

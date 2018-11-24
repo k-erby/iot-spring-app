@@ -132,6 +132,20 @@ public class Temperature {
     return kelvin;
   }
 
+  
+  public double compareTemp(Temperature that) {
+    
+    return this.getCelsius()/that.getCelsius();
+   
+  }
+  
+  public boolean equalMode(Temperature t) {
+    
+    if(this.getScale() == t.getScale()) return true;
+    else return false;
+    
+  }
+  
   @Override
   public String toString() {
     return String.format("%.1f %s%s",temp, DEGREE, unit);
