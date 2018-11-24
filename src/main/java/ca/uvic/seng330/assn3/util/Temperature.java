@@ -134,7 +134,7 @@ public class Temperature {
 
   @Override
   public String toString() {
-    return (temp + " " + DEGREE + unit);
+    return String.format("%.1f %s%s",temp, DEGREE, unit);
   }
 
   /**

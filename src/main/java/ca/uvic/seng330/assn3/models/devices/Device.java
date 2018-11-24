@@ -12,6 +12,7 @@ public abstract class Device {
     protected Status aStatus; // This can't be NULL!
     protected State state = new State();
     protected boolean isOn = false;
+    protected boolean dynamicActivity = false;
     public DeviceType aDeviceType;
 
     public UUID getIdentifier() {
