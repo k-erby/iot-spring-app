@@ -137,7 +137,28 @@ public class Camera extends Device {
       }
     }
 
-    
+    //manual call for testing
+    //will talk to hub regardless
+    public void dynamicCamActivity() throws CameraFullException {
+      
+      /* Acceptance test doesn't ask to record..
+       * 
+      if(dynamicActivity && !isRecording) {
+        aMed.alert(LogLevel.NOTIFY, this, "Activity detected. Begin Recording...");
+        record();
+      }else if(!dynamicActivity && isRecording){
+        record();
+      }else if(isRecording) {
+        forceStop();
+      }*/
+      
+      if(activityDetected) {
+        aMed.alert(LogLevel.NOTIFY, this, "Activity detected in front of "+this.toString());
+      }
+      
+      aMed.dynamicActivity(activityDetected, this);
+      
+    }
     
     /** Logs current state and shuts down device. */
     @Override
@@ -183,5 +204,7 @@ public class Camera extends Device {
               + "...");
       h.shutdown();
     }
+    
+   
 }
 

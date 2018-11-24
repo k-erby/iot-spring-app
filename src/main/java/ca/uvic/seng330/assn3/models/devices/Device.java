@@ -12,7 +12,7 @@ public abstract class Device {
     protected Status aStatus; // This can't be NULL!
     protected State state = new State();
     protected boolean isOn = false;
-    protected boolean dynamicActivity = false;
+    protected boolean activityDetected = false;
     public DeviceType aDeviceType;
 
     public UUID getIdentifier() {
@@ -43,6 +43,10 @@ public abstract class Device {
         this.aStatus = status;
     }
     
+    public boolean isPowerOn() {
+      return isOn;
+    }
+    
     public boolean equals(Device that) {
       
       if(this.getIdentifier() == that.getIdentifier()) return true;
@@ -61,6 +65,10 @@ public abstract class Device {
       setState(Status.OFF, Status.NOT_AVAILABLE);
       Hub.log(Hub.LogLevel.INFO, "Shutting down "+ this + "...");
       isOn = state.getPowerOn();
+    }
+    
+    public void toggle() {
+      isOn ^= true;
     }
 
     @Override
