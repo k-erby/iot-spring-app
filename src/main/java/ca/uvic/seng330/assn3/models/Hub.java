@@ -32,14 +32,14 @@ public class Hub extends Device implements Mediator{
     public Hub() {
       
       try {
-        
+        log(LogLevel.DEBUG, "Opening file...");
         LOGWRITER = new PrintWriter("logfile.txt");
        }catch(FileNotFoundException e) {
          
          e.printStackTrace();
          log(LogLevel.ERROR, "Unable to write to Log File");
        }
-       log(LogLevel.INFO, "Begin logging to file...");
+       log(LogLevel.DEBUG, "...success!\nBegin logging to file...");
       
     }
 
@@ -93,9 +93,9 @@ public class Hub extends Device implements Mediator{
 
       }
       
-      log(LogLevel.INFO, "End logging to file. Closing...");
+      log(LogLevel.DEBUG, "End logging to file. Closing...");
       LOGWRITER.close();
-      log(LogLevel.INFO, "...closed successfully.");
+      log(LogLevel.DEBUG, "...closed successfully.");
       
       log(LogLevel.INFO, "...shutdown successfully.");
       

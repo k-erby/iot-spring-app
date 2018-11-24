@@ -9,8 +9,9 @@ import ca.uvic.seng330.assn3.util.Status;
 public abstract class Device {
 
     private final UUID aUuid = UUID.randomUUID();
-    private Status aStatus; // This can't be NULL!
-    private State state = new State();
+    protected Status aStatus; // This can't be NULL!
+    protected State state = new State();
+    protected boolean isOn = false;
     public DeviceType aDeviceType;
 
     public UUID getIdentifier() {
@@ -33,6 +34,7 @@ public abstract class Device {
       
       state.setFunctionState(fs);
       state.setPowerState(ps);
+      isOn = state.getPowerOn();
       
     }
 

@@ -10,16 +10,11 @@ import ca.uvic.seng330.assn3.util.Status;
 
 public class Lightbulb extends Device implements SwitchableDevice {
 
-    private boolean isOn = false;
     private final Mediator aMed;
-    private Status status = Status.OFF;
-    private State state = new State();
-    public DeviceType aDeviceType;
 
     public Lightbulb(Mediator pMed) {
         
         aMed = pMed;
-        isOn = false;
         aDeviceType = DeviceType.LIGHTBULB;
         
         try {
