@@ -1,6 +1,5 @@
 package ca.uvic.seng330.assn3.models.devices;
 
-import java.util.UUID;
 import ca.uvic.seng330.assn3.exceptions.CameraFullException;
 import ca.uvic.seng330.assn3.exceptions.HubRegistrationException;
 import ca.uvic.seng330.assn3.models.Hub.LogLevel;
@@ -17,8 +16,6 @@ public class Camera extends Device {
     private double footageCaptured;
     private double diskSize;
     private State state;
-    private Status status;
-    private UUID uuid;
     private double timer;
     private long timeStart;
     private final double bitrate = 1000/8;
@@ -31,7 +28,6 @@ public class Camera extends Device {
         isRecording = false;
         isOn = false;
         state = new State();
-        status = Status.NORMAL;
         memoryCap = 1024.0; // 1 GB
         footageCaptured = 0.0;
         diskSize = 0.0;
@@ -165,6 +161,27 @@ public class Camera extends Device {
 
     public DeviceType getDeviceTypeEnum() {
         return aDeviceType;
+    }
+    
+    public static void main(String[] args) throws CameraFullException, InterruptedException {
+      ca.uvic.seng330.assn3.models.Hub h = new ca.uvic.seng330.assn3.models.Hub();
+      Camera c = new Camera(h);
+      System.out.println(c.state);
+      System.out.println("Starting up...");
+      h.startup();
+      System.out.println(c.state);
+      System.out.println(c.memoryUsage());
+      System.out.println("Recording test...");
+      c.record(); // doesn't work without hub
+      Thread.sleep(5000);
+      c.record();
+      System.out.println(
+          "\n...successfully recorded for 5 seconds.\n"
+              + c.memoryUsage()
+              + "\nShutting down device "
+              + c
+              + "...");
+      h.shutdown();
     }
 }
 

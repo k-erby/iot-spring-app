@@ -5,7 +5,6 @@ import ca.uvic.seng330.assn3.exceptions.HubRegistrationException;
 import ca.uvic.seng330.assn3.models.Hub;
 import ca.uvic.seng330.assn3.models.Mediator;
 import ca.uvic.seng330.assn3.util.DeviceType;
-import ca.uvic.seng330.assn3.util.State;
 import ca.uvic.seng330.assn3.util.Status;
 
 public class Lightbulb extends Device implements SwitchableDevice {
