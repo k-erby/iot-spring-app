@@ -27,18 +27,11 @@ public class ThermostatController {
 
         // get thermostat details
         model.addAttribute("name", thermostat.toString());
-        model.addAttribute("temp", thermostat.getTemperature());
+        model.addAttribute("temp", thermostat.getTemp().toString());
 
         // get thermostat status
-        String status;
-        switch (thermostat.getStatus()) {
-            case OFF: status = "Turned Off"; break;
-            case ON: status = "Turned On"; break;
-            case ERROR: status = "ERROR"; break;
-            case NORMAL: status = "The thermostat is operating normally."; break;
-            default: status = "Status is unavailable.";
-        }
-        model.addAttribute("status", status);
+        
+        model.addAttribute("status", thermostat.getState().stateView());
 
         return "thermostat";
     }

@@ -31,15 +31,8 @@ public class CameraController {
         model.addAttribute("recording", camera.isRecording());
 
         // get camera status
-        String status;
-        switch (camera.getStatus()) {
-            case OFF: status = "OFF"; break;
-            case ON: status = "ON"; break;
-            case ERROR: status = "ERROR"; break;
-            case NORMAL: status = "The camera is operating normally."; break;
-            default: status = "Status is unavailable.";
-        }
-        model.addAttribute("status", status);
+        
+        model.addAttribute("status", camera.getState().stateView());
 
         return "camera";
     }

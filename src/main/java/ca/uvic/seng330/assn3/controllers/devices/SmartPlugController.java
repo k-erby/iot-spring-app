@@ -29,15 +29,8 @@ public class SmartPlugController {
         model.addAttribute("name", smartplug.toString());
 
         // get smartplug status
-        String status;
-        switch (smartplug.getStatus()) {
-            case OFF: status = "Turned Off"; break;
-            case ON: status = "Turned On"; break;
-            case ERROR: status = "ERROR"; break;
-            case NORMAL: status = "The smartplug is operating normally."; break;
-            default: status = "Status is unavailable.";
-        }
-        model.addAttribute("status", status);
+        
+        model.addAttribute("status", smartplug.getState().stateView());
 
         return "smartplug";
     }
