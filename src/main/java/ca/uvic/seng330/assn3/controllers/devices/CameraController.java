@@ -58,10 +58,10 @@ public class CameraController {
     }
 
     @GetMapping("/hub/camera/toggleOff")
-    public String toggleOff(@RequestParam(name="id", required=true) String id, Model model) {
+    public String toggleOff(@RequestParam(name="id", required=true) String id, Model model) throws CameraFullException {
         Map<UUID, Device> devices = this.hub.getDevices();
         Device device = devices.get(UUID.fromString(id));
-        ((Camera) device).stopRecording();
+        ((Camera) device).record();
         return camera(id, model);
     }
 
