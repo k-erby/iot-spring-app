@@ -1,12 +1,10 @@
 package ca.uvic.seng330.assn3;
 
-import ca.uvic.seng330.assn3.models.User;
-
 import java.util.HashMap;
 import java.util.Map;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import ca.uvic.seng330.assn3.models.User;
 
 @Configuration
 public class UserConfig {

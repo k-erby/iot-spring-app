@@ -1,16 +1,15 @@
 package ca.uvic.seng330.assn3.controllers.devices;
 
-import ca.uvic.seng330.assn3.exceptions.CameraFullException;
-import ca.uvic.seng330.assn3.models.Mediator;
-import ca.uvic.seng330.assn3.models.devices.Camera;
-import ca.uvic.seng330.assn3.models.devices.Device;
+import java.util.Map;
+import java.util.UUID;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.Map;
-import java.util.UUID;
+import ca.uvic.seng330.assn3.exceptions.CameraFullException;
+import ca.uvic.seng330.assn3.models.Mediator;
+import ca.uvic.seng330.assn3.models.devices.Camera;
+import ca.uvic.seng330.assn3.models.devices.Device;
 
 @Controller
 public class CameraController {

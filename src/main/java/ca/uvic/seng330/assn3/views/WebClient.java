@@ -1,13 +1,13 @@
 package ca.uvic.seng330.assn3.views;
 
+import org.json.JSONObject;
 import ca.uvic.seng330.assn3.exceptions.HubRegistrationException;
 import ca.uvic.seng330.assn3.models.Mediator;
-import org.json.JSONObject;
+import ca.uvic.seng330.assn3.models.User;
 
 public class WebClient extends Client {
 
     private final Mediator aMed;
-    private JSONObject aJsonObj;
 
     public WebClient(Mediator pMed) {
         aMed = pMed;
@@ -17,21 +17,36 @@ public class WebClient extends Client {
             e.printStackTrace();
         }
     }
+    
 
     @Override
-    public void notify(JSONObject json) {
-        super.notify(json);
-        this.aJsonObj = json;
-        display();
+    public void notify(User u, JSONObject json) {
+        super.notify(u, json);
+       
+        if(u.signedIn()) display(u.getNotif());
+       
     }
 
-    private void display() {
-        System.out.println("WebClient is displaying content from : " + aJsonObj.getString("node_id"));
-        //TODO  should be on web page
+    //displays notification immediately for current user
+    private void display(JSONObject json) {
+        System.out.println("WebClient is displaying content from : " + json.getString("node_id"));
+        //TODO:  should be on web page // format notification pop up
     }
-
+    
+    //display all pending notifications for a user
+    public void displayAll(User u) {
+      
+      do {
+        
+        display(u.getNotif());
+        
+      }while(u.getNotif() != null);
+      
+    }
+    
     @Override
     public String toString() {
-        return "WebClient: " + getIdentifier().toString();
+      String className = getClass().getSimpleName();
+      return className + " " + getIdentifier().toString();
     }
 }

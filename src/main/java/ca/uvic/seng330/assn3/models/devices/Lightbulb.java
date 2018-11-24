@@ -23,6 +23,7 @@ public class Lightbulb extends Device implements SwitchableDevice {
             e.printStackTrace();
         }
     }
+    
 
     @Override
     public void toggle() {

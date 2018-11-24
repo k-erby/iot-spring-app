@@ -1,13 +1,12 @@
 package ca.uvic.seng330.assn3.controllers.users;
 
-import ca.uvic.seng330.assn3.models.Mediator;
-import ca.uvic.seng330.assn3.models.User;
-
 import java.util.Map;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import ca.uvic.seng330.assn3.models.User;
 
 @Controller
 public class UserController {
