@@ -52,12 +52,14 @@ public abstract class Device {
       
       setState(Status.ON, Status.NORMAL);
       Hub.log(Hub.LogLevel.INFO, "Starting up "+ this + "...");
+      isOn = state.getPowerOn();
     }
     
     public void shutdown() {
       
       setState(Status.OFF, Status.NOT_AVAILABLE);
       Hub.log(Hub.LogLevel.INFO, "Shutting down "+ this + "...");
+      isOn = state.getPowerOn();
     }
 
     @Override

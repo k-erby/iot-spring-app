@@ -32,14 +32,15 @@ public class Hub extends Device implements Mediator{
     public Hub() {
       
       try {
+        log(LogLevel.DEBUG, "Opening file...");
+
         LOGWRITER = new PrintWriter("logfile.txt");
        }catch(FileNotFoundException e) {
          e.printStackTrace();
+         log(LogLevel.DEBUG, "File could not be found.");
        }
-       log(LogLevel.DEBUG, "Opening file...");
-
-       log(LogLevel.DEBUG, "...success!\nBegin logging to file...");
       
+       log(LogLevel.DEBUG, "...success!\nBegin logging to file...");
     }
 
     //turns on all devices
@@ -91,13 +92,10 @@ public class Hub extends Device implements Mediator{
         log(LogLevel.INFO, "...success!");
 
       }
-      
+      log(LogLevel.INFO, "...shutdown successfully.");      
       log(LogLevel.DEBUG, "End logging to file. Closing...");
       LOGWRITER.close();
       log(LogLevel.DEBUG, "...closed successfully.");
-      
-      log(LogLevel.INFO, "...shutdown successfully.");
-      
     }
     
     //turns off all devices registered to User u
@@ -309,16 +307,18 @@ public class Hub extends Device implements Mediator{
     
     public static void log(LogLevel l, String logMsg) {
 
-      LOGWRITER.println(logMsg);
       switch (l) {
         case INFO:
           LOGGER.info(logMsg);
+          write(logMsg);
           break;
         case WARN:
           LOGGER.warn(logMsg);
+          write(logMsg);
           break;
         case ERROR:
           LOGGER.error(logMsg);
+          write(logMsg);
           break;
         case DEBUG:
           LOGGER.debug(logMsg);
@@ -328,10 +328,16 @@ public class Hub extends Device implements Mediator{
           break;
         case NOTIFY:
           LOGGER.info("IMPORTANT: MAKE SURE NOTIFICATION WAS HANDLED PROPERLY\n"+logMsg);
+          write(logMsg);
           break;
         default:
           break;
       }
+    }
+    
+    private static void write(String s) {
+      LOGWRITER.println(s);
+
     }
 
     @Override
