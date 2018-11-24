@@ -49,11 +49,13 @@ public abstract class Device {
     public void startup() {
       
       setState(Status.ON, Status.NORMAL);
-      Hub.log(Hub.LogLevel.INFO, "Starting up "+ this.getClass().getSimpleName() + " ...");
+      Hub.log(Hub.LogLevel.INFO, "Starting up "+ this + "...");
     }
     
     public void shutdown() {
       
+      setState(Status.OFF, Status.NOT_AVAILABLE);
+      Hub.log(Hub.LogLevel.INFO, "Shutting down "+ this + "...");
     }
 
     @Override

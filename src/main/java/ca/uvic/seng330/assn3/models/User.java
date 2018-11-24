@@ -107,8 +107,34 @@ public class User {
 
     public void setPrivileges(boolean b) {
       isAdmin = b;
+      if(b) {
+        //TODO: register all devices to user
+      }else {
+        //TODO: unregister devices? manually?
+      }
     }
 
+    public void manageDevices(User u, Device d, boolean remove) {
+      
+      if(this.getIsAdmin()) {
+        if(remove) {   
+          u.unregisterDevice(d); //TODO: make this happen in hub too. make static? or move this method in Hub
+          }
+        }else{
+          u.registerDevice(d);
+      }
+    }
+    
+    public void manageUsers(User u, boolean remove) {
+      
+      if(this.getIsAdmin()) {
+        if(remove) {
+          u.unregister(); //TODO: same as above
+        }else {
+          u.register();
+        }
+      }
+    }
 
     public boolean getPrivileges() {
       return isAdmin;
