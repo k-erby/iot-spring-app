@@ -1,31 +1,25 @@
 package ca.uvic.seng330.assn3.util;
 
-import ca.uvic.seng330.assn3.models.devices.Device;
-import org.json.JSONObject;
-
 import java.util.Date;
-import java.util.HashMap;
+import org.json.JSONObject;
+import ca.uvic.seng330.assn3.models.devices.Device;
 
-/**
- * A method object for making testing easier
- * Messaging not a core responsibility for Hub
- */
-public class JSONMessaging {
-    private Device pDevice;
-    private String pMessage;
+public class JSONMessaging extends JSONObject {
 
-    public JSONMessaging(Device pDevice, String pMessage) {
-        this.pDevice = pDevice;
-        this.pMessage = pMessage;
-    }
+  private JSONObject json;
 
-    public JSONObject invoke() {
-        HashMap<String, String> jsonMap = new HashMap<String, String>();
-        jsonMap.put("msg_id", "unique id");
-        jsonMap.put("node_id", pDevice.getIdentifier().toString());
-        jsonMap.put("status", pDevice.getStatus().name());
-        jsonMap.put("payload", pMessage);
-        jsonMap.put("created_at", new Date().toString());
-        return new JSONObject(jsonMap);
-    }
+  public JSONMessaging(Device d, String s) {
+
+    json = new JSONObject();
+    json.put("msg_id", 1);
+    json.put("node_id", d.getIdentifier());
+    json.put("status", d.getStatus());
+    json.put("payload", s);
+    json.put("created_at", new Date().toString());
+  }
+
+  public JSONObject invoke() {
+
+    return json;
+  }
 }
