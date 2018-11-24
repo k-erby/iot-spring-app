@@ -29,15 +29,7 @@ public class LightbulbController {
         model.addAttribute("name", lightbulb.toString());
 
         // get lightbulb status
-        String status;
-        switch (lightbulb.getStatus()) {
-            case OFF: status = "Off"; break;
-            case ON: status = "On"; break;
-            case ERROR: status = "ERROR"; break;
-            case NORMAL: status = "The lightbulb is operating normally."; break;
-            default: status = "Status is unavailable.";
-        }
-        model.addAttribute("status", status);
+        model.addAttribute("status", lightbulb.getState().stateView());
 
         return "lightbulb";
     }
