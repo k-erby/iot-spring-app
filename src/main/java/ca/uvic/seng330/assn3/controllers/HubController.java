@@ -22,6 +22,7 @@ public class HubController {
 	private User currentUser = null;
     private Mediator hub;
     private Map<String, User>  users;
+
     HubController (Mediator hub, Map<String, User>  users) {
         this.hub = hub;
         this.users = users;
@@ -53,6 +54,7 @@ public class HubController {
 	        ArrayList<String> thermostatIds = new ArrayList();
 	
 	        for (Device device : devices.values()) {
+	            if (device == null) continue;
 	            switch (device.getDeviceTypeEnum()) {
 	                case CAMERA: cameraIds.add(device.getIdentifier().toString()); break;
 	                case LIGHTBULB: lightbulbIds.add(device.getIdentifier().toString()); break;

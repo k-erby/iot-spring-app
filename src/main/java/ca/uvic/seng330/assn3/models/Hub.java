@@ -47,10 +47,7 @@ public class Hub extends Device implements Mediator{
 
     //turns on all devices
     public void startup() {
-      
       log(LogLevel.INFO, "Starting up...");
-      
-       
       /* 
        * Not sure what we want for functionality
        * 
@@ -63,9 +60,6 @@ public class Hub extends Device implements Mediator{
         d.startup();
         log(LogLevel.INFO, "...success!");
       }
-      
-     
-       
        log(LogLevel.INFO, "...started up successfully.");
 
     }
@@ -79,16 +73,13 @@ public class Hub extends Device implements Mediator{
       }
       
       u.signIn();
-      
       log(LogLevel.INFO, String.format("%s has signed in.", u));
-      
     }
 
     //shutsdown all devices and closes logfile.txt
     public void shutdown() {
       log(LogLevel.WARN, "Shutting down...");
 
-      
       for(Device d: aDevices.values()) {
         d.shutdown();
         log(LogLevel.INFO, "...success!");
@@ -408,8 +399,4 @@ public class Hub extends Device implements Mediator{
       
         return new HashMap<UUID, Device>(aDevices);
     }
-
-  
-
-   
 }

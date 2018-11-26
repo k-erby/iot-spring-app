@@ -15,8 +15,7 @@ public class Thermostat extends Device {
     private final Mediator aMed;
     private Temperature temp;
     private Temperature.Unit mode;
-    public DeviceType aDeviceType;
-
+    private DeviceType aDeviceType;
    
     public Thermostat(Mediator mediator) {
         this.aMed = mediator;
@@ -181,6 +180,4 @@ public class Thermostat extends Device {
       h.shutdown();
       System.out.println(t.getState());
     }
-
-   
 }
