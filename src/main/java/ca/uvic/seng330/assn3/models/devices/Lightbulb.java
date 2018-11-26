@@ -10,6 +10,7 @@ import ca.uvic.seng330.assn3.util.Status;
 public class Lightbulb extends Device implements SwitchableDevice {
 
     private final Mediator aMed;
+    private DeviceType aDeviceType;
 
     public Lightbulb(Mediator pMed) {
         

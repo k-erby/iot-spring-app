@@ -19,8 +19,8 @@ public class Camera extends Device {
     private double timer;
     private long timeStart;
     private final double bitrate = 1000/8;
-
     private final Mediator aMed;
+    private DeviceType aDeviceType;
 
     public Camera(Mediator med) {
         aMed = med;
@@ -31,6 +31,7 @@ public class Camera extends Device {
         memoryCap = 1024.0; // 1 GB
         footageCaptured = 0.0;
         diskSize = 0.0;
+        aDeviceType = DeviceType.CAMERA;
 
         try {
             aMed.register(this);
