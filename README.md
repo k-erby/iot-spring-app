@@ -1,16 +1,15 @@
-# assn3-orpenerb
+# assn4-erbdesc
 This repo uses SpringMVC instead of JavaFX.
 
 ## Developers
 
 Kaitlin Erb,
-Reed Orpen
+Marc-André Descoteaux
 
 ## Design Document
 
 The design document is held on the Wiki for this repo. 
-Each page represents a different aspect of this project. Quick access link is
-here: https://github.com/SENG330/assn3-team-orpenerb/wiki
+Each page represents a different aspect of this project. 
 
 ## Contribute to the Repo
 
