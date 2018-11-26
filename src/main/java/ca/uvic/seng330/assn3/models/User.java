@@ -6,20 +6,38 @@ import java.util.Queue;
 import java.util.UUID;
 import org.json.JSONObject;
 import ca.uvic.seng330.assn3.models.devices.Device;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Transient;
 
+@Entity
 public class User {
 
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private UUID uuid;
+
     private boolean isAdmin;
-    private boolean isSignedIn = false;
     private String username;
     private String password;
-    private UUID uuid;
-    private ArrayList<Device> aDevices = new ArrayList<Device>(); 
-    //private Queue<String> notifications;
+
+    @Transient
+    private boolean isSignedIn = false;
+
+    @Transient
+    private ArrayList<Device> aDevices = new ArrayList<Device>();
+
+    @Transient
     private Queue<JSONObject> notifications;
+    //private Queue<String> notifications;
 
     // username, password
+    @Transient
     private HashMap<String, String> aUsers = new HashMap<String, String>();
+
+    protected User() {}
     
     public User (String username) {
       this.username = username;
@@ -107,30 +125,30 @@ public class User {
 
     public void setPrivileges(boolean b) {
       isAdmin = b;
-      if(b) {
+      if (b) {
         //TODO: register all devices to user
-      }else {
+      } else {
         //TODO: unregister devices? manually?
       }
     }
 
     public void manageDevices(User u, Device d, boolean remove) {
       
-      if(this.getIsAdmin()) {
-        if(remove) {   
+      if (this.getIsAdmin()) {
+        if (remove) {
           u.unregisterDevice(d); //TODO: make this happen in hub too. make static? or move this method in Hub
           }
-        }else{
+        } else {
           u.registerDevice(d);
       }
     }
     
     public void manageUsers(User u, boolean remove) {
       
-      if(this.getIsAdmin()) {
-        if(remove) {
+      if (this.getIsAdmin()) {
+        if (remove) {
           u.unregister(); //TODO: same as above
-        }else {
+        } else {
           u.register();
         }
       }
@@ -142,16 +160,14 @@ public class User {
     
     public boolean equals(User that) {
       
-      if(this.getIdentifier() == that.getIdentifier()) return true;
+      if (this.getIdentifier() == that.getIdentifier()) return true;
       else return false;
     }
     
     @Override
     public String toString() {
-      return "User: "+username+" ID: "+ getIdentifier().toString();
+        return String.format(
+                "User[username=%d, ID='%s']",
+                username, getIdentifier().toString());
     }
-
-
-   
-    
  }

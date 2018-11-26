@@ -29,13 +29,14 @@ public class HubController {
     }
 
     @GetMapping("/hub")
-    public String hub(@RequestParam(name="username", required=false, defaultValue="null") String name, @RequestParam(name="password", required=false, defaultValue="null") String password, Model model) {
+    public String hub(@RequestParam(name="username", required=false, defaultValue="null") String name,
+                      @RequestParam(name="password", required=false, defaultValue="null") String password, Model model) {
     	
-    	if(name.equals("null")||password.equals("null")) {
+    	if (name.equals("null") || password.equals("null")) {
     		if (currentUser == null) {
     			return "login";
     		}
-    	}else {
+    	} else {
     		if(!this.users.containsKey(name)) {
         		return "login_error";
         	}
