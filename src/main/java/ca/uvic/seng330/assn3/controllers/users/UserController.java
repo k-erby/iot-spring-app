@@ -1,7 +1,5 @@
 package ca.uvic.seng330.assn3.controllers.users;
 
-import java.util.Map;
-
 import ca.uvic.seng330.assn3.repository.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

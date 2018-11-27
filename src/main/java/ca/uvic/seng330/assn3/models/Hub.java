@@ -180,14 +180,11 @@ public class Hub extends Device implements Mediator{
             aUsers.put(u.getIdentifier(), u);
           }
           c.registerUser(u);
-        }else {
+        } else {
           throw new HubRegistrationException(String.format("Client %s is not registered.", c));
         }
-        
         log(LogLevel.INFO, u + " has been registered to " + c);
-
-      }catch(HubRegistrationException e) {
-        
+      } catch(HubRegistrationException e) {
         log(LogLevel.ERROR, e.message());
       }
     }
@@ -198,19 +195,14 @@ public class Hub extends Device implements Mediator{
       try {
         if(aUsers.containsKey(u.getIdentifier())) {
           if(!aDevices.containsKey(d.getIdentifier())) {
-            
            throw new HubRegistrationException(String.format("%s is not registered.", d));
           }
           u.registerDevice(d);
-        }else {
-          
+        } else {
           throw new HubRegistrationException(String.format("%s is not registered.", u));
         }
-        
         log(LogLevel.INFO, d + " has been registered to " + u);
-        
-      }catch(HubRegistrationException e) {
-        
+      } catch(HubRegistrationException e) {
         log(LogLevel.ERROR, e.message());
       }
       
@@ -223,13 +215,9 @@ public class Hub extends Device implements Mediator{
         if(!aDevices.containsKey(d.getIdentifier())) throw new HubRegistrationException(String.format("%s is not registered.", d));
         if (!u.getDevices().contains(d))
           throw new HubRegistrationException(String.format("%s is not registered to %s.", d, u)) ;
-
         u.unregisterDevice(d);
         log(LogLevel.INFO, d + " has been unregistered from " + u);
-        
-
       } catch (HubRegistrationException e) {
-        
         log(LogLevel.ERROR, e.message());
       } 
     }
