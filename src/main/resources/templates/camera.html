@@ -22,8 +22,10 @@
                 </section>
 
                 <div class="_direction-row">
-                    <a class="btn btn-link" type="submit" th:href="@{'/hub/camera/toggleOn?id=' + ${name}}">Turn Camera On</a>
-                    <a class="btn btn-link" type="submit" th:href="@{'/hub/camera/toggleOff?id=' + ${name}}">Turn Camera OFF</a>
+                    <a class="btn btn-link" type="submit" th:href="@{'/hub/camera/toggleOff?id=' + ${name}}">Stop Camera</a>
+                    <a class="btn btn-link" type="submit" th:href="@{'/hub/camera/toggleOn?id=' + ${name}}">Start Camera</a>
+                    <a class="btn btn-link" type="submit" th:href="@{'/hub/camera/recordOn?id=' + ${name}}">Start Recording</a>
+                    <a class="btn btn-link" type="submit" th:href="@{'/hub/camera/recordOff?id=' + ${name}}">Stop Recording</a>
                 </div>
                 <div class="back-to-hub-btn">
                     <a class="btn btn-link" type="submit" th:href="@{/hub}">Back to Hub</a>
@@ -31,9 +33,19 @@
             </section>
             <section class="view-container-sm">
                 <!-- TODO: actually do this section -->
-                <iframe src="https://www.youtube.com/embed/d44nfo0L_ZA" frameborder="0"
-                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen>${model.videoInfo}</iframe>
+                <div th:switch="${isOn}">
+                    <iframe th:case="true"  src="https://giphy.com/embed/3o7btT1T9qpQZWhNlK" frameBorder="0"
+                            class="giphy-embed" allowFullScreen></iframe>
+
+                    <div th:switch="${recording}">
+                        <div th:case="true">
+                            <div class="flashing"></div>
+                            <p> Recording in progress...</p>
+                        </div>
+                        <div th:case="false"></div>
+                    </div>
+                    <div th:case="false"></div>
+                </div>
             </section>
         </div>
     </main>

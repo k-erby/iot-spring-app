@@ -60,8 +60,7 @@ public class SmartPlug extends Device implements SwitchableDevice {
     
     @Override
     public String toString() {
-      String className = getClass().getSimpleName();
-      return className + " " + getIdentifier();
+        return this.getIdentifier().toString();
     }
 
     public static void main(String[] args) throws CameraFullException, InterruptedException {

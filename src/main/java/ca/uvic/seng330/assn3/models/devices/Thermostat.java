@@ -157,8 +157,7 @@ public class Thermostat extends Device {
     
     @Override
     public String toString() {
-      String className = getClass().getSimpleName();
-      return className + " " + getIdentifier();
+        return this.getIdentifier().toString();
     }
 
     public static void main(String[] args) throws Temperature.TemperatureOutofBoundsException {
