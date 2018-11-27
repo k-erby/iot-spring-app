@@ -41,7 +41,5 @@ public class HubUserDetailsService implements UserDetailsService {
                 true,
                 true,
                 authorities);
-
     }
-
 }
