@@ -29,6 +29,10 @@
             <a th:each="data: ${thermostatDevices}" class="table-devices _direction-column">
                 <a class="device-link" th:href="@{'/hub/thermostat?id=' + ${data}}" th:text="${data}"></a>
             </a>
+
+            <div class="_direction-row logout-btn">
+                <a class="btn btn-link" type="submit" th:href="@{/logout}">Logout</a>
+            </div>
         </section>
     </main>
 </body>
