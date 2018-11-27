@@ -35,7 +35,7 @@ public class CameraController {
         // get camera status
 
         model.addAttribute("status", camera.getState().stateView());
-        model.addAttribute("isOn", camera.getState().getState.getPowerOn);
+        model.addAttribute("isOn", camera.getState().getPowerOn());
 
         return "camera";
     }

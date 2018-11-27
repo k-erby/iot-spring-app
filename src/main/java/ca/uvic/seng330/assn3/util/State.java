@@ -8,6 +8,7 @@ public class State {
   private boolean powerOn = false;
   
   public State() {
+
     powerState = Status.OFF;
     functionState = Status.NORMAL;
   }
@@ -24,6 +25,7 @@ public class State {
   public void setPowerState(Status powerState) {
     this.powerState = powerState;
     powerOn = (this.powerState == Status.ON);
+
   }
 
   public Status getFunctionState() {
@@ -44,6 +46,7 @@ public class State {
   }
 
   public String functionStateToString() {
+
     String s = "";
     if (powerState == Status.ON) {
       s = "and";
