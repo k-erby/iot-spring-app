@@ -1,7 +1,6 @@
 package ca.uvic.seng330.assn3.util;
 
 public class Temperature {
-
   private double kelvin;
   private double fahrenheit;
   private double celsius;
@@ -55,7 +54,6 @@ public class Temperature {
    * @param t Temperature passed to constructor as value only
    */
   public Temperature(double t) {
-
     temp = t;
   }
 
@@ -66,7 +64,6 @@ public class Temperature {
    * @param t Default variable for storing value of temperature
    */
   public Temperature(double t, Unit s) {
-
     temp = t;
     unit = UNITS[s.ordinal() + 3];
     scale = s;
@@ -74,7 +71,6 @@ public class Temperature {
   }
 
   private void convert(Unit s) {
-
     switch (s) {
       case KELVIN:
         kelvin = temp;
