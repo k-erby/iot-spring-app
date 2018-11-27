@@ -17,11 +17,16 @@
             <section class = "device-information">
                 <p>ID: <em><span th:text="${name}"></span></em></p>
                 <p>STATUS: <em><span th:text="${status}"></span></em></p>
-                <p>TEMP: <em><span th:text="${temp}"></span></em></p>
+                <div th:switch="${isOn}">
+                    <p th:case="true">TEMP: <em><span th:text="${temp}"></span></em></p>
+                    <p th:case="false"></p>
+                </div>
             </section>
 
             <div class="_direction-row">
-                <!-- TODO: thermo funcs -->
+                <a class="btn btn-link" type="submit" th:href="@{'/hub/thermostat/toggleOff?id=' + ${name}}">Stop Thermostat</a>
+                <a class="btn btn-link" type="submit" th:href="@{'/hub/thermostat/toggleOn?id=' + ${name}}">Start Thermostat</a>
+                <a class="btn btn-link" type="submit" th:href="@{'/hub/thermostat/changeUnit?id=' + ${name}}">Change Unit</a>
             </div>
             <div class="back-to-hub-btn">
                 <a class="btn btn-link" type="submit" th:href="@{/hub}">Back to Hub</a>

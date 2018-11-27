@@ -47,10 +47,7 @@ public class Hub extends Device implements Mediator{
 
     //turns on all devices
     public void startup() {
-      
       log(LogLevel.INFO, "Starting up...");
-      
-       
       /* 
        * Not sure what we want for functionality
        * 
@@ -63,9 +60,6 @@ public class Hub extends Device implements Mediator{
         d.startup();
         log(LogLevel.INFO, "...success!");
       }
-      
-     
-       
        log(LogLevel.INFO, "...started up successfully.");
 
     }
@@ -79,16 +73,13 @@ public class Hub extends Device implements Mediator{
       }
       
       u.signIn();
-      
       log(LogLevel.INFO, String.format("%s has signed in.", u));
-      
     }
 
     //shutsdown all devices and closes logfile.txt
     public void shutdown() {
       log(LogLevel.WARN, "Shutting down...");
 
-      
       for(Device d: aDevices.values()) {
         d.shutdown();
         log(LogLevel.INFO, "...success!");
@@ -189,14 +180,11 @@ public class Hub extends Device implements Mediator{
             aUsers.put(u.getIdentifier(), u);
           }
           c.registerUser(u);
-        }else {
+        } else {
           throw new HubRegistrationException(String.format("Client %s is not registered.", c));
         }
-        
         log(LogLevel.INFO, u + " has been registered to " + c);
-
-      }catch(HubRegistrationException e) {
-        
+      } catch(HubRegistrationException e) {
         log(LogLevel.ERROR, e.message());
       }
     }
@@ -207,19 +195,14 @@ public class Hub extends Device implements Mediator{
       try {
         if(aUsers.containsKey(u.getIdentifier())) {
           if(!aDevices.containsKey(d.getIdentifier())) {
-            
            throw new HubRegistrationException(String.format("%s is not registered.", d));
           }
           u.registerDevice(d);
-        }else {
-          
+        } else {
           throw new HubRegistrationException(String.format("%s is not registered.", u));
         }
-        
         log(LogLevel.INFO, d + " has been registered to " + u);
-        
-      }catch(HubRegistrationException e) {
-        
+      } catch(HubRegistrationException e) {
         log(LogLevel.ERROR, e.message());
       }
       
@@ -232,13 +215,9 @@ public class Hub extends Device implements Mediator{
         if(!aDevices.containsKey(d.getIdentifier())) throw new HubRegistrationException(String.format("%s is not registered.", d));
         if (!u.getDevices().contains(d))
           throw new HubRegistrationException(String.format("%s is not registered to %s.", d, u)) ;
-
         u.unregisterDevice(d);
         log(LogLevel.INFO, d + " has been unregistered from " + u);
-        
-
       } catch (HubRegistrationException e) {
-        
         log(LogLevel.ERROR, e.message());
       } 
     }
@@ -408,8 +387,5 @@ public class Hub extends Device implements Mediator{
       
         return new HashMap<UUID, Device>(aDevices);
     }
-
-  
-
-   
 }
+

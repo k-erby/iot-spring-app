@@ -26,17 +26,14 @@ public abstract class Device {
     }
     
     public State getState() {
-
       State s = new State(state.getPowerState(), state.getFunctionState());
       return s;
     }
     
     public void setState(Status ps, Status fs) {
-      
       state.setFunctionState(fs);
       state.setPowerState(ps);
       isOn = state.getPowerOn();
-      
     }
 
     public void setStatus(Status status) {

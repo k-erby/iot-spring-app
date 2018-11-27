@@ -15,8 +15,7 @@ public class Thermostat extends Device {
     private final Mediator aMed;
     private Temperature temp;
     private Temperature.Unit mode;
-    public DeviceType aDeviceType;
-
+    private DeviceType aDeviceType;
    
     public Thermostat(Mediator mediator) {
         this.aMed = mediator;
@@ -29,25 +28,15 @@ public class Thermostat extends Device {
             e.printStackTrace();
         }
     }
-    
-    /*
-     * 
-     * Consider adding rest of my constructors
-     * 
-     * 
-     */
-    
+
     //this should be named something different but dont wanna break your VIEW
     //or just change your call to getTemp.toString();
     public String getTemperature() {
-      
         return temp.toString();
     }
     
     public Temperature getTemp() {
-
       Temperature t = new Temperature(temp.getTemperature(), temp.getScale());
-
       return t;
     }
     
@@ -57,18 +46,16 @@ public class Thermostat extends Device {
     
     //switch between C/F
     public void scaleSwitch() throws Temperature.TemperatureOutofBoundsException {
-      
      /*
       * it would be easier just to do assignments for temp = and mode =
       * but setTemp handles alerts and exceptions juuust in case
       * 
       */
-     if(mode == Unit.CELSIUS) {
+     if (mode == Unit.CELSIUS) {
        setTemp(new Temperature(temp.getFahrenheit(), Unit.FAHRENHEIT));
      }else if(mode == Unit.FAHRENHEIT) {
        setTemp(new Temperature(temp.getCelsius(), Unit.CELSIUS));
      }
-      
     }
     
     /**
@@ -158,8 +145,7 @@ public class Thermostat extends Device {
     
     @Override
     public String toString() {
-      String className = getClass().getSimpleName();
-      return className + " " + getIdentifier();
+        return this.getIdentifier().toString();
     }
 
     public static void main(String[] args) throws Temperature.TemperatureOutofBoundsException {
@@ -181,6 +167,4 @@ public class Thermostat extends Device {
       h.shutdown();
       System.out.println(t.getState());
     }
-
-   
 }

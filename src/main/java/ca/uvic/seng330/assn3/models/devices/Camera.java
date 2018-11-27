@@ -19,8 +19,8 @@ public class Camera extends Device {
     private double timer;
     private long timeStart;
     private final double bitrate = 1000/8;
-
     private final Mediator aMed;
+    private DeviceType aDeviceType;
 
     public Camera(Mediator med) {
         aMed = med;
@@ -41,7 +41,6 @@ public class Camera extends Device {
     }
 
     public double getDiskSize() {
-
       return diskSize;
     }
 
@@ -82,20 +81,18 @@ public class Camera extends Device {
     }
 
     /**
-     * Starts/stops recoding of camera.
+     * Starts/stops recording of camera.
      *
      * @throws CameraFullException if memory is full, cannot start recording.
      * @pre powerOn power must be on
      */
     public void record() throws CameraFullException {
-
       assert isOn;
       memoryFull = (diskSize == 100);
+      state.setFunctionState(Status.ON);
       boolean wasRecording = isRecording; // state of recording when method is called
       try {
-
         if (memoryFull || diskSize >= 100) {
-
           state.setFunctionState(Status.ERROR);
           setStatus(Status.ERROR);
           isRecording = false;
@@ -107,11 +104,9 @@ public class Camera extends Device {
           aMed.alert(LogLevel.NOTIFY, this, "Camera recording has been toggled");
         }
       } catch (CameraFullException e) {
-
         aMed.alert(LogLevel.ERROR, null, e.message());
         state.setFunctionState(Status.ERROR);
         setStatus(Status.ERROR);
-
       } finally {
         if (wasRecording && !memoryFull) {
           Stopwatch(false);
@@ -142,6 +137,7 @@ public class Camera extends Device {
        
       }
     }
+
 
     //manual call for testing
     //will talk to hub regardless
@@ -177,10 +173,8 @@ public class Camera extends Device {
 
     @Override
     public String toString() {
-      String className = getClass().getSimpleName();
-      return className + " " + getIdentifier();
+      return this.getIdentifier().toString();
     }
-
 
     public String getDeviceType() {
         return aDeviceType.toString().toLowerCase();

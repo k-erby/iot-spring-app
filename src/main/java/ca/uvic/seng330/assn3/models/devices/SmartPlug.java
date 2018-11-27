@@ -10,6 +10,7 @@ import ca.uvic.seng330.assn3.util.Status;
 public class SmartPlug extends Device implements SwitchableDevice {
 
     private final Mediator aMed;
+    private DeviceType aDeviceType;
 
     public SmartPlug(Mediator med) {
         aMed = med;
@@ -59,8 +60,7 @@ public class SmartPlug extends Device implements SwitchableDevice {
     
     @Override
     public String toString() {
-      String className = getClass().getSimpleName();
-      return className + " " + getIdentifier();
+        return this.getIdentifier().toString();
     }
 
     public static void main(String[] args) throws CameraFullException, InterruptedException {

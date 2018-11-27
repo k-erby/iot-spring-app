@@ -1,8 +1,11 @@
 package ca.uvic.seng330.assn3.controllers;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.UUID;
+
+import ca.uvic.seng330.assn3.repository.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,33 +19,27 @@ import ca.uvic.seng330.assn3.models.devices.Device;
 import ca.uvic.seng330.assn3.models.devices.Lightbulb;
 import ca.uvic.seng330.assn3.models.devices.SmartPlug;
 import ca.uvic.seng330.assn3.models.devices.Thermostat;
+import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
 public class HubController {
 	private User currentUser = null;
     private Mediator hub;
-    private Map<String, User>  users;
-    HubController (Mediator hub, Map<String, User>  users) {
+    private UserRepository  users;
+
+    HubController (Mediator hub, UserRepository users) {
         this.hub = hub;
         this.users = users;
     }
 
+    @GetMapping("/")
+    public RedirectView homePage() {
+        return new RedirectView("/hub");
+    }
+
     @GetMapping("/hub")
-    public String hub(@RequestParam(name="username", required=false, defaultValue="null") String name, @RequestParam(name="password", required=false, defaultValue="null") String password, Model model) {
-    	
-    	if(name.equals("null")||password.equals("null")) {
-    		if (currentUser == null) {
-    			return "login";
-    		}
-    	}else {
-    		if(!this.users.containsKey(name)) {
-        		return "login_error";
-        	}
-        	if(!this.users.get(name).checkPassword(password)){
-        		return "login_error";
-        	}
-        	this.currentUser = this.users.get(name);
-    	}
+    public String hub(Principal principal, Model model) {
+        User currentUser = users.findByUsername(principal.getName()).get(0);
     	
     	if(currentUser.getIsAdmin()) {
     				
@@ -53,6 +50,7 @@ public class HubController {
 	        ArrayList<String> thermostatIds = new ArrayList<String>();
 	
 	        for (Device device : devices.values()) {
+	            if (device == null) continue;
 	            switch (device.getDeviceTypeEnum()) {
 	                case CAMERA: cameraIds.add(device.getIdentifier().toString()); break;
 	                case LIGHTBULB: lightbulbIds.add(device.getIdentifier().toString()); break;
@@ -67,8 +65,9 @@ public class HubController {
 	        model.addAttribute("smartplugDevices", smartplugIds);
 	        model.addAttribute("thermostatDevices", thermostatIds);
 	        
+
 	        ArrayList<String> userNames = new ArrayList<String>();
-	        for(User user : this.users.values()) {
+	        for(User user : this.users.findAll()){
 	        	userNames.add(user.getUsername());
 	        }
 	        model.addAttribute("users", userNames);

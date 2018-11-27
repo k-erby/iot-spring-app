@@ -2,6 +2,8 @@ package ca.uvic.seng330.assn3.controllers.devices;
 
 import java.util.Map;
 import java.util.UUID;
+
+import ca.uvic.seng330.assn3.util.Status;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,8 +33,9 @@ public class CameraController {
         model.addAttribute("recording", camera.isRecording());
 
         // get camera status
-        
+
         model.addAttribute("status", camera.getState().stateView());
+        model.addAttribute("isOn", camera.getState().getState.getPowerOn);
 
         return "camera";
     }
@@ -41,16 +44,35 @@ public class CameraController {
     public String toggleOn(@RequestParam(name="id", required=true) String id, Model model) {
         Map<UUID, Device> devices = this.hub.getDevices();
         Device device = devices.get(UUID.fromString(id));
-        try {
-            ((Camera) device).record();
-        } catch (CameraFullException e) {
-          model.addAttribute("notification", "Camera is Full.");
-        }
+        device.startup();
         return camera(id, model);
     }
 
     @GetMapping("/hub/camera/toggleOff")
-    public String toggleOff(@RequestParam(name="id", required=true) String id, Model model) throws CameraFullException {
+    public String toggleOff(@RequestParam(name="id", required=true) String id, Model model) {
+        Map<UUID, Device> devices = this.hub.getDevices();
+        Device device = devices.get(UUID.fromString(id));
+        device.shutdown();
+        return camera(id, model);
+    }
+
+    @GetMapping("/hub/camera/recordOn")
+    public String recordOn(@RequestParam(name="id", required=true) String id, Model model) throws CameraFullException {
+        Map<UUID, Device> devices = this.hub.getDevices();
+        Device device = devices.get(UUID.fromString(id));
+        device.startup();
+        try {
+            ((Camera) device).record();
+        } catch (CameraFullException e) {
+          model.addAttribute("notification", "Camera is Full.");
+
+        }
+        return camera(id, model);
+    }
+
+
+    @GetMapping("/hub/camera/recordOff")
+    public String recordOff(@RequestParam(name="id", required=true) String id, Model model) {
         Map<UUID, Device> devices = this.hub.getDevices();
         Device device = devices.get(UUID.fromString(id));
         ((Camera) device).record();
@@ -77,3 +99,4 @@ public class CameraController {
     
 
 }
+
