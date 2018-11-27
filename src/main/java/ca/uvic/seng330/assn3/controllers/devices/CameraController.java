@@ -27,7 +27,7 @@ public class CameraController {
         Camera camera = (Camera) device;
 
         // get camera details
-        model.addAttribute("name", camera.toString());
+        model.addAttribute("name", camera.getIdentifier());
         model.addAttribute("recording", camera.isRecording());
 
         // get camera status
@@ -44,8 +44,7 @@ public class CameraController {
         try {
             ((Camera) device).record();
         } catch (CameraFullException e) {
-            // TODO: log stuff here.
-            System.out.println("Log here");
+          model.addAttribute("notification", "Camera is Full.");
         }
         return camera(id, model);
     }
@@ -57,5 +56,24 @@ public class CameraController {
         ((Camera) device).record();
         return camera(id, model);
     }
+    
+    @GetMapping("/hub/camera/reset")
+    public String reset(@RequestParam(name="id", required=true) String id, Model model) {
+      Map<UUID, Device> devices = this.hub.getDevices();
+      Device device = devices.get(UUID.fromString(id));
+      ((Camera) device).resetMemory();;
+      return camera(id, model);
+  }
+    
+    @GetMapping("/hub/camera/notif")
+    public String notif(@RequestParam(name="id", required=true) String id, Model model) {
+      
+      model.addAttribute("notification", "this is a test");
+      
+      return "redirect:/hub/camera";
+      
+    }
+    
+    
 
 }

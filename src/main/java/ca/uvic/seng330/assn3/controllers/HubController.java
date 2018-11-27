@@ -47,10 +47,10 @@ public class HubController {
     	if(currentUser.getIsAdmin()) {
     				
 	        Map<UUID, Device> devices = this.hub.getDevices();
-	        ArrayList<String> cameraIds = new ArrayList();
-	        ArrayList<String> lightbulbIds = new ArrayList();
-	        ArrayList<String> smartplugIds = new ArrayList();
-	        ArrayList<String> thermostatIds = new ArrayList();
+	        ArrayList<String> cameraIds = new ArrayList<String>();
+	        ArrayList<String> lightbulbIds = new ArrayList<String>();
+	        ArrayList<String> smartplugIds = new ArrayList<String>();
+	        ArrayList<String> thermostatIds = new ArrayList<String>();
 	
 	        for (Device device : devices.values()) {
 	            switch (device.getDeviceTypeEnum()) {
@@ -67,7 +67,7 @@ public class HubController {
 	        model.addAttribute("smartplugDevices", smartplugIds);
 	        model.addAttribute("thermostatDevices", thermostatIds);
 	        
-	        ArrayList<String> userNames = new ArrayList();
+	        ArrayList<String> userNames = new ArrayList<String>();
 	        for(User user : this.users.values()) {
 	        	userNames.add(user.getUsername());
 	        }
@@ -117,4 +117,6 @@ public class HubController {
         }
         return "registered";
     }
+    
+    
 }

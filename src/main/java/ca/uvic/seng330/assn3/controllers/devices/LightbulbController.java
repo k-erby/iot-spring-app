@@ -26,7 +26,7 @@ public class LightbulbController {
         Lightbulb lightbulb = (Lightbulb)device;
 
         // get lightbulb details
-        model.addAttribute("name", lightbulb.toString());
+        model.addAttribute("name", lightbulb.getIdentifier());
 
         // get lightbulb status
         model.addAttribute("status", lightbulb.getState().stateView());

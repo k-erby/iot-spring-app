@@ -49,7 +49,7 @@ public class State {
 
     String s = "";
     if (powerState == Status.ON) {
-      s = "\n";
+      s = "and";
       switch (functionState) {
         case NORMAL:
           s += "Working Normally";

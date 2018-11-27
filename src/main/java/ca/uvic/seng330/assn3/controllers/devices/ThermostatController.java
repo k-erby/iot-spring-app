@@ -26,7 +26,7 @@ public class ThermostatController {
         Thermostat thermostat = (Thermostat) device;
 
         // get thermostat details
-        model.addAttribute("name", thermostat.toString());
+        model.addAttribute("name", thermostat.getIdentifier());
         model.addAttribute("temp", thermostat.getTemp().toString());
 
         // get thermostat status

@@ -26,7 +26,7 @@ public class SmartPlugController {
         SmartPlug smartplug = (SmartPlug)device;
 
         // get smartplug details
-        model.addAttribute("name", smartplug.toString());
+        model.addAttribute("name", smartplug.getIdentifier());
 
         // get smartplug status
         

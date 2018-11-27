@@ -19,11 +19,14 @@
                     <p>ID: <em><span th:text="${name}"></span></em></p>
                     <p>STATUS: <em><span th:text="${status}"></span></em></p>
                     <p>RECORDING: <em><span th:text="${recording}"></span></em></p>
+                    <p>ALERT: <em><span th:text="${notification}"></span></em></p>
                 </section>
 
                 <div class="_direction-row">
                     <a class="btn btn-link" type="submit" th:href="@{'/hub/camera/toggleOn?id=' + ${name}}">Turn Camera On</a>
                     <a class="btn btn-link" type="submit" th:href="@{'/hub/camera/toggleOff?id=' + ${name}}">Turn Camera OFF</a>
+                   	<a class="btn btn-link" type="submit" th:href="@{'/hub/camera/reset?id=' + ${name}}">Clear Memory</a>
+                    <a class="btn btn-link" type="submit" th:href="@{'/hub/camera/notif?id=' + ${name}}">Test Notification</a>
                 </div>
                 <div class="back-to-hub-btn">
                     <a class="btn btn-link" type="submit" th:href="@{/hub}">Back to Hub</a>
