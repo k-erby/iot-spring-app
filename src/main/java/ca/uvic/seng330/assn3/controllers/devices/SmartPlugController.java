@@ -32,6 +32,7 @@ public class SmartPlugController {
         
         model.addAttribute("status", smartplug.getState().stateView());
 
+
         return "smartplug";
     }
 

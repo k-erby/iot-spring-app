@@ -32,7 +32,7 @@ public class ThermostatController {
         model.addAttribute("name", thermostat.getIdentifier());
         model.addAttribute("temp", thermostat.getTemp().toString());
 
-        model.addAttribute("isOn", camera.getState().getState.getPowerOn);
+        model.addAttribute("isOn", thermostat.getState().getPowerOn());
 
         return "thermostat";
     }
