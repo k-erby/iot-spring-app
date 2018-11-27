@@ -46,7 +46,7 @@ public class State {
   public String functionStateToString() {
     String s = "";
     if (powerState == Status.ON) {
-      s = "\n";
+      s = "and";
       switch (functionState) {
         case NORMAL:
           s += "Working Normally";

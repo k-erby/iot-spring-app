@@ -388,3 +388,4 @@ public class Hub extends Device implements Mediator{
         return new HashMap<UUID, Device>(aDevices);
     }
 }
+

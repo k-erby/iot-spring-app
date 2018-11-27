@@ -29,12 +29,13 @@ public class CameraController {
         Camera camera = (Camera) device;
 
         // get camera details
-        model.addAttribute("name", camera.toString());
+        model.addAttribute("name", camera.getIdentifier());
         model.addAttribute("recording", camera.isRecording());
 
         // get camera status
+
         model.addAttribute("status", camera.getState().stateView());
-        model.addAttribute("isOn", camera.getState().getPowerState() == Status.ON);
+        model.addAttribute("isOn", camera.getState().getState.getPowerOn);
 
         return "camera";
     }
@@ -63,16 +64,39 @@ public class CameraController {
         try {
             ((Camera) device).record();
         } catch (CameraFullException e) {
-            System.out.println("Camera is currently full - abort.");
+          model.addAttribute("notification", "Camera is Full.");
+
         }
         return camera(id, model);
     }
+
 
     @GetMapping("/hub/camera/recordOff")
     public String recordOff(@RequestParam(name="id", required=true) String id, Model model) {
         Map<UUID, Device> devices = this.hub.getDevices();
         Device device = devices.get(UUID.fromString(id));
-        ((Camera) device).stopRecording();
+        ((Camera) device).record();
         return camera(id, model);
     }
+    
+    @GetMapping("/hub/camera/reset")
+    public String reset(@RequestParam(name="id", required=true) String id, Model model) {
+      Map<UUID, Device> devices = this.hub.getDevices();
+      Device device = devices.get(UUID.fromString(id));
+      ((Camera) device).resetMemory();;
+      return camera(id, model);
+  }
+    
+    @GetMapping("/hub/camera/notif")
+    public String notif(@RequestParam(name="id", required=true) String id, Model model) {
+      
+      model.addAttribute("notification", "this is a test");
+      
+      return "redirect:/hub/camera";
+      
+    }
+    
+    
+
 }
+

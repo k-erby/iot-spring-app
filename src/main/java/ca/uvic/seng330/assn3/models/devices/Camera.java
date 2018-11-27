@@ -117,25 +117,27 @@ public class Camera extends Device {
           aMed.alert(LogLevel.INFO, null, "Timer started...");
         }
         diskSize = footageCaptured / memoryCap * 100.0; // disk size used in percentage
-        if(diskSize >= 80 && diskSize <= 100) {
+        state.setFunctionState(Status.SAFETY);
+        setStatus(Status.SAFETY);
+        if(diskSize >= 80 && diskSize < 100) {
           aMed.alert(
               LogLevel.WARN, null, "Mode switch to 'Safety'. Consider freeing up memory space");
-          state.setFunctionState(Status.SAFETY);
-          setStatus(Status.SAFETY);
         }else if(diskSize > 100) {
           aMed.alert(
-              LogLevel.WARN, null, "Memory Exceeded. Extra Footage Captured Discarded.");
-          state.setFunctionState(Status.SAFETY);
-          setStatus(Status.SAFETY);
+              LogLevel.WARN, null, "Memory capacity exceeded. Extra footage captured was discarded.");
           footageCaptured = memoryCap;
           diskSize = 100;
+        }else if(diskSize == 100) {
+          aMed.alert(
+              LogLevel.NOTIFY, null, "Camera is Full.");
+        }else {
+          state.setFunctionState(Status.NORMAL);
+          setStatus(Status.NORMAL);
         }
+       
       }
     }
 
-    public void stopRecording() {
-        this.isRecording = false;
-    }
 
     //manual call for testing
     //will talk to hub regardless
