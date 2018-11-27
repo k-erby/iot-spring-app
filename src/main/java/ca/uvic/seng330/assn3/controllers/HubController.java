@@ -28,23 +28,23 @@ public class HubController {
         this.users = users;
     }
 
-    @GetMapping("/hub")
+    @PostMapping("/hub")
     public String hub(@RequestParam(name="username", required=false, defaultValue="null") String name,
                       @RequestParam(name="password", required=false, defaultValue="null") String password, Model model) {
     	
-    	if (name.equals("null") || password.equals("null")) {
-    		if (currentUser == null) {
-    			return "login";
-    		}
-    	} else {
-    		if(!this.users.containsKey(name)) {
-        		return "login_error";
-        	}
-        	if(!this.users.get(name).checkPassword(password)){
-        		return "login_error";
-        	}
-        	this.currentUser = this.users.get(name);
-    	}
+//    	if (name.equals("null") || password.equals("null")) {
+//    		if (currentUser == null) {
+//    			return "login";
+//    		}
+//    	} else {
+//    		if(!this.users.containsKey(name)) {
+//        		return "login_error";
+//        	}
+//        	if(!this.users.get(name).checkPassword(password)){
+//        		return "login_error";
+//        	}
+//        	this.currentUser = this.users.get(name);
+//    	}
     	
     	if(currentUser.getIsAdmin()) {
     				
