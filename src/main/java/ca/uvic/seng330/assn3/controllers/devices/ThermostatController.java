@@ -31,7 +31,6 @@ public class ThermostatController {
         // get thermostat details
         model.addAttribute("name", thermostat.getIdentifier());
         model.addAttribute("temp", thermostat.getTemp().toString());
-
         model.addAttribute("isOn", thermostat.getState().getPowerOn());
 
         return "thermostat";

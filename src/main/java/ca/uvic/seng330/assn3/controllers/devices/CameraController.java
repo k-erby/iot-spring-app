@@ -33,9 +33,8 @@ public class CameraController {
         model.addAttribute("recording", camera.isRecording());
 
         // get camera status
-
         model.addAttribute("status", camera.getState().stateView());
-        model.addAttribute("isOn", camera.getState().getPowerOn());
+        model.addAttribute("isOn", camera.getState().getPowerState() == Status.ON);
 
         return "camera";
     }
@@ -75,7 +74,11 @@ public class CameraController {
     public String recordOff(@RequestParam(name="id", required=true) String id, Model model) {
         Map<UUID, Device> devices = this.hub.getDevices();
         Device device = devices.get(UUID.fromString(id));
-        ((Camera) device).record();
+        try {
+            ((Camera) device).record();
+        } catch (CameraFullException e) {
+            model.addAttribute("notification", "Camera is Full.");
+        }
         return camera(id, model);
     }
     

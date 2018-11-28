@@ -1,0 +1,22 @@
+fa3fbca5-02cc-44c2-b7d6-7fdc5a4827d9 registered to Hub.
+Starting up fa3fbca5-02cc-44c2-b7d6-7fdc5a4827d9...
+Shutting down fa3fbca5-02cc-44c2-b7d6-7fdc5a4827d9...
+Current Memory is
+Memory Capacity: 1024.00 MB
+Footage Captured: 0.00 MB
+Memory Used: 0.00%
+
+Starting up fa3fbca5-02cc-44c2-b7d6-7fdc5a4827d9...
+Camera recording has been toggled
+Timer started...
+Camera recording has been toggled
+...Timer stopped.
+Shutting down...
+Shutting down fa3fbca5-02cc-44c2-b7d6-7fdc5a4827d9...
+Current Memory is
+Memory Capacity: 1024.00 MB
+Footage Captured: 125.00 MB
+Memory Used: 12.21%
+
+...success!
+...shutdown successfully.
