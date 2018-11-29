@@ -41,6 +41,8 @@ public class HubController {
     public String hub(Principal principal, Model model) {
         User currentUser = users.findByUsername(principal.getName()).get(0);
     	
+        if(!currentUser.signedIn()) currentUser.signIn();
+        
     	if(currentUser.getIsAdmin()) {
     				
 	        Map<UUID, Device> devices = this.hub.getDevices();
@@ -48,6 +50,7 @@ public class HubController {
 	        ArrayList<String> lightbulbIds = new ArrayList<String>();
 	        ArrayList<String> smartplugIds = new ArrayList<String>();
 	        ArrayList<String> thermostatIds = new ArrayList<String>();
+	        
 	
 	        for (Device device : devices.values()) {
 	            if (device == null) continue;
@@ -74,6 +77,7 @@ public class HubController {
 	        
 	        return "hub_admin";
     	}else {
+    	  
     		return "hub";
     	}
     }
@@ -84,9 +88,10 @@ public class HubController {
         Device device = devices.get(UUID.fromString(id));
         try {
             model.addAttribute("message", "Unregistered successfully!");
-            hub.unregister(device);
+            hub.unregisterDevice(currentUser, device);
+            hub.unregister(device);           
         } catch (HubRegistrationException e) {
-            model.addAttribute("message", "Unable to unregister with following error: " + e.getMessage());
+            model.addAttribute("message", "Unable to unregister because of following error: " + e.getMessage());
         }
         return "unregistered";
     }
@@ -100,22 +105,41 @@ public class HubController {
     public String register_device(@RequestParam(name="device", required=true) String device, Model model) {
         switch (device) {
             case "Camera":
-                new Camera(this.hub);
+                hub.registerDevice(currentUser, new Camera(this.hub));
                 break;
             case "Lightbulb":
-                new Lightbulb(this.hub);
+                hub.registerDevice(currentUser, new Lightbulb(this.hub));
                 break;
             case "SmartPlug":
-                new SmartPlug(this.hub);
+                hub.registerDevice(currentUser, new SmartPlug(this.hub));
                 break;
             case "Thermostat":
-                new Thermostat(this.hub);
+                hub.registerDevice(currentUser, new Thermostat(this.hub));
                 break;
             default:
                 // TODO: write a statement here
         }
         return "registered";
+    } 
+    
+    @GetMapping("/hub/logout")
+    public String logout() {
+      
+      currentUser.signOut();
+      
+      return "redirect:/login";
     }
     
+    @GetMapping("/hub/shutdown")
+    public String shutdown() {
+      
+      if(currentUser.getIsAdmin()) {
+        hub.shutdown();
+      }else {
+        hub.shutdown(currentUser);
+      }
+      
+      return "hub";
+    }
     
 }

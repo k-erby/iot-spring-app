@@ -19,6 +19,8 @@ public class Hub extends Device implements Mediator{
     private HashMap<UUID, Device> aDevices = new HashMap<UUID, Device>();
     private HashMap<UUID, Client> aClients = new HashMap<UUID, Client>();
     private HashMap<UUID, User> aUsers = new HashMap<UUID, User>();
+    private Client INSTANCE;
+    private String recentNotification = "";
     private final static Logger LOGGER = LoggerFactory.getLogger(Hub.class);
     private static PrintWriter LOGWRITER; //Log messages saved to file
    
@@ -45,6 +47,11 @@ public class Hub extends Device implements Mediator{
        log(LogLevel.DEBUG, "...success!\nBegin logging to file...");
     }
 
+   
+    public Client getInstance() {
+      return INSTANCE;
+    }
+
     //turns on all devices
     public void startup() {
       log(LogLevel.INFO, "Starting up...");
@@ -58,7 +65,6 @@ public class Hub extends Device implements Mediator{
       */
       for(Device d: aDevices.values()) {
         d.startup();
-        log(LogLevel.INFO, "...success!");
       }
        log(LogLevel.INFO, "...started up successfully.");
 
@@ -68,21 +74,24 @@ public class Hub extends Device implements Mediator{
     public void startup(User u) {
       
       for(Device d: u.getDevices()) {
+        log(LogLevel.INFO, "Starting up "+d+"...");
         d.startup();
         log(LogLevel.INFO, "...success!");
       }
       
       u.signIn();
-      log(LogLevel.INFO, String.format("%s has signed in.", u));
+      log(LogLevel.INFO, String.format("%s is signed in.", u));
     }
 
     //shutsdown all devices and closes logfile.txt
     public void shutdown() {
       log(LogLevel.WARN, "Shutting down...");
-
+      
+     
+      alert("Shutting down all devices");
+      
       for(Device d: aDevices.values()) {
         d.shutdown();
-        log(LogLevel.INFO, "...success!");
 
       }
       log(LogLevel.INFO, "...shutdown successfully.");      
@@ -95,17 +104,20 @@ public class Hub extends Device implements Mediator{
     public void shutdown(User u) {
 
       for(Device d: u.getDevices()) {
+        alert(LogLevel.NOTIFY, d, "Shutting down "+d+"...");
         d.shutdown();
         log(LogLevel.INFO, "...success!");
       }
-      u.signOut();
+      //u.signOut(); 
     }
     
     /*
-     * Hard Reset.
-     * Turn off and unregister all devices
-     * Unregister all users
-     * Unregister all connected clients
+     * Hard Reset of the Application:
+     * 
+     * Turn off and unregister all devices;
+     * Unregister all users;
+     * Unregister all connected clients;
+     * Close logging file.
      * 
      */
     public void hardShutdown() throws HubRegistrationException {
@@ -129,8 +141,9 @@ public class Hub extends Device implements Mediator{
     
     /*
      * Could've overloaded register/unregister a bunch 
-     * but decided to name the methods differently for clarity
-     * more accurately it is
+     * but decided to name the methods differently for clarity.
+     * 
+     * More accurately it is
      * 
      * [un]registerUser[To/From]Client
      * and
@@ -165,7 +178,7 @@ public class Hub extends Device implements Mediator{
             throw new HubRegistrationException(pClient + " was already registered");
         }
         log(LogLevel.INFO, String.format("%s registered to Hub.", pClient));
-
+        INSTANCE = (pClient);
       }catch(HubRegistrationException e) {
         log(LogLevel.ERROR, e.message());
       }
@@ -274,16 +287,21 @@ public class Hub extends Device implements Mediator{
     }
 
     /**
-     * Logging. Use SLF4J to write all message traffic to the log file.
+     * Logging. Use SLF4J to write all message traffic to the log file with default level INFO.
      *
-     * @param logMsg
+     * @param logMsg -> the message to be logged.
      */
-    public static void log(String logMsg) {
+    private static void log(String logMsg) {
       
         LOGGER.info(logMsg);
     }
     
-    public static void log(LogLevel l, String logMsg) {
+    /**
+     * 
+     * @param l -> the level of logging to be done. 
+     * @param logMsg -> the message to be logged.
+     */
+    private static void log(LogLevel l, String logMsg) {
 
       switch (l) {
         case INFO:
@@ -305,7 +323,8 @@ public class Hub extends Device implements Mediator{
           LOGGER.trace(logMsg);
           break;
         case NOTIFY:
-          LOGGER.info("IMPORTANT: MAKE SURE NOTIFICATION WAS HANDLED PROPERLY\n"+logMsg);
+          LOGGER.debug("IMPORTANT: MAKE SURE NOTIFICATION WAS HANDLED PROPERLY");
+          LOGGER.info(logMsg);
           write(logMsg);
           break;
         default:
@@ -313,14 +332,17 @@ public class Hub extends Device implements Mediator{
       }
     }
     
+    //Writes LogMsg to a file.
     private static void write(String s) {
       LOGWRITER.println(s);
 
     }
 
+    //Creates a notification for users with registered device
     @Override
     public void alert(Device pDevice, String pMessage) {
       
+      assert pDevice != null;
       for (Client c : aClients.values()) {
         for (User u : c.getUsers()) {
           if (u.getDevices().contains(pDevice)) {
@@ -332,6 +354,18 @@ public class Hub extends Device implements Mediator{
       }
     }
     
+    /**
+     * Creates a notification for specific user with specific device
+     */
+    public void alert(User pUser, Device pDevice, String pMessage) {
+          
+          assert pDevice != null && pUser != null;
+          
+          INSTANCE.notify(pUser,
+                    new JSONMessaging(pDevice, pMessage).invoke());
+    }
+          
+    //Creates a notification and logs it. Can be called by any class with a Hub object for logging purposes.
     public void alert(LogLevel l, Device d, String message) {
       
       assert d != null;
@@ -349,7 +383,27 @@ public class Hub extends Device implements Mediator{
       log(l, message);
     }
     
+    //Creates a notification for all users
+    public void alert(String message) {
+      
+        for (Client c : aClients.values()) {
+          for (User u : c.getUsers()) {
+              c.notify(u,
+                  new JSONMessaging(message).invoke());
+            }
+          }
+        }
     
+    //Most recent notification created in display format
+    public String getRecentNotification() {
+        return recentNotification;
+    }
+
+    //Set when client receives a JSONObject and wants to display the notification (requires listener for display) 
+    public void setRecentNotification(String recentNotification) {
+        this.recentNotification = recentNotification;
+    }
+
     /**
      * 
      * If a device detects activity, it asks the Hub to check if any actions should be taken with the other devices
@@ -383,6 +437,7 @@ public class Hub extends Device implements Mediator{
       }
     
 
+    //Return a "cloned" Map of devices registered to the hub.
     public Map<UUID, Device> getDevices() {
       
         return new HashMap<UUID, Device>(aDevices);

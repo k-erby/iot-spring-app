@@ -28,6 +28,8 @@ public class CameraController {
         Device device = devices.get(UUID.fromString(id));
         Camera camera = (Camera) device;
 
+        model.addAttribute("notification", hub.getRecentNotification());
+        
         // get camera details
         model.addAttribute("name", camera.getIdentifier());
         model.addAttribute("recording", camera.isRecording());

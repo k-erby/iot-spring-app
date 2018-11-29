@@ -53,14 +53,12 @@ public abstract class Device {
     public void startup() {
       
       setState(Status.ON, Status.NORMAL);
-      Hub.log(Hub.LogLevel.INFO, "Starting up "+ this + "...");
       isOn = state.getPowerOn();
     }
     
     public void shutdown() {
       
       setState(Status.OFF, Status.NOT_AVAILABLE);
-      Hub.log(Hub.LogLevel.INFO, "Shutting down "+ this + "...");
       isOn = state.getPowerOn();
     }
     
@@ -79,6 +77,14 @@ public abstract class Device {
 
     public DeviceType getDeviceTypeEnum() {
         return aDeviceType;
+    }
+
+    public boolean isActivityDetected() {
+      return activityDetected;
+    }
+
+    public void setActivityDetected(boolean activityDetected) {
+      this.activityDetected = activityDetected;
     }
 
 }

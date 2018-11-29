@@ -6,6 +6,7 @@ import ca.uvic.seng330.assn3.exceptions.HubRegistrationException;
 import ca.uvic.seng330.assn3.models.Hub.LogLevel;
 import ca.uvic.seng330.assn3.models.devices.Camera;
 import ca.uvic.seng330.assn3.models.devices.Device;
+import ca.uvic.seng330.assn3.models.devices.Lightbulb;
 import ca.uvic.seng330.assn3.views.Client;
 
 public interface Mediator {
@@ -26,4 +27,16 @@ public interface Mediator {
     Map<UUID, Device> getDevices();
 
     void dynamicActivity(boolean b, Device d);
+
+    void setRecentNotification(String s);
+
+    String getRecentNotification();
+
+    void registerDevice(User currentUser, Device device);
+
+    void unregisterDevice(User currentUser, Device device) throws HubRegistrationException;
+
+    void shutdown();
+
+    void shutdown(User currentUser);
 }

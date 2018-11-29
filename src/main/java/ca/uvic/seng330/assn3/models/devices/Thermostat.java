@@ -125,7 +125,7 @@ public class Thermostat extends Device {
       if(activityDetected) {
        
         setTemp(new Temperature(getTemp().getTemperature() * factor, getMode()));
-        Hub.log(LogLevel.INFO, "Setting temperature dynamically.");
+        aMed.alert(LogLevel.INFO, this, "Setting temperature dynamically.");
       }
     }
 

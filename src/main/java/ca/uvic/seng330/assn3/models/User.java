@@ -31,7 +31,6 @@ public class User {
 
     @Transient
     private Queue<JSONObject> notifications;
-    //private Queue<String> notifications;
 
     // username, password
     @Transient

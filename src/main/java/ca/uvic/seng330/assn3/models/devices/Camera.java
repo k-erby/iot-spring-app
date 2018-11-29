@@ -140,10 +140,9 @@ public class Camera extends Device {
 
 
     //manual call for testing
-    //will talk to hub regardless
-    public void dynamicCamActivity() throws CameraFullException {
+    public void dynamicCamActivity() {
       
-      /* Acceptance test doesn't ask to record..
+      /* Acceptance test doesn't ask to record but if it did:
        * 
       if(dynamicActivity && !isRecording) {
         aMed.alert(LogLevel.NOTIFY, this, "Activity detected. Begin Recording...");

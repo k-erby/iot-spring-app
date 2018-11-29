@@ -41,5 +41,5 @@ public class LightbulbController {
         ((Lightbulb) device).toggle();
         return lightbulb(id, model);
     }
-
+    
 }

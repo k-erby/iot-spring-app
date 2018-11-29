@@ -34,6 +34,7 @@
                 <div class="_direction-row register-device">
                     <a class="btn btn-link" type="submit" th:href="@{/new_device}">Register New Device</a>
                     <a class="btn btn-link" type="submit" th:href="@{/logout}">Logout</a>
+                    <a class="btn btn-link" type="submit" th:href="@{/shutdown}">Shutdown Devices</a>
                 </div>
             </section>
             <section class="view-container-sm">
@@ -41,6 +42,15 @@
                 <a th:each="data: ${users}" class="_direction-column">
                     <a class="btn-link user-links" th:href="@{'/'}" th:text="${data}"></a>
                 </a>
+            </section>
+            <section class="view-container-sm">
+                <h4>Test Devices</h4>
+                <div class="_direction-column">
+               		<a class="btn btn-link" type="submit" th:href="@{'/hub/testC6">Test C6</a>
+                    <a class="btn btn-link" type="submit" th:href="@{'/hub/testD7">Test D7</a>
+                    <a class="btn btn-link" type="submit" th:href="@{'/hub/testE3">Test E3</a>
+                    <a class="btn btn-link" type="submit" th:href="@{'/hub/testE4">Test E4</a>
+                </div>
             </section>
         </div>
     </main>

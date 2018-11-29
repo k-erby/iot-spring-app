@@ -23,6 +23,8 @@ public interface UserRepository extends CrudRepository<User, UUID> {
 
     List<User> findByUsername(String username);
 
+    //Iterable<User> findAll();
+
 //    List<User> findByIsAdmin(boolean isAdmin);
 
 }

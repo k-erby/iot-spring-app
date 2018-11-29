@@ -6,15 +6,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import ca.uvic.seng330.assn3.models.Hub;
 import ca.uvic.seng330.assn3.models.User;
 
 @Controller
 public class UserController {
 	
 	private UserRepository users;
+	private Hub hub;
 
-    UserController (UserRepository users) {
+    UserController (Hub hub, UserRepository users) {
         this.users = users;
+        this.hub = hub;
     }
 
     @GetMapping("/new_user")
@@ -29,6 +32,8 @@ public class UserController {
 
         User user = new User(username, password);
         this.users.save(user);
+        hub.registerUser(hub.getInstance(), user);
+        
 
         model.addAttribute("username", username);
         model.addAttribute("password", password);

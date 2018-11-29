@@ -31,6 +31,8 @@ public class WebClient extends Client {
     private void display(JSONObject json) {
         System.out.println("WebClient is displaying content from : " + json.getString("node_id"));
         //TODO:  should be on web page // format notification pop up
+        String s = String.format("%s\n%s\n%s",json.getString("node_id"), json.getString("created_at"), json.getString("payload"));
+        aMed.setRecentNotification(s);
     }
     
     //display all pending notifications for a user
