@@ -17,7 +17,7 @@ public class JSONMessaging extends JSONObject {
     json.put("payload", s);
     json.put("created_at", new Date().toString());
   }
-  
+
   public JSONMessaging(String s) {
 
     json = new JSONObject();

@@ -8,83 +8,82 @@ import ca.uvic.seng330.assn3.util.Status;
 
 public abstract class Device {
 
-    private final UUID aUuid = UUID.randomUUID();
-    protected Status aStatus; // This can't be NULL!
-    protected State state = new State();
-    protected boolean isOn = false;
-    protected boolean activityDetected = false;
-    public DeviceType aDeviceType;
+  private final UUID aUuid = UUID.randomUUID();
+  protected Status aStatus; // This can't be NULL!
+  protected State state = new State();
+  protected boolean isOn = false;
+  protected boolean activityDetected = false;
+  public DeviceType aDeviceType;
 
-    public UUID getIdentifier() {
-        return aUuid;
-    }
+  public UUID getIdentifier() {
+    return aUuid;
+  }
 
-    public Status getStatus() {
-        // Since the status can't be NULL, then check IF NULL and IF return dummy
-        // status.
-        return aStatus == null ? Status.NOT_AVAILABLE : aStatus;
-    }
-    
-    public State getState() {
-      State s = new State(state.getPowerState(), state.getFunctionState());
-      return s;
-    }
-    
-    public void setState(Status ps, Status fs) {
-      state.setFunctionState(fs);
-      state.setPowerState(ps);
-      isOn = state.getPowerOn();
-    }
+  public Status getStatus() {
+    // Since the status can't be NULL, then check IF NULL and IF return dummy
+    // status.
+    return aStatus == null ? Status.NOT_AVAILABLE : aStatus;
+  }
 
-    public void setStatus(Status status) {
-        this.aStatus = status;
-    }
-    
-    public boolean isPowerOn() {
-      return isOn;
-    }
-    
-    public boolean equals(Device that) {
-      
-      if(this.getIdentifier() == that.getIdentifier()) return true;
-      else return false;
-    }
-    
-    public void startup() {
-      
-      setState(Status.ON, Status.NORMAL);
-      isOn = state.getPowerOn();
-    }
-    
-    public void shutdown() {
-      
-      setState(Status.OFF, Status.NOT_AVAILABLE);
-      isOn = state.getPowerOn();
-    }
-    
-    public void toggle() {
-      isOn ^= true;
-    }
+  public State getState() {
+    State s = new State(state.getPowerState(), state.getFunctionState());
+    return s;
+  }
 
-    @Override
-    public String toString() {
-        return aUuid.toString();
-    }
+  public void setState(Status ps, Status fs) {
+    state.setFunctionState(fs);
+    state.setPowerState(ps);
+    isOn = state.getPowerOn();
+  }
 
-    public String getDeviceType() {
-        return aDeviceType.toString().toLowerCase();
-    }
+  public void setStatus(Status status) {
+    this.aStatus = status;
+  }
 
-    public DeviceType getDeviceTypeEnum() {
-        return aDeviceType;
-    }
+  public boolean isPowerOn() {
+    return isOn;
+  }
 
-    public boolean isActivityDetected() {
-      return activityDetected;
-    }
+  public boolean equals(Device that) {
 
-    public void setActivityDetected(boolean activityDetected) {
-      this.activityDetected = activityDetected;
-    }
+    if (this.getIdentifier() == that.getIdentifier()) return true;
+    else return false;
+  }
 
+  public void startup() {
+
+    setState(Status.ON, Status.NORMAL);
+    isOn = state.getPowerOn();
+  }
+
+  public void shutdown() {
+
+    setState(Status.OFF, Status.NOT_AVAILABLE);
+    isOn = state.getPowerOn();
+  }
+
+  public void toggle() {
+    isOn ^= true;
+  }
+
+  @Override
+  public String toString() {
+    return aUuid.toString();
+  }
+
+  public String getDeviceType() {
+    return aDeviceType.toString().toLowerCase();
+  }
+
+  public DeviceType getDeviceTypeEnum() {
+    return aDeviceType;
+  }
+
+  public boolean isActivityDetected() {
+    return activityDetected;
+  }
+
+  public void setActivityDetected(boolean activityDetected) {
+    this.activityDetected = activityDetected;
+  }
 }

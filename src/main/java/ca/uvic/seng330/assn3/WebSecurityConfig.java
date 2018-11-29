@@ -14,40 +14,43 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http
-            .authorizeRequests()
-                .antMatchers("/","/css/**","/images/**").permitAll()
-                .antMatchers("/h2-console/**", "/console/**").permitAll()
-                .antMatchers("/new_user", "/register_user").permitAll()
-                .anyRequest().authenticated()
-                .and()
-            .formLogin()
-                .loginPage("/login")
-                .permitAll()
-                .and()
-            .logout()
-                .permitAll();
+  @Override
+  protected void configure(HttpSecurity http) throws Exception {
+    http.authorizeRequests()
+        .antMatchers("/", "/css/**", "/images/**")
+        .permitAll()
+        .antMatchers("/h2-console/**", "/console/**")
+        .permitAll()
+        .antMatchers("/new_user", "/register_user")
+        .permitAll()
+        .anyRequest()
+        .authenticated()
+        .and()
+        .formLogin()
+        .loginPage("/login")
+        .permitAll()
+        .and()
+        .logout()
+        .permitAll();
 
-        http.csrf().disable();
-        http.headers().frameOptions().disable();
-    }
+    http.csrf().disable();
+    http.headers().frameOptions().disable();
+  }
 
-    @SuppressWarnings("deprecation")
-    @Bean
-    public static NoOpPasswordEncoder passwordEncoder() {
-        return (NoOpPasswordEncoder) NoOpPasswordEncoder.getInstance();
-    }
+  @SuppressWarnings("deprecation")
+  @Bean
+  public static NoOpPasswordEncoder passwordEncoder() {
+    return (NoOpPasswordEncoder) NoOpPasswordEncoder.getInstance();
+  }
 
-    @Bean
-    @Override
-    public UserDetailsService userDetailsService() {
-        return new HubUserDetailsService();
-    }
+  @Bean
+  @Override
+  public UserDetailsService userDetailsService() {
+    return new HubUserDetailsService();
+  }
 
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(this.userDetailsService()).passwordEncoder(this.passwordEncoder());
-    }
+  @Autowired
+  public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+    auth.userDetailsService(this.userDetailsService()).passwordEncoder(this.passwordEncoder());
+  }
 }

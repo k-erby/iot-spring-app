@@ -14,55 +14,55 @@ import ca.uvic.seng330.assn3.util.Temperature.Unit;
 @Controller
 public class TestController {
 
-    private Mediator hub;
+  private Mediator hub;
 
-    TestController(Mediator hub) {
-        this.hub = hub;
+  TestController(Mediator hub) {
+    this.hub = hub;
+  }
+
+  @GetMapping("/hub/testC6")
+  public String testC6() {
+
+    for (Device d : hub.getDevices().values()) {
+      if (d.getDeviceTypeEnum() == DeviceType.CAMERA) {
+        d.setActivityDetected(true);
+        ((Camera) d).dynamicCamActivity();
+        d.setActivityDetected(false);
+      }
     }
+    return "hub";
+  }
 
-    @GetMapping("/hub/testC6")
-    public String testC6(){
+  @GetMapping("/hub/testD6")
+  public String testD6() throws TemperatureOutofBoundsException {
 
-       for(Device d: hub.getDevices().values()) {
-         if(d.getDeviceTypeEnum() == DeviceType.CAMERA) {
-           d.setActivityDetected(true);
-           ((Camera) d).dynamicCamActivity();
-           d.setActivityDetected(false);
-         }
-       }
-        return "hub";
+    for (Device d : hub.getDevices().values()) {
+      if (d.getDeviceTypeEnum() == DeviceType.THERMOSTAT) {
+        ((Thermostat) d).dynamicActivity(new Temperature(29, Unit.CELSIUS));
+      }
     }
-    
-    @GetMapping("/hub/testD6")
-    public String testD6() throws TemperatureOutofBoundsException{
+    return "hub";
+  }
 
-       for(Device d: hub.getDevices().values()) {
-         if(d.getDeviceTypeEnum() == DeviceType.THERMOSTAT) {
-          ((Thermostat) d).dynamicActivity(new Temperature(29, Unit.CELSIUS));
-         }
-       }
-        return "hub";
-    }
-        
-    @GetMapping("/hub/testE3")
-    public String testE3(){
+  @GetMapping("/hub/testE3")
+  public String testE3() {
 
-       for(Device d: hub.getDevices().values()) {
-         if(d.getDeviceTypeEnum() == DeviceType.CAMERA) {
-          hub.dynamicActivity(true, d);
-         }
-       }
-        return "hub";
+    for (Device d : hub.getDevices().values()) {
+      if (d.getDeviceTypeEnum() == DeviceType.CAMERA) {
+        hub.dynamicActivity(true, d);
+      }
     }
-    
-    @GetMapping("/hub/testE4")
-    public String testE4(){
+    return "hub";
+  }
 
-       for(Device d: hub.getDevices().values()) {
-         if(d.getDeviceTypeEnum() == DeviceType.CAMERA) {
-           hub.dynamicActivity(false, d);
-         }
-       }
-        return "hub";
+  @GetMapping("/hub/testE4")
+  public String testE4() {
+
+    for (Device d : hub.getDevices().values()) {
+      if (d.getDeviceTypeEnum() == DeviceType.CAMERA) {
+        hub.dynamicActivity(false, d);
+      }
     }
+    return "hub";
+  }
 }

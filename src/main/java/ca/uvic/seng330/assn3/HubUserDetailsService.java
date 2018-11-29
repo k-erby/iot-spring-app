@@ -16,30 +16,22 @@ import java.util.List;
 @Service("userDetailsService")
 public class HubUserDetailsService implements UserDetailsService {
 
-    //get user from the database, via Hibernate
-    @Autowired
-    private UserRepository users;
+  // get user from the database, via Hibernate
+  @Autowired private UserRepository users;
 
-    @Transactional(readOnly=true)
-    @Override
-    public UserDetails loadUserByUsername(final String username)
-            throws UsernameNotFoundException {
+  @Transactional(readOnly = true)
+  @Override
+  public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
 
-        ca.uvic.seng330.assn3.models.User user = users.findByUsername(username).get(0);
+    ca.uvic.seng330.assn3.models.User user = users.findByUsername(username).get(0);
 
-        List<GrantedAuthority> authorities= new ArrayList<GrantedAuthority>();
-        authorities.add(new SimpleGrantedAuthority("USER"));
-        if (user.getIsAdmin()) {
-            authorities.add(new SimpleGrantedAuthority("ADMIN"));
-        }
-
-        return new org.springframework.security.core.userdetails.User(
-                user.getUsername(),
-                user.getPassword(),
-                true,
-                true,
-                true,
-                true,
-                authorities);
+    List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+    authorities.add(new SimpleGrantedAuthority("USER"));
+    if (user.getIsAdmin()) {
+      authorities.add(new SimpleGrantedAuthority("ADMIN"));
     }
+
+    return new org.springframework.security.core.userdetails.User(
+        user.getUsername(), user.getPassword(), true, true, true, true, authorities);
+  }
 }

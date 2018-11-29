@@ -2,11 +2,13 @@ package ca.uvic.seng330.assn3.util;
 
 public class State {
 
-  private static final String[] STATES = {"Normal", "Error", "Off", "On", "Not Available", "Safety"};
+  private static final String[] STATES = {
+    "Normal", "Error", "Off", "On", "Not Available", "Safety"
+  };
   private Status powerState;
   private Status functionState;
   private boolean powerOn = false;
-  
+
   public State() {
     powerState = Status.OFF;
     functionState = Status.NORMAL;
@@ -16,7 +18,7 @@ public class State {
     powerState = ps;
     functionState = fs;
   }
-  
+
   public Status getPowerState() {
     return powerState;
   }
@@ -34,11 +36,11 @@ public class State {
     this.functionState = functionState;
   }
 
-  //to be displayed in Views
+  // to be displayed in Views
   public String stateView() {
     return powerStateToString() + functionStateToString();
   }
-  
+
   public String powerStateToString() {
     return "Device is " + STATES[powerState.ordinal()];
   }

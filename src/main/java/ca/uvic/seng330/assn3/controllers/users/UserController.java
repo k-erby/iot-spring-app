@@ -11,32 +11,32 @@ import ca.uvic.seng330.assn3.models.User;
 
 @Controller
 public class UserController {
-	
-	private UserRepository users;
-	private Hub hub;
 
-    UserController (Hub hub, UserRepository users) {
-        this.users = users;
-        this.hub = hub;
-    }
+  private UserRepository users;
+  private Hub hub;
 
-    @GetMapping("/new_user")
-    public String new_user() {
-        return "new_user";
-    }
+  UserController(Hub hub, UserRepository users) {
+    this.users = users;
+    this.hub = hub;
+  }
 
-    @PostMapping("/register_user")
-    public String register_user(
-            @RequestParam(name="username", required=true) String username,
-            @RequestParam(name="password", required=true) String password, Model model) {
+  @GetMapping("/new_user")
+  public String new_user() {
+    return "new_user";
+  }
 
-        User user = new User(username, password);
-        this.users.save(user);
-        hub.registerUser(hub.getInstance(), user);
-        
+  @PostMapping("/register_user")
+  public String register_user(
+      @RequestParam(name = "username", required = true) String username,
+      @RequestParam(name = "password", required = true) String password,
+      Model model) {
 
-        model.addAttribute("username", username);
-        model.addAttribute("password", password);
-        return "new_user_created";
-    }
+    User user = new User(username, password);
+    this.users.save(user);
+    hub.registerUser(hub.getInstance(), user);
+
+    model.addAttribute("username", username);
+    model.addAttribute("password", password);
+    return "new_user_created";
+  }
 }

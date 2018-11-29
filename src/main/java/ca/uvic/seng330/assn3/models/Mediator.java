@@ -11,32 +11,32 @@ import ca.uvic.seng330.assn3.views.Client;
 
 public interface Mediator {
 
-    void unregister(Device device) throws HubRegistrationException;
+  void unregister(Device device) throws HubRegistrationException;
 
-    void unregister(Client client) throws HubRegistrationException;
+  void unregister(Client client) throws HubRegistrationException;
 
-    //not in spec, do not test
-    void register(Device pDevice) throws HubRegistrationException;
+  // not in spec, do not test
+  void register(Device pDevice) throws HubRegistrationException;
 
-    void register(Client pClient) throws HubRegistrationException;
+  void register(Client pClient) throws HubRegistrationException;
 
-    void alert(Device pDevice, String pMessage);
-    
-    void alert(LogLevel l, Device pDevice, String pMessage);
+  void alert(Device pDevice, String pMessage);
 
-    Map<UUID, Device> getDevices();
+  void alert(LogLevel l, Device pDevice, String pMessage);
 
-    void dynamicActivity(boolean b, Device d);
+  Map<UUID, Device> getDevices();
 
-    void setRecentNotification(String s);
+  void dynamicActivity(boolean b, Device d);
 
-    String getRecentNotification();
+  void setRecentNotification(String s);
 
-    void registerDevice(User currentUser, Device device);
+  String getRecentNotification();
 
-    void unregisterDevice(User currentUser, Device device) throws HubRegistrationException;
+  void registerDevice(User currentUser, Device device);
 
-    void shutdown();
+  void unregisterDevice(User currentUser, Device device) throws HubRegistrationException;
 
-    void shutdown(User currentUser);
+  void shutdown();
+
+  void shutdown(User currentUser);
 }
