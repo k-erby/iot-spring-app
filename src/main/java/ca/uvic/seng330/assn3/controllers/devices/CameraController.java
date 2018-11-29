@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ca.uvic.seng330.assn3.exceptions.CameraFullException;
 import ca.uvic.seng330.assn3.models.Mediator;
 import ca.uvic.seng330.assn3.models.devices.Camera;
@@ -85,18 +86,21 @@ public class CameraController {
     }
     
     @GetMapping("/hub/camera/reset")
-    public String reset(@RequestParam(name="id", required=true) String id, Model model) {
+    public String reset(@RequestParam(name="id", required=true) String id, Model model, RedirectAttributes redirect) {
       Map<UUID, Device> devices = this.hub.getDevices();
       Device device = devices.get(UUID.fromString(id));
       ((Camera) device).resetMemory();;
-      return camera(id, model);
+      redirect.addAttribute("id", id);
+      redirect.addFlashAttribute("model", model);
+      return "redirect:/hub/camera";
   }
     
     @GetMapping("/hub/camera/notif")
-    public String notif(@RequestParam(name="id", required=true) String id, Model model) {
+    public String notif(@RequestParam(name="id", required=true) String id, Model model, RedirectAttributes redirect) {
       
       model.addAttribute("notification", "this is a test");
-      
+      redirect.addAttribute("id", id);
+     // redirect.addAttribute("model", model);
       return "redirect:/hub/camera";
       
     }

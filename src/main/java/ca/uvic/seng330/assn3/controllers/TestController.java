@@ -33,8 +33,8 @@ public class TestController {
         return "hub";
     }
     
-    @GetMapping("/hub/testD7")
-    public String testD7() throws TemperatureOutofBoundsException{
+    @GetMapping("/hub/testD6")
+    public String testD6() throws TemperatureOutofBoundsException{
 
        for(Device d: hub.getDevices().values()) {
          if(d.getDeviceTypeEnum() == DeviceType.THERMOSTAT) {

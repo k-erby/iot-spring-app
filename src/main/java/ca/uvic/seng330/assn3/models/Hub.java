@@ -55,14 +55,13 @@ public class Hub extends Device implements Mediator{
     //turns on all devices
     public void startup() {
       log(LogLevel.INFO, "Starting up...");
-      /* 
-       * Not sure what we want for functionality
-       * 
-       *
+      
+      /*
       for(User u: aUsers.values(){
         startup(u);
       }
       */
+      
       for(Device d: aDevices.values()) {
         d.startup();
       }
