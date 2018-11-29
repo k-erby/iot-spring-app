@@ -8,51 +8,58 @@
 </head>
 <body>
     <main class="container">
-        <h2>Devices Hub</h2>
-        <div class="_direction-row">
-            <section class="view-container-md">
-                <h3>Cameras</h3>
-                <a th:each="data: ${cameraDevices}" class="table-devices _direction-column">
-                    <a class="device-link" th:href="@{'/hub/camera?id=' + ${data}}" th:text="${data}"></a>
-                </a>
-
-                <h3>Lightbulbs</h3>
-                <a th:each="data: ${lightbulbDevices}" class="table-devices _direction-column">
-                    <a class="device-link" th:href="@{'/hub/lightbulb?id=' + ${data}}" th:text="${data}"></a>
-                </a>
-
-                <h3>SmartPlugs</h3>
-                <a th:each="data: ${smartplugDevices}" class="table-devices _direction-column">
-                    <a class="device-link" th:href="@{'/hub/smartplug?id=' + ${data}}" th:text="${data}"></a>
-                </a>
-
-                <h3>Thermostat</h3>
-                <a th:each="data: ${thermostatDevices}" class="table-devices _direction-column">
-                    <a class="device-link" th:href="@{'/hub/thermostat?id=' + ${data}}" th:text="${data}"></a>
-                </a>
-
-                <div class="_direction-row register-device">
-                    <a class="btn btn-link" type="submit" th:href="@{/new_device}">Register New Device</a>
-                    <a class="btn btn-link" type="submit" th:href="@{/logout}">Logout</a>
-                    <a class="btn btn-link" type="submit" th:href="@{/shutdown}">Shutdown Devices</a>
-                </div>
+    	<div class="_direction-column">
+    		<p>Recent Notification: <em><span th:text="${notification}"></span></em></p>
+	        <h2>Devices Hub</h2>
+	        <div class="_direction-row">
+	            <section class="view-container-md">
+	                <h3>Cameras</h3>
+	                <a th:each="data: ${cameraDevices}" class="table-devices _direction-column">
+	                    <a class="device-link" th:href="@{'/hub/camera?id=' + ${data}}" th:text="${data}"></a>
+	                </a>
+	
+	                <h3>Lightbulbs</h3>
+	                <a th:each="data: ${lightbulbDevices}" class="table-devices _direction-column">
+	                    <a class="device-link" th:href="@{'/hub/lightbulb?id=' + ${data}}" th:text="${data}"></a>
+	                </a>
+	
+	                <h3>SmartPlugs</h3>
+	                <a th:each="data: ${smartplugDevices}" class="table-devices _direction-column">
+	                    <a class="device-link" th:href="@{'/hub/smartplug?id=' + ${data}}" th:text="${data}"></a>
+	                </a>
+	
+	                <h3>Thermostat</h3>
+	                <a th:each="data: ${thermostatDevices}" class="table-devices _direction-column">
+	                    <a class="device-link" th:href="@{'/hub/thermostat?id=' + ${data}}" th:text="${data}"></a>
+	                </a>
+	
+	                <div class="_direction-row register-device">
+	                    <a class="btn btn-link" type="submit" th:href="@{/new_device}">Register New Device</a>
+	                    <a class="btn btn-link" type="submit" th:href="@{/logout}">Logout</a>
+	                    <a class="btn btn-link" type="submit" th:href="@{/shutdown}">Shutdown Devices</a>
+	                </div>
+	            </section>
+	            <section class="view-container-sm">
+	                <h3>Users</h3>
+	                <a th:each="data: ${users}" class="_direction-column">
+	                    <a class="btn-link user-links" th:href="@{'/'}" th:text="${data}"></a>
+	                </a>
+	            </section>
+	            <section class="view-container-sm">
+	                <h3>Test Devices</h3>
+	                <div class="_direction-column">
+	               		<a class="btn btn-link" type="submit" th:href="@{'/hub/testC6">Test C6</a>
+	                    <a class="btn btn-link" type="submit" th:href="@{'/hub/testD6">Test D6</a>
+	                    <a class="btn btn-link" type="submit" th:href="@{'/hub/testE3">Test E3</a>
+	                    <a class="btn btn-link" type="submit" th:href="@{'/hub/testE4">Test E4</a>
+	                </div>
+	            </section>
+	        </div>
+	        <h2>Log</h2>
+	         <section class="view-container-sm">
+                <iframe name="Log"  src="../static/LogFile.log" frameBorder="0"</iframe>
             </section>
-            <section class="view-container-sm">
-                <h3>Users</h3>
-                <a th:each="data: ${users}" class="_direction-column">
-                    <a class="btn-link user-links" th:href="@{'/'}" th:text="${data}"></a>
-                </a>
-            </section>
-            <section class="view-container-sm">
-                <h4>Test Devices</h4>
-                <div class="_direction-column">
-               		<a class="btn btn-link" type="submit" th:href="@{'/hub/testC6">Test C6</a>
-                    <a class="btn btn-link" type="submit" th:href="@{'/hub/testD6">Test D6</a>
-                    <a class="btn btn-link" type="submit" th:href="@{'/hub/testE3">Test E3</a>
-                    <a class="btn btn-link" type="submit" th:href="@{'/hub/testE4">Test E4</a>
-                </div>
-            </section>
-        </div>
+	       </div>
     </main>
 </body>
 </html>

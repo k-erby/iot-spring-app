@@ -2,13 +2,13 @@ package ca.uvic.seng330.assn3.models;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ca.uvic.seng330.assn3.exceptions.HubRegistrationException;
-import ca.uvic.seng330.assn3.models.devices.Camera;
 import ca.uvic.seng330.assn3.models.devices.Device;
 import ca.uvic.seng330.assn3.util.DeviceType;
 import ca.uvic.seng330.assn3.util.JSONMessaging;
@@ -38,7 +38,7 @@ public class Hub extends Device implements Mediator{
       try {
         log(LogLevel.DEBUG, "Opening file...");
 
-        LOGWRITER = new PrintWriter("logfile.txt");
+        LOGWRITER = new PrintWriter("../../../../../../resources/static/LogFile.log");
        }catch(FileNotFoundException e) {
          e.printStackTrace();
          log(LogLevel.DEBUG, "File could not be found.");
@@ -305,26 +305,28 @@ public class Hub extends Device implements Mediator{
       switch (l) {
         case INFO:
           LOGGER.info(logMsg);
-          write(logMsg);
+          write("[INFO] "+logMsg);
           break;
         case WARN:
           LOGGER.warn(logMsg);
-          write(logMsg);
+          write("[WARN] "+logMsg);
           break;
         case ERROR:
           LOGGER.error(logMsg);
-          write(logMsg);
+          write("[ERROR] "+logMsg);
           break;
         case DEBUG:
           LOGGER.debug(logMsg);
+          write("[DEBUG] "+logMsg);
           break;
         case TRACE:
           LOGGER.trace(logMsg);
+          write("[TRACE] "+logMsg);
           break;
         case NOTIFY:
           LOGGER.debug("IMPORTANT: MAKE SURE NOTIFICATION WAS HANDLED PROPERLY");
           LOGGER.info(logMsg);
-          write(logMsg);
+          write("[NOTIFY] "+logMsg);
           break;
         default:
           break;
@@ -332,8 +334,10 @@ public class Hub extends Device implements Mediator{
     }
     
     //Writes LogMsg to a file.
-    private static void write(String s) {
-      LOGWRITER.println(s);
+    private static void write(String msg) {
+      
+      String d = new Date().toString();
+      LOGWRITER.println(d+msg);
 
     }
 
