@@ -39,4 +39,8 @@ public interface Mediator {
   void shutdown();
 
   void shutdown(User currentUser);
+
+  Client getInstance();
+
+  void registerUser(Client instance, User currentUser);
 }

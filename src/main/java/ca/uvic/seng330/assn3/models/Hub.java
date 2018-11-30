@@ -430,7 +430,9 @@ public class Hub extends Device implements Mediator {
 
   // Return a "cloned" Map of devices registered to the hub.
   public Map<UUID, Device> getDevices() {
-
+    
     return new HashMap<UUID, Device>(aDevices);
   }
+  
+  
 }
