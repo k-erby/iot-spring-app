@@ -38,7 +38,7 @@ public class Hub extends Device implements Mediator {
     try {
       log(LogLevel.DEBUG, "Opening file...");
 
-      LOGWRITER = new PrintWriter("../../../../../../resources/static/LogFile.log");
+      LOGWRITER = new PrintWriter("LogFile.log");
     } catch (FileNotFoundException e) {
       e.printStackTrace();
       log(LogLevel.DEBUG, "File could not be found.");
@@ -333,7 +333,7 @@ public class Hub extends Device implements Mediator {
   private static void write(String msg) {
 
     String d = new Date().toString();
-    LOGWRITER.println(d + msg);
+    // LOGWRITER.println(d + msg);
   }
 
   // Creates a notification for users with registered device
