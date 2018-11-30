@@ -18,6 +18,7 @@ public class Hub extends Device implements Mediator{
     private HashMap<UUID, Device> aDevices = new HashMap<UUID, Device>();
     private HashMap<UUID, Client> aClients = new HashMap<UUID, Client>();
     private HashMap<UUID, User> aUsers = new HashMap<UUID, User>();
+    private String recentNotification = "";
     private final static Logger LOGGER = LoggerFactory.getLogger(Hub.class);
     private static PrintWriter LOGWRITER; //Log messages saved to file
 
@@ -137,7 +138,6 @@ public class Hub extends Device implements Mediator{
      * [un]registerDevice[To/From]User
      * 
      */
-
     @Override
     public void register(Device pDevice) throws HubRegistrationException {
       assert pDevice != null;
@@ -347,6 +347,17 @@ public class Hub extends Device implements Mediator{
         }
       }
       log(l, message);
+    }
+
+    // Most recent notification created in display format
+    public String getRecentNotification() {
+        return recentNotification;
+    }
+
+    // Set when client receives a JSONObject and wants to display the notification (requires listener
+    // for display)
+    public void setRecentNotification(String recentNotification) {
+        this.recentNotification = recentNotification;
     }
 
     /**

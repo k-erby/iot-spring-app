@@ -31,7 +31,7 @@ public class ThermostatController {
         // get thermostat details
         model.addAttribute("name", thermostat.getIdentifier());
         model.addAttribute("temp", thermostat.getTemp().toString());
-        model.addAttribute("isOn", thermostat.getState().getPowerOn());
+        model.addAttribute("isOn", thermostat.getState().getPowerState() == Status.ON);
 
         return "thermostat";
     }
@@ -41,6 +41,7 @@ public class ThermostatController {
         Map<UUID, Device> devices = this.hub.getDevices();
         Device device = devices.get(UUID.fromString(id));
         device.startup();
+        model.addAttribute("notification", "Thermostat has been toggled on.");
         return thermostat(id, model);
     }
 
@@ -49,6 +50,7 @@ public class ThermostatController {
         Map<UUID, Device> devices = this.hub.getDevices();
         Device device = devices.get(UUID.fromString(id));
         device.shutdown();
+        model.addAttribute("notification", "Thermostat has been toggled off.");
         return thermostat(id, model);
     }
 
@@ -63,6 +65,7 @@ public class ThermostatController {
         } catch (Temperature.TemperatureOutofBoundsException e) {
             System.out.println("Temperature is out of bounds.");
         }
+        model.addAttribute("notification", "The unit has changed.");
         return thermostat(id, model);
     }
 

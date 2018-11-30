@@ -38,7 +38,8 @@ public class LightbulbController {
     public String toggle(@RequestParam(name="id", required=true) String id, Model model) {
         Map<UUID, Device> devices = this.hub.getDevices();
         Device device = devices.get(UUID.fromString(id));
-        ((Lightbulb) device).toggle();
+        device.toggle();
+        model.addAttribute("notification", "Lightbulb status toggled.");
         return lightbulb(id, model);
     }
 
