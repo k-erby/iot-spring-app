@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.UUID;
 
+import ca.uvic.seng330.assn3.models.Hub;
 import ca.uvic.seng330.assn3.repository.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,31 +36,30 @@ public class HubController {
     @GetMapping("/hub")
     public String hub(Principal principal, Model model) {
         User currentUser = users.findByUsername(principal.getName()).get(0);
-    	
-    	if(currentUser.getIsAdmin()) {
-	        Map<UUID, Device> devices = this.hub.getDevices();
-	        ArrayList<String> cameraIds = new ArrayList<String>();
-	        ArrayList<String> lightbulbIds = new ArrayList<String>();
-	        ArrayList<String> smartplugIds = new ArrayList<String>();
-	        ArrayList<String> thermostatIds = new ArrayList<String>();
-	
-	        for (Device device : devices.values()) {
-	            if (device == null) continue;
-	            switch (device.getDeviceTypeEnum()) {
-	                case CAMERA: cameraIds.add(device.getIdentifier().toString()); break;
-	                case LIGHTBULB: lightbulbIds.add(device.getIdentifier().toString()); break;
-	                case SMARTPLUG: smartplugIds.add(device.getIdentifier().toString()); break;
-	                case THERMOSTAT: thermostatIds.add(device.getIdentifier().toString()); break;
-	                default: break;
-	            }
-	        }
-	
-	        model.addAttribute("cameraDevices", cameraIds);
-	        model.addAttribute("lightbulbDevices", lightbulbIds);
-	        model.addAttribute("smartplugDevices", smartplugIds);
-	        model.addAttribute("thermostatDevices", thermostatIds);
-	        
 
+        Map<UUID, Device> devices = this.hub.getDevices();
+        ArrayList<String> cameraIds = new ArrayList<String>();
+        ArrayList<String> lightbulbIds = new ArrayList<String>();
+        ArrayList<String> smartplugIds = new ArrayList<String>();
+        ArrayList<String> thermostatIds = new ArrayList<String>();
+
+        for (Device device : devices.values()) {
+            if (device == null) continue;
+            switch (device.getDeviceTypeEnum()) {
+                case CAMERA: cameraIds.add(device.getIdentifier().toString()); break;
+                case LIGHTBULB: lightbulbIds.add(device.getIdentifier().toString()); break;
+                case SMARTPLUG: smartplugIds.add(device.getIdentifier().toString()); break;
+                case THERMOSTAT: thermostatIds.add(device.getIdentifier().toString()); break;
+                default: break;
+            }
+        }
+
+        model.addAttribute("cameraDevices", cameraIds);
+        model.addAttribute("lightbulbDevices", lightbulbIds);
+        model.addAttribute("smartplugDevices", smartplugIds);
+        model.addAttribute("thermostatDevices", thermostatIds);
+
+        if(currentUser.getIsAdmin()) {
 	        ArrayList<String> userNames = new ArrayList<String>();
 	        for(User user : this.users.findAll()){
 	        	userNames.add(user.getUsername());
@@ -68,27 +68,6 @@ public class HubController {
 	        
 	        return "hub_admin";
     	} else {
-            Map<UUID, Device> devices = this.hub.getDevices();
-            ArrayList<String> cameraIds = new ArrayList<String>();
-            ArrayList<String> lightbulbIds = new ArrayList<String>();
-            ArrayList<String> smartplugIds = new ArrayList<String>();
-            ArrayList<String> thermostatIds = new ArrayList<String>();
-
-            for (Device device : devices.values()) {
-                if (device == null) continue;
-                switch (device.getDeviceTypeEnum()) {
-                    case CAMERA: cameraIds.add(device.getIdentifier().toString()); break;
-                    case LIGHTBULB: lightbulbIds.add(device.getIdentifier().toString()); break;
-                    case SMARTPLUG: smartplugIds.add(device.getIdentifier().toString()); break;
-                    case THERMOSTAT: thermostatIds.add(device.getIdentifier().toString()); break;
-                    default: break;
-                }
-            }
-
-            model.addAttribute("cameraDevices", cameraIds);
-            model.addAttribute("lightbulbDevices", lightbulbIds);
-            model.addAttribute("smartplugDevices", smartplugIds);
-            model.addAttribute("thermostatDevices", thermostatIds);
     		return "hub";
     	}
     }
@@ -108,16 +87,20 @@ public class HubController {
 
     @GetMapping("/hub/logout")
     public String logout() {
-
         currentUser.signOut();
-
         return "redirect:/login";
     }
 
     @GetMapping("/hub/shutdown")
-    public RedirectView shutdown() {
+    public RedirectView shutdown(Model model) {
         hub.shutdown();
+        model.addAttribute("notification", "Shutting down all registered devices.");
         return new RedirectView("/hub");
     }
 
+//    @GetMapping("/hub/notif")
+//    public String notif(Model model) {
+//        model.addAttribute("notification", ((Hub) hub).getRecentNotification());
+//        return "redirect:/hub";
+//    }
 }
