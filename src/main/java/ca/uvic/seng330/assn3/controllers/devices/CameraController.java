@@ -92,7 +92,7 @@ public class CameraController {
     Map<UUID, Device> devices = this.hub.getDevices();
     Device device = devices.get(UUID.fromString(id));
     ((Camera) device).resetMemory();
-    ;
+    
     redirect.addAttribute("id", id);
     redirect.addFlashAttribute("model", model);
     return "redirect:/hub/camera";
