@@ -464,3 +464,11 @@ INSERT INTO USER (UUID,IS_ADMIN,USERNAME,PASSWORD) VALUES ('0x214f715a2bce4358b3
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.lang.Thread.run(Thread.java:748)
+2018-11-29 22:02:33 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLException: Table "USERS" not found; SQL statement:
+select * from users [42102-197]
+2018-11-29 22:03:43 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT * FROM USER
+WHERE UUID IS 438D9AEBAAB343F4ABEDB3C80E5A7F2F[*] "; SQL statement:
+select * from user
+where uuid is 438d9aebaab343f4abedb3c80e5a7f2f [42000-197]

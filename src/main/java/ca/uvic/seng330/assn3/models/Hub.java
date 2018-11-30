@@ -8,7 +8,6 @@ import java.util.UUID;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ca.uvic.seng330.assn3.exceptions.HubRegistrationException;
-import ca.uvic.seng330.assn3.models.devices.Camera;
 import ca.uvic.seng330.assn3.models.devices.Device;
 import ca.uvic.seng330.assn3.util.DeviceType;
 import ca.uvic.seng330.assn3.util.JSONMessaging;
@@ -21,6 +20,7 @@ public class Hub extends Device implements Mediator{
     private HashMap<UUID, User> aUsers = new HashMap<UUID, User>();
     private final static Logger LOGGER = LoggerFactory.getLogger(Hub.class);
     private static PrintWriter LOGWRITER; //Log messages saved to file
+
    
     public static enum LogLevel {
       INFO,
@@ -348,8 +348,7 @@ public class Hub extends Device implements Mediator{
       }
       log(l, message);
     }
-    
-    
+
     /**
      * 
      * If a device detects activity, it asks the Hub to check if any actions should be taken with the other devices

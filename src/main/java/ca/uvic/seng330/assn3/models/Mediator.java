@@ -26,4 +26,6 @@ public interface Mediator {
     Map<UUID, Device> getDevices();
 
     void dynamicActivity(boolean b, Device d);
+
+    void shutdown();
 }
