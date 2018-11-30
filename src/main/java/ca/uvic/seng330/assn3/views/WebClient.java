@@ -28,7 +28,6 @@ public class WebClient extends Client {
   // displays notification immediately for current user
   private void display(JSONObject json) {
     System.out.println("WebClient is displaying content from : " + json.getString("node_id"));
-    // TODO:  should be on web page // format notification pop up
     String s =
         String.format(
             "%s\n%s\n%s",

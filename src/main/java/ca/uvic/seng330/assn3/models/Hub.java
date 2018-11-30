@@ -1,13 +1,17 @@
 package ca.uvic.seng330.assn3.models;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
+import java.util.logging.FileHandler;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 import ca.uvic.seng330.assn3.exceptions.HubRegistrationException;
 import ca.uvic.seng330.assn3.models.devices.Device;
 import ca.uvic.seng330.assn3.util.DeviceType;
@@ -20,16 +24,14 @@ public class Hub extends Device implements Mediator {
   private HashMap<UUID, Client> aClients = new HashMap<UUID, Client>();
   private HashMap<UUID, User> aUsers = new HashMap<UUID, User>();
   private Client INSTANCE;
-  private String recentNotification = "";
-  private static final Logger LOGGER = LoggerFactory.getLogger(Hub.class);
-  private static PrintWriter LOGWRITER; // Log messages saved to file
+  private String recentNotification = "Up to Date!";
+  private static final Logger LOGGER = Logger.getLogger(Hub.class.getName());
 
   public static enum LogLevel {
     INFO,
     WARN,
     ERROR,
     DEBUG,
-    TRACE,
     NOTIFY
   }
 
@@ -37,11 +39,17 @@ public class Hub extends Device implements Mediator {
 
     try {
       log(LogLevel.DEBUG, "Opening file...");
-
-      LOGWRITER = new PrintWriter("../../../../../../resources/static/LogFile.log");
+      FileHandler fh = new FileHandler("LogFile.log");  
+      LOGGER.addHandler(fh);
+      SimpleFormatter formatter = new SimpleFormatter();  
+      fh.setFormatter(formatter); 
     } catch (FileNotFoundException e) {
       e.printStackTrace();
       log(LogLevel.DEBUG, "File could not be found.");
+    } catch (SecurityException e) {
+      e.printStackTrace();
+    } catch (IOException e) {
+      e.printStackTrace();
     }
 
     log(LogLevel.DEBUG, "...success!\nBegin logging to file...");
@@ -91,7 +99,6 @@ public class Hub extends Device implements Mediator {
     }
     log(LogLevel.INFO, "...shutdown successfully.");
     log(LogLevel.DEBUG, "End logging to file. Closing...");
-    LOGWRITER.close();
     log(LogLevel.DEBUG, "...closed successfully.");
   }
 
@@ -131,7 +138,6 @@ public class Hub extends Device implements Mediator {
       }
       unregister(c);
     }
-    LOGWRITER.close();
   }
 
   /*
@@ -301,41 +307,26 @@ public class Hub extends Device implements Mediator {
     switch (l) {
       case INFO:
         LOGGER.info(logMsg);
-        write("[INFO] " + logMsg);
         break;
       case WARN:
-        LOGGER.warn(logMsg);
-        write("[WARN] " + logMsg);
+        LOGGER.warning(logMsg);
         break;
       case ERROR:
-        LOGGER.error(logMsg);
-        write("[ERROR] " + logMsg);
+        LOGGER.severe(logMsg);
         break;
       case DEBUG:
-        LOGGER.debug(logMsg);
-        write("[DEBUG] " + logMsg);
-        break;
-      case TRACE:
-        LOGGER.trace(logMsg);
-        write("[TRACE] " + logMsg);
+        LOGGER.config("[DEBUG] " + logMsg);
         break;
       case NOTIFY:
-        LOGGER.debug("IMPORTANT: MAKE SURE NOTIFICATION WAS HANDLED PROPERLY");
+        LOGGER.config("IMPORTANT: MAKE SURE NOTIFICATION WAS HANDLED PROPERLY");
         LOGGER.info(logMsg);
-        write("[NOTIFY] " + logMsg);
         break;
       default:
         break;
     }
   }
 
-  // Writes LogMsg to a file.
-  private static void write(String msg) {
-
-    String d = new Date().toString();
-    LOGWRITER.println(d + msg);
-  }
-
+ 
   // Creates a notification for users with registered device
   @Override
   public void alert(Device pDevice, String pMessage) {
@@ -430,7 +421,9 @@ public class Hub extends Device implements Mediator {
 
   // Return a "cloned" Map of devices registered to the hub.
   public Map<UUID, Device> getDevices() {
-
+    
     return new HashMap<UUID, Device>(aDevices);
   }
+  
+  
 }

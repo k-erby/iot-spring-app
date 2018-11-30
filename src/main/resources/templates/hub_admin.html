@@ -8,6 +8,7 @@
 </head>
 <body>
     <main class="container">
+    	<p>Recent Notification: <em><span th:text="${notification}"></span></em></p>
     	<div class="_direction-column">
     		<p>Recent Notification: <em><span th:text="${notification}"></span></em></p>
 	        <h2>Devices Hub</h2>
@@ -36,7 +37,7 @@
 	                <div class="_direction-row register-device">
 	                    <a class="btn btn-link" type="submit" th:href="@{/new_device}">Register New Device</a>
 	                    <a class="btn btn-link" type="submit" th:href="@{/logout}">Logout</a>
-	                    <a class="btn btn-link" type="submit" th:href="@{/shutdown}">Shutdown Devices</a>
+	                    <a class="btn btn-link" type="submit" th:href="@{/hub/shutdown}">Shutdown Devices</a>
 	                </div>
 	            </section>
 	            <section class="view-container-sm">
@@ -48,16 +49,16 @@
 	            <section class="view-container-sm">
 	                <h3>Test Devices</h3>
 	                <div class="_direction-column">
-	               		<a class="btn btn-link" type="submit" th:href="@{'/hub/testC6">Test C6</a>
-	                    <a class="btn btn-link" type="submit" th:href="@{'/hub/testD6">Test D6</a>
-	                    <a class="btn btn-link" type="submit" th:href="@{'/hub/testE3">Test E3</a>
-	                    <a class="btn btn-link" type="submit" th:href="@{'/hub/testE4">Test E4</a>
+	               		<a class="btn btn-link" type="submit" th:href="@{/hub/testC6}">Test C6</a>
+	                    <a class="btn btn-link" type="submit" th:href="@{/hub/testD6}">Test D6</a>
+	                    <a class="btn btn-link" type="submit" th:href="@{/hub/testE3}">Test E3</a>
+	                    <a class="btn btn-link" type="submit" th:href="@{/hub/testE4}">Test E4</a>
 	                </div>
 	            </section>
 	        </div>
 	        <h2>Log</h2>
 	         <section class="view-container-sm">
-                <iframe name="Log"  src="../static/LogFile.log" frameBorder="0"</iframe>
+                <iframe name="Log"  src="../static/LogFile.log" frameBorder="0"></iframe>
             </section>
 	       </div>
     </main>

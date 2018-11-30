@@ -25,6 +25,8 @@ public class SmartPlugController {
     Device device = devices.get(UUID.fromString(id));
     SmartPlug smartplug = (SmartPlug) device;
 
+    //model.addAttribute("notification", hub.getRecentNotification());
+    
     // get smartplug details
     model.addAttribute("name", smartplug.getIdentifier());
 

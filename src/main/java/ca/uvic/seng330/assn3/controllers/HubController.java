@@ -41,7 +41,10 @@ public class HubController {
   public String hub(Principal principal, Model model) {
     User currentUser = users.findByUsername(principal.getName()).get(0);
 
-    if (!currentUser.signedIn()) currentUser.signIn();
+    if(!hub.getInstance().getUsers().contains(currentUser)) hub.registerUser(hub.getInstance(), currentUser);
+    if(!currentUser.signedIn()) currentUser.signIn();
+    
+    //model.addAttribute("notification", hub.getRecentNotification());
 
     if (currentUser.getIsAdmin()) {
 
