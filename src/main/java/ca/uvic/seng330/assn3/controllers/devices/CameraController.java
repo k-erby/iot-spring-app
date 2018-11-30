@@ -31,6 +31,7 @@ public class CameraController {
         // get camera details
         model.addAttribute("name", camera.getIdentifier());
         model.addAttribute("recording", camera.isRecording());
+        model.addAttribute("memory", camera.getDiskSize());
 
         // get camera status
         model.addAttribute("status", camera.getState().stateView());
