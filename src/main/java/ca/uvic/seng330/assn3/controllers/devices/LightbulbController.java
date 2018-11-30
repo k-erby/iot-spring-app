@@ -24,6 +24,8 @@ public class LightbulbController {
     Map<UUID, Device> devices = this.hub.getDevices();
     Device device = devices.get(UUID.fromString(id));
     Lightbulb lightbulb = (Lightbulb) device;
+    
+    //model.addAttribute("notification", hub.getRecentNotification());
 
     // get lightbulb details
     model.addAttribute("name", lightbulb.getIdentifier());

@@ -24,7 +24,7 @@ public class Hub extends Device implements Mediator {
   private HashMap<UUID, Client> aClients = new HashMap<UUID, Client>();
   private HashMap<UUID, User> aUsers = new HashMap<UUID, User>();
   private Client INSTANCE;
-  private String recentNotification = "";
+  private String recentNotification = "Up to Date!";
   private static final Logger LOGGER = Logger.getLogger(Hub.class.getName());
 
   public static enum LogLevel {

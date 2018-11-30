@@ -28,6 +28,8 @@ public class ThermostatController {
     Device device = devices.get(UUID.fromString(id));
     Thermostat thermostat = (Thermostat) device;
 
+    //model.addAttribute("notification", hub.getRecentNotification());
+    
     // get thermostat details
     model.addAttribute("name", thermostat.getIdentifier());
     model.addAttribute("temp", thermostat.getTemp().toString());
