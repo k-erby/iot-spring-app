@@ -252,7 +252,7 @@ public class Hub extends Device implements Mediator{
             throw new HubRegistrationException(String.format("%s does not exists!", device));
         }
         aDevices.remove(device.getIdentifier());
-        
+        if(getInstance().getAdmin() != null) unregisterDevice(getInstance().getAdmin(), device);
         log(LogLevel.INFO, String.format("%s removed from Hub.",device));
       }catch(HubRegistrationException e) {
         
