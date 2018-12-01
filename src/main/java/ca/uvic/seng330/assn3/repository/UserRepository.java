@@ -2,9 +2,8 @@ package ca.uvic.seng330.assn3.repository;
 
 import java.util.List;
 import java.util.UUID;
-
-import ca.uvic.seng330.assn3.models.User;
 import org.springframework.data.repository.CrudRepository;
+import ca.uvic.seng330.assn3.models.User;
 
 /**
  * Resources on JPA / Repository

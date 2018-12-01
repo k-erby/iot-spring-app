@@ -2,6 +2,7 @@ package ca.uvic.seng330.assn3.models;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -18,7 +19,8 @@ public class Hub extends Device implements Mediator{
     private HashMap<UUID, Device> aDevices = new HashMap<UUID, Device>();
     private HashMap<UUID, Client> aClients = new HashMap<UUID, Client>();
     private HashMap<UUID, User> aUsers = new HashMap<UUID, User>();
-    private String recentNotification = "";
+    private String recentNotification = "Up to Date";
+    private static Client ViewInstance;
     private final static Logger LOGGER = LoggerFactory.getLogger(Hub.class);
     private static PrintWriter LOGWRITER; //Log messages saved to file
 
@@ -37,7 +39,7 @@ public class Hub extends Device implements Mediator{
       try {
         log(LogLevel.DEBUG, "Opening file...");
 
-        LOGWRITER = new PrintWriter("logfile.txt");
+        LOGWRITER = new PrintWriter("LogFile.log");
        }catch(FileNotFoundException e) {
          e.printStackTrace();
          log(LogLevel.DEBUG, "File could not be found.");
@@ -148,6 +150,8 @@ public class Hub extends Device implements Mediator{
         } else {
             throw new HubRegistrationException(pDevice + " was already registered");
         }
+        
+        if(getInstance().getAdmin() != null) registerDevice(getInstance().getAdmin(), pDevice);
         log(LogLevel.INFO, String.format("%s registered to Hub.", pDevice));
       }catch(HubRegistrationException e) {
         log(LogLevel.ERROR, e.message());
@@ -165,7 +169,7 @@ public class Hub extends Device implements Mediator{
             throw new HubRegistrationException(pClient + " was already registered");
         }
         log(LogLevel.INFO, String.format("%s registered to Hub.", pClient));
-
+        setInstance(pClient);
       }catch(HubRegistrationException e) {
         log(LogLevel.ERROR, e.message());
       }
@@ -265,7 +269,7 @@ public class Hub extends Device implements Mediator{
             throw new HubRegistrationException(String.format("%s does not exists!", client));
         }
         aClients.remove(client.getIdentifier());
-        
+        setInstance(null);        
         log(LogLevel.INFO, String.format("%s removed from Hub.", client));
       }catch(HubRegistrationException e) {
         
@@ -288,34 +292,35 @@ public class Hub extends Device implements Mediator{
       switch (l) {
         case INFO:
           LOGGER.info(logMsg);
-          write(logMsg);
+          write("[INFO] "+logMsg);
           break;
         case WARN:
           LOGGER.warn(logMsg);
-          write(logMsg);
+          write("[WARN] "+logMsg);
           break;
         case ERROR:
           LOGGER.error(logMsg);
-          write(logMsg);
+          write("[ERROR] "+logMsg);
           break;
         case DEBUG:
           LOGGER.debug(logMsg);
+          write("[DEBUG] "+logMsg);
           break;
         case TRACE:
           LOGGER.trace(logMsg);
           break;
         case NOTIFY:
-          LOGGER.info("IMPORTANT: MAKE SURE NOTIFICATION WAS HANDLED PROPERLY\n"+logMsg);
-          write(logMsg);
+          LOGGER.debug("IMPORTANT: MAKE SURE NOTIFICATION WAS HANDLED PROPERLY\n"+logMsg);
+          write("[NOTIFY] "+logMsg);
           break;
         default:
           break;
       }
     }
     
-    private static void write(String s) {
-      LOGWRITER.println(s);
-
+    private static void write(String msg) {
+      String date = new Date().toString();
+      LOGWRITER.println(date+msg);
     }
 
     @Override
@@ -396,6 +401,13 @@ public class Hub extends Device implements Mediator{
     public Map<UUID, Device> getDevices() {
       
         return new HashMap<UUID, Device>(aDevices);
+    }
+    public Client getInstance() {
+      // TODO Auto-generated method stub
+      return ViewInstance;
+    }
+    private static void setInstance(Client c) {
+      ViewInstance = c;
     }
 }
 

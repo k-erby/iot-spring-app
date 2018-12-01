@@ -1,0 +1,7 @@
+<<<<<<< HEAD
+script:
+  gradle build
+=======
+script:
+  gradle build
+>>>>>>> staging from master and reimplementation of

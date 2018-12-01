@@ -9,6 +9,15 @@ public abstract class Client {
 
     private final UUID uuid = UUID.randomUUID();
     private ArrayList<User> users;
+    private User admin = null;
+
+    public User getAdmin() {
+      return admin;
+    }
+
+    public void setAdmin(User admin) {
+      this.admin = admin;
+    }
 
     public UUID getIdentifier() {
         return uuid;

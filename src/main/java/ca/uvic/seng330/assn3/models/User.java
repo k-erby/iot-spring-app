@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Queue;
 import java.util.UUID;
-import org.json.JSONObject;
-import ca.uvic.seng330.assn3.models.devices.Device;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Transient;
+import org.json.JSONObject;
+import ca.uvic.seng330.assn3.models.devices.Device;
 
 @Entity
 public class User {

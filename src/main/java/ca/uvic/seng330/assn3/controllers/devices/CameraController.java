@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+
 @Controller
 public class CameraController {
 
@@ -61,15 +62,6 @@ public class CameraController {
     return camera(id, model);
   }
 
-  @GetMapping("/hub/camera/toggleOff")
-  public String toggleOff(@RequestParam(name = "id", required = true) String id, Model model) {
-    Map<UUID, Device> devices = this.hub.getDevices();
-    Device device = devices.get(UUID.fromString(id));
-    device.shutdown();
-
-    model.addAttribute("notification", "Camera has been toggled off.");
-    return camera(id, model);
-  }
 
   /**
   * Turns the recording on - this will cause a flashing red circle to appear under the image.
@@ -87,23 +79,49 @@ public class CameraController {
       ((Camera) device).record();
     } catch (CameraFullException e) {
       model.addAttribute("notification", "Camera is Full.");
-    }
-    model.addAttribute("notification", "Camera is recording.");
-    return camera(id, model);
-  }
 
-  @GetMapping("/hub/camera/recordOff")
-  public String recordOff(@RequestParam(name = "id", required = true) String id, Model model) {
-    Map<UUID, Device> devices = this.hub.getDevices();
-    Device device = devices.get(UUID.fromString(id));
-    try {
-      ((Camera) device).record();
-    } catch (CameraFullException e) {
-      model.addAttribute("notification", "Camera is Full.");
+    @GetMapping("/hub/camera/toggleOn")
+    public String toggleOn(@RequestParam(name="id", required=true) String id, Model model) {
+        Map<UUID, Device> devices = this.hub.getDevices();
+        Device device = devices.get(UUID.fromString(id));
+        device.startup();
+
+        model.addAttribute("notification", "Camera memory has been toggled on.");
+        return camera(id, model);
     }
-    model.addAttribute("notification", "Camera has stopped recording.");
-    return camera(id, model);
-  }
+
+    @GetMapping("/hub/camera/toggleOff")
+    public String toggleOff(@RequestParam(name="id", required=true) String id, Model model) {
+        Map<UUID, Device> devices = this.hub.getDevices();
+        Device device = devices.get(UUID.fromString(id));
+        device.shutdown();
+
+        model.addAttribute("notification", "Camera has been toggled off.");
+        return camera(id, model);
+    }
+
+   
+
+    @GetMapping("/hub/camera/recordOff")
+    public String recordOff(@RequestParam(name="id", required=true) String id, Model model) {
+        Map<UUID, Device> devices = this.hub.getDevices();
+        Device device = devices.get(UUID.fromString(id));
+        try {
+            ((Camera) device).record();
+        } catch (CameraFullException e) {
+            model.addAttribute("notification", "Camera is Full.");
+        }
+        model.addAttribute("notification", "Camera has stopped recording.");
+        return camera(id, model);
+    }
+    
+
+
+//    @GetMapping("/hub/camera/notif")
+//    public String notif(@RequestParam(name="id", required=true) String id, Model model) {
+//        model.addAttribute("notification", "Test");
+//        return camera(id, model);
+//    }
 
   /**
   * Resets the memory on the camera.
