@@ -1,18 +1,16 @@
-bbece765-e7f4-45cf-badd-78f47e7384af registered to Hub.
-99a9f442-272b-46de-a012-57916d6f540a registered to Hub.
+56dd0326-12af-42c4-9eb6-2760f27ea987 registered to Hub.
+1dc2c41d-1cd6-44df-9c48-040926c5466d registered to Hub.
+Starting up 1dc2c41d-1cd6-44df-9c48-040926c5466d...
+Shutting down 1dc2c41d-1cd6-44df-9c48-040926c5466d...
+Current Temperature is 25.0 °C
+Temperature set to 77.0 °F
+Starting up 1dc2c41d-1cd6-44df-9c48-040926c5466d...
+Switching SmartPlug on.
+Switching SmartPlug off.
 Shutting down...
-Shutting down bbece765-e7f4-45cf-badd-78f47e7384af...
-Current Memory is
-Memory Capacity: 1024.00 MB
-Footage Captured: 0.00 MB
-Memory Used: 0.00%
-
+Shutting down 56dd0326-12af-42c4-9eb6-2760f27ea987...
 ...success!
-Shutting down 99a9f442-272b-46de-a012-57916d6f540a...
-Current Memory is
-Memory Capacity: 1024.00 MB
-Footage Captured: 0.00 MB
-Memory Used: 0.00%
-
+Shutting down 1dc2c41d-1cd6-44df-9c48-040926c5466d...
+Current Temperature is 77.0 °F
 ...success!
 ...shutdown successfully.

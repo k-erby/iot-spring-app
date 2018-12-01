@@ -6,19 +6,26 @@ public class AbsurdTemperatureException extends Exception {
 
   public AbsurdTemperatureException() {}
 
+  /**
+   * Sends message of absurd tempurature.
+   * @param message : string
+   */
   public AbsurdTemperatureException(String message) {
     super(message);
     this.message = message;
   }
 
   public String message() {
-
-    if (message != null) return message();
-    else return toString();
+    if (message != null) {
+      return message();
+    } else {
+      return toString();
+    }
   }
 
   @Override
   public String toString() {
-    return "Error: The temperature you are trying to set is absurd!.Please input below 1000 degrees";
+    return "Error: The temperature you are trying to set is absurd!."
+            + "Please input below 1000 degrees";
   }
 }
