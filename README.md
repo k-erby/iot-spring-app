@@ -8,8 +8,11 @@ Marc-André Descoteaux
 
 ## Design Document
 
-The design document is held on the Wiki for this repo. 
-Each page represents a different aspect of this project. 
+The assn4 design doc is: `Seng330_Assn4_designDoc.pdf`
+
+The assn3 design doc is: `Seng330_Assn3_designDoc.pdf`
+
+Both versions have been kept to show the progress in the repo.
 
 ## Contribute to the Repo
 
@@ -33,8 +36,6 @@ Once small changes have been made, commit and push them.
 git commit -m "Description of Changes"
 git push origin branch-name
 ```
-
-When all changes are made, create a PR and wait for the review/approval process.
 
 #### Merging Code
 
