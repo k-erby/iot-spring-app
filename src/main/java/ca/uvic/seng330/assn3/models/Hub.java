@@ -253,11 +253,9 @@ public class Hub extends Device implements Mediator{
             throw new HubRegistrationException(String.format("%s does not exists!", device));
         }
         aDevices.remove(device.getIdentifier());
-<<<<<<< HEAD
        // if(getInstance().getAdmin() != null) unregisterDevice(getInstance().getAdmin(), device);
-=======
-        if(getInstance().getAdmin() != null) unregisterDevice(getInstance().getAdmin(), device);
->>>>>>> ec31579bc1a54389a72436b2b268d3e4b3eec728
+
+     
         log(LogLevel.INFO, String.format("%s removed from Hub.",device));
       }catch(HubRegistrationException e) {
         
@@ -302,19 +300,11 @@ public class Hub extends Device implements Mediator{
           break;
         case WARN:
           LOGGER.warn(logMsg);
-<<<<<<< HEAD
-          msg = "[WARN] "+logMsg;
-          break;
-        case ERROR:
-          LOGGER.error(logMsg);
-          msg = "[ERROR] "+logMsg;
-=======
           msg="[WARN] "+logMsg;
           break;
         case ERROR:
           LOGGER.error(logMsg);
           msg="[ERROR] "+logMsg;
->>>>>>> ec31579bc1a54389a72436b2b268d3e4b3eec728
           break;
         case DEBUG:
           LOGGER.debug(logMsg);
@@ -325,22 +315,13 @@ public class Hub extends Device implements Mediator{
           break;
         case NOTIFY:
           LOGGER.debug("IMPORTANT: MAKE SURE NOTIFICATION WAS HANDLED PROPERLY\n"+logMsg);
-<<<<<<< HEAD
-          msg = "[NOTIFY] "+logMsg;
-=======
           msg ="[NOTIFY] "+logMsg;
->>>>>>> ec31579bc1a54389a72436b2b268d3e4b3eec728
           break;
         default:
           break;
       }
-<<<<<<< HEAD
-      if(LOGWRITER != null) {
-        write(msg);
-      }
-=======
+    
       if(LOGWRITER != null) write(msg);
->>>>>>> ec31579bc1a54389a72436b2b268d3e4b3eec728
     }
     
     private static void write(String msg) {
@@ -427,17 +408,9 @@ public class Hub extends Device implements Mediator{
       
         return new HashMap<UUID, Device>(aDevices);
     }
-<<<<<<< HEAD
 
     public Client getInstance() {
-      // TODO Auto-generated method stub
       return ViewInstance;
-=======
-
-    public Client getInstance() {
-      // TODO Auto-generated method stub
-      return ViewInstance;
->>>>>>> ec31579bc1a54389a72436b2b268d3e4b3eec728
     }
     private static void setInstance(Client c) {
       ViewInstance = c;
