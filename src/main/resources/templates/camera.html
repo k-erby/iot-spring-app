@@ -21,19 +21,17 @@
                     <p>MEMORY: <em><span th:text="${memory}"></span></em></p>
                     <p>RECORDING: <em><span th:text="${recording}"></span></em></p>
                     <p>ALERT: <em><span th:text="${notification}"></span></em></p>
-
                 </section>
 
                 <div class="_direction-column">
                     <div class="_direction-row camera-btns">
-                        <a class="btn btn-link" type="submit" th:href="@{'/hub/camera/toggleOff?id=' + ${name}}">Stop Camera</a>
                         <a class="btn btn-link" type="submit" th:href="@{'/hub/camera/toggleOn?id=' + ${name}}">Start Camera</a>
+                        <a class="btn btn-link" type="submit" th:href="@{'/hub/camera/toggleOff?id=' + ${name}}">Stop Camera</a>
                         <a class="btn btn-link" type="submit" th:href="@{'/hub/camera/recordOn?id=' + ${name}}">Start Recording</a>
                         <a class="btn btn-link" type="submit" th:href="@{'/hub/camera/recordOff?id=' + ${name}}">Stop Recording</a>
                     </div>
                     <div class="_direction-row camera-btns">
                         <a class="btn btn-link" type="submit" th:href="@{'/hub/camera/reset?id=' + ${name}}">Clear Memory</a>
-                        <!--Leads to an error page currently, so commenting out for now.-->
                         <!--<a class="btn btn-link" type="submit" th:href="@{'/hub/camera/notif?id=' + ${name}}">Test Notification</a>-->
                     </div>
                 </div>

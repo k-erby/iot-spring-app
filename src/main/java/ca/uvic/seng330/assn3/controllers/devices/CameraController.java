@@ -2,8 +2,6 @@ package ca.uvic.seng330.assn3.controllers.devices;
 
 import java.util.Map;
 import java.util.UUID;
-
-import ca.uvic.seng330.assn3.util.Status;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +10,7 @@ import ca.uvic.seng330.assn3.exceptions.CameraFullException;
 import ca.uvic.seng330.assn3.models.Mediator;
 import ca.uvic.seng330.assn3.models.devices.Camera;
 import ca.uvic.seng330.assn3.models.devices.Device;
+import ca.uvic.seng330.assn3.util.Status;
 
 @Controller
 public class CameraController {
@@ -45,6 +44,8 @@ public class CameraController {
         Map<UUID, Device> devices = this.hub.getDevices();
         Device device = devices.get(UUID.fromString(id));
         device.startup();
+
+        model.addAttribute("notification", "Camera memory has been toggled on.");
         return camera(id, model);
     }
 
@@ -53,6 +54,8 @@ public class CameraController {
         Map<UUID, Device> devices = this.hub.getDevices();
         Device device = devices.get(UUID.fromString(id));
         device.shutdown();
+
+        model.addAttribute("notification", "Camera has been toggled off.");
         return camera(id, model);
     }
 
@@ -65,8 +68,8 @@ public class CameraController {
             ((Camera) device).record();
         } catch (CameraFullException e) {
           model.addAttribute("notification", "Camera is Full.");
-
         }
+        model.addAttribute("notification", "Camera is recording.");
         return camera(id, model);
     }
 
@@ -80,6 +83,7 @@ public class CameraController {
         } catch (CameraFullException e) {
             model.addAttribute("notification", "Camera is Full.");
         }
+        model.addAttribute("notification", "Camera has stopped recording.");
         return camera(id, model);
     }
     
@@ -87,20 +91,17 @@ public class CameraController {
     public String reset(@RequestParam(name="id", required=true) String id, Model model) {
       Map<UUID, Device> devices = this.hub.getDevices();
       Device device = devices.get(UUID.fromString(id));
-      ((Camera) device).resetMemory();;
+      ((Camera) device).resetMemory();
+
+      model.addAttribute("notification", "Camera memory has been reset.");
       return camera(id, model);
   }
-    
-    @GetMapping("/hub/camera/notif")
-    public String notif(@RequestParam(name="id", required=true) String id, Model model) {
-      
-      model.addAttribute("notification", "this is a test");
-      
-      return "redirect:/hub/camera";
-      
-    }
-    
-    
+
+//    @GetMapping("/hub/camera/notif")
+//    public String notif(@RequestParam(name="id", required=true) String id, Model model) {
+//        model.addAttribute("notification", "Test");
+//        return camera(id, model);
+//    }
 
 }
 

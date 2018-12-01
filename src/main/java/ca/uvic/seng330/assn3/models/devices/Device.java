@@ -81,4 +81,8 @@ public abstract class Device {
         return aDeviceType;
     }
 
+    public void setActivityDetected(boolean b) {
+      activityDetected = b;      
+    }
+
 }

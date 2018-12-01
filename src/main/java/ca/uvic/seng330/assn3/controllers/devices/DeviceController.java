@@ -1,15 +1,15 @@
 package ca.uvic.seng330.assn3.controllers.devices;
 
-import ca.uvic.seng330.assn3.models.Mediator;
-import ca.uvic.seng330.assn3.models.devices.Camera;
-import ca.uvic.seng330.assn3.models.devices.Lightbulb;
-import ca.uvic.seng330.assn3.models.devices.SmartPlug;
-import ca.uvic.seng330.assn3.models.devices.Thermostat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import ca.uvic.seng330.assn3.models.Mediator;
+import ca.uvic.seng330.assn3.models.devices.Camera;
+import ca.uvic.seng330.assn3.models.devices.Lightbulb;
+import ca.uvic.seng330.assn3.models.devices.SmartPlug;
+import ca.uvic.seng330.assn3.models.devices.Thermostat;
 
 @Controller
 public class DeviceController {

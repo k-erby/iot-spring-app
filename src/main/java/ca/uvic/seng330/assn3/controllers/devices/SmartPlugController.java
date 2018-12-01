@@ -29,9 +29,7 @@ public class SmartPlugController {
         model.addAttribute("name", smartplug.getIdentifier());
 
         // get smartplug status
-        
         model.addAttribute("status", smartplug.getState().stateView());
-
 
         return "smartplug";
     }
@@ -40,7 +38,9 @@ public class SmartPlugController {
     public String toggle(@RequestParam(name="id", required=true) String id, Model model) {
         Map<UUID, Device> devices = this.hub.getDevices();
         Device device = devices.get(UUID.fromString(id));
-        ((SmartPlug) device).toggle();
+        device.toggle();
+
+        model.addAttribute("notification", "Smartplug status toggled.");
         return smartplug(id, model);
     }
 

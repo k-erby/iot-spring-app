@@ -2,9 +2,6 @@ package ca.uvic.seng330.assn3.controllers.devices;
 
 import java.util.Map;
 import java.util.UUID;
-
-import ca.uvic.seng330.assn3.util.Status;
-import ca.uvic.seng330.assn3.util.Temperature;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ca.uvic.seng330.assn3.models.Mediator;
 import ca.uvic.seng330.assn3.models.devices.Device;
 import ca.uvic.seng330.assn3.models.devices.Thermostat;
+import ca.uvic.seng330.assn3.util.Status;
+import ca.uvic.seng330.assn3.util.Temperature;
 
 @Controller
 public class ThermostatController {
@@ -31,7 +30,7 @@ public class ThermostatController {
         // get thermostat details
         model.addAttribute("name", thermostat.getIdentifier());
         model.addAttribute("temp", thermostat.getTemp().toString());
-        model.addAttribute("isOn", thermostat.getState().getPowerOn());
+        model.addAttribute("isOn", thermostat.getState().getPowerState() == Status.ON);
 
         return "thermostat";
     }
@@ -41,6 +40,7 @@ public class ThermostatController {
         Map<UUID, Device> devices = this.hub.getDevices();
         Device device = devices.get(UUID.fromString(id));
         device.startup();
+        model.addAttribute("notification", "Thermostat has been toggled on.");
         return thermostat(id, model);
     }
 
@@ -49,6 +49,7 @@ public class ThermostatController {
         Map<UUID, Device> devices = this.hub.getDevices();
         Device device = devices.get(UUID.fromString(id));
         device.shutdown();
+        model.addAttribute("notification", "Thermostat has been toggled off.");
         return thermostat(id, model);
     }
 
@@ -63,6 +64,7 @@ public class ThermostatController {
         } catch (Temperature.TemperatureOutofBoundsException e) {
             System.out.println("Temperature is out of bounds.");
         }
+        model.addAttribute("notification", "The unit has changed.");
         return thermostat(id, model);
     }
 

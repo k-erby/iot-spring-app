@@ -4,7 +4,6 @@ import java.util.Map;
 import java.util.UUID;
 import ca.uvic.seng330.assn3.exceptions.HubRegistrationException;
 import ca.uvic.seng330.assn3.models.Hub.LogLevel;
-import ca.uvic.seng330.assn3.models.devices.Camera;
 import ca.uvic.seng330.assn3.models.devices.Device;
 import ca.uvic.seng330.assn3.views.Client;
 
@@ -28,4 +27,8 @@ public interface Mediator {
     void dynamicActivity(boolean b, Device d);
 
     void shutdown();
+
+    Client getInstance();
+
+    void registerUser(Client instance, User currentUser);
 }
