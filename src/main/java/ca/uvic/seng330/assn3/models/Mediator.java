@@ -37,5 +37,4 @@ public interface Mediator {
     void shutdown();
 
     Client getInstance();
-
 }
