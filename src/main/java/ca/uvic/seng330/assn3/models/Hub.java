@@ -141,7 +141,7 @@ public class Hub extends Device implements Mediator{
      * 
      */
     @Override
-    public void register(Device pDevice) throws HubRegistrationException {
+    public void register(Device pDevice){
       assert pDevice != null;
       
       try {
@@ -159,7 +159,7 @@ public class Hub extends Device implements Mediator{
     }
 
     @Override
-    public void register(Client pClient) throws HubRegistrationException {
+    public void register(Client pClient){
       assert pClient != null;
       
       try {
@@ -212,7 +212,7 @@ public class Hub extends Device implements Mediator{
       
     }
     
-    public void unregisterDevice(User u, Device d) throws HubRegistrationException {
+    public void unregisterDevice(User u, Device d){
       assert d != null && u != null;
 
       try {
@@ -226,7 +226,7 @@ public class Hub extends Device implements Mediator{
       } 
     }
     
-    public void unregisterUser(Client c, User u) throws HubRegistrationException {
+    public void unregisterUser(Client c, User u) {
       assert c != null && u != null;
 
       try {
@@ -243,7 +243,7 @@ public class Hub extends Device implements Mediator{
     }
     
     @Override
-    public void unregister(Device device) throws HubRegistrationException {
+    public void unregister(Device device) {
       assert device != null;
 
       try {
@@ -261,7 +261,7 @@ public class Hub extends Device implements Mediator{
     }
 
     @Override
-    public void unregister(Client client) throws HubRegistrationException {
+    public void unregister(Client client) {
       assert client != null;
 
       try {
