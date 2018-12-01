@@ -19,11 +19,11 @@ import ca.uvic.seng330.assn3.repository.UserRepository;
 @Controller
 public class HubController {
 	private User currentUser = null;
-    private Hub hub;
+    private Mediator hub;
     private UserRepository  users;
 
     HubController (Mediator hub, UserRepository users) {
-        this.hub = (Hub) hub;
+        this.hub = hub;
         this.users = users;
     }
 
