@@ -36,10 +36,11 @@ public class HubController {
     public String hub(Principal principal, Model model) throws HubRegistrationException {
         currentUser = users.findByUsername(principal.getName()).get(0);
         
+        /*
         if(!hub.getInstance().getUsers().contains(currentUser)) hub.registerUser(hub.getInstance(), currentUser);
         if(currentUser.getIsAdmin()) hub.getInstance().setAdmin(currentUser);
         if(!currentUser.signedIn()) currentUser.signIn();
-
+        */
         Map<UUID, Device> devices = this.hub.getDevices();
         ArrayList<String> cameraIds = new ArrayList<String>();
         ArrayList<String> lightbulbIds = new ArrayList<String>();
