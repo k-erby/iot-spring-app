@@ -31,4 +31,6 @@ public interface Mediator {
     Client getInstance();
 
     void registerUser(Client instance, User currentUser);
+
+    void unregisterDevice(User currentUser, Device device);
 }
