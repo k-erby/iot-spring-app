@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 03c33ec1-8588-4971-b9e8-d900d2bcfef5 registered to Hub.
 4ad64a79-f6ac-42e1-ab97-abff06ccd760 registered to Hub.
 e4a43a37-6a23-47db-846e-edbb5088346e registered to Hub.
@@ -54,3 +55,23 @@ Current Temperature is 77.0 °F
 ...success!
 ...shutdown successfully.
 >>>>>>> staging from master and reimplementation of
+=======
+bbece765-e7f4-45cf-badd-78f47e7384af registered to Hub.
+99a9f442-272b-46de-a012-57916d6f540a registered to Hub.
+Shutting down...
+Shutting down bbece765-e7f4-45cf-badd-78f47e7384af...
+Current Memory is
+Memory Capacity: 1024.00 MB
+Footage Captured: 0.00 MB
+Memory Used: 0.00%
+
+...success!
+Shutting down 99a9f442-272b-46de-a012-57916d6f540a...
+Current Memory is
+Memory Capacity: 1024.00 MB
+Footage Captured: 0.00 MB
+Memory Used: 0.00%
+
+...success!
+...shutdown successfully.
+>>>>>>> ec31579bc1a54389a72436b2b268d3e4b3eec728

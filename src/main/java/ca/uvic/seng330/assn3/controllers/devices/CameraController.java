@@ -12,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
 @Controller
 public class CameraController {
 
@@ -97,6 +96,7 @@ public class CameraController {
         device.shutdown();
 
         model.addAttribute("notification", "Camera has been toggled off.");
+
         return camera(id, model);
     }
 
@@ -115,8 +115,6 @@ public class CameraController {
         return camera(id, model);
     }
     
-
-
 //    @GetMapping("/hub/camera/notif")
 //    public String notif(@RequestParam(name="id", required=true) String id, Model model) {
 //        model.addAttribute("notification", "Test");

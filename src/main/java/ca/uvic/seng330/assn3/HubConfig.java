@@ -13,6 +13,7 @@ public class HubConfig {
     public Mediator mediator() {
         Hub hub = new Hub();
        // WebClient INSTANCE = new WebClient(hub);
+
         return hub;
     }
 

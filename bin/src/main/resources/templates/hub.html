@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>IoT Device Hub</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="/css/main.css" th:href="@{/css/main.css}">
+    <link rel="stylesheet" type="text/css" href="/css/hub.css" th:href="@{/css/hub.css}">
+</head>
+<body>
+    <main class="container">
+        <h2>Devices Hub</h2>
+        <section class="view-container-lg">
+            <h3>Cameras</h3>
+            <a th:each="data: ${cameraDevices}" class="table-devices _direction-column">
+                <a class="device-link" th:text="${data}"></a>
+            </a>
+
+            <h3>Lightbulbs</h3>
+            <a th:each="data: ${lightbulbDevices}" class="table-devices _direction-column">
+                <a class="device-link" th:text="${data}"></a>
+            </a>
+
+            <h3>SmartPlugs</h3>
+            <a th:each="data: ${smartplugDevices}" class="table-devices _direction-column">
+                <a class="device-link" th:text="${data}"></a>
+            </a>
+
+            <h3>Thermostat</h3>
+            <a th:each="data: ${thermostatDevices}" class="table-devices _direction-column">
+                <a class="device-link" th:text="${data}"></a>
+            </a>
+
+            <div class="_direction-row logout-btn">
+                <a class="btn btn-link" type="submit" th:href="@{/logout}">Logout</a>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

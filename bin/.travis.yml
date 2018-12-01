@@ -1,7 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 script:
   gradle build
 =======
 script:
   gradle build
 >>>>>>> staging from master and reimplementation of
+=======
+script:
+  gradle build
+>>>>>>> ec31579bc1a54389a72436b2b268d3e4b3eec728

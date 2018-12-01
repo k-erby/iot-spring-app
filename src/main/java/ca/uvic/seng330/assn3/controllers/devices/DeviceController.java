@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package ca.uvic.seng330.assn3.controllers.devices;
 
 import org.springframework.stereotype.Controller;

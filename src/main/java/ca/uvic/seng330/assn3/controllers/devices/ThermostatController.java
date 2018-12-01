@@ -28,23 +28,16 @@ public class ThermostatController {
     Device device = devices.get(UUID.fromString(id));
     Thermostat thermostat = (Thermostat) device;
 
-<<<<<<< HEAD
     // get thermostat details
     model.addAttribute("name", thermostat.getIdentifier());
     model.addAttribute("temp", thermostat.getTemp().toString());
     model.addAttribute("status", thermostat.getState().stateView());
     model.addAttribute("isOn", thermostat.getState().getPowerState() == Status.ON);
-=======
-        // get thermostat details
-        model.addAttribute("name", thermostat.getIdentifier());
-        model.addAttribute("temp", thermostat.getTemp().toString());
-        model.addAttribute("isOn", thermostat.getState().getPowerState() == Status.ON);
->>>>>>> staging from master and reimplementation of
+
 
     return "thermostat";
   }
 
-<<<<<<< HEAD
   @GetMapping("/hub/thermostat/toggleOn")
   public String toggleOn(@RequestParam(name = "id", required = true) String id, Model model) {
     Map<UUID, Device> devices = this.hub.getDevices();
@@ -72,39 +65,7 @@ public class ThermostatController {
       ((Thermostat) device).scaleSwitch();
     } catch (Temperature.TemperatureOutofBoundsException e) {
       System.out.println("Temperature is out of bounds.");
-=======
-    @GetMapping("/hub/thermostat/toggleOn")
-    public String toggleOn(@RequestParam(name="id", required=true) String id, Model model) {
-        Map<UUID, Device> devices = this.hub.getDevices();
-        Device device = devices.get(UUID.fromString(id));
-        device.startup();
-        model.addAttribute("notification", "Thermostat has been toggled on.");
-        return thermostat(id, model);
-    }
 
-    @GetMapping("/hub/thermostat/toggleOff")
-    public String toggleOff(@RequestParam(name="id", required=true) String id, Model model) {
-        Map<UUID, Device> devices = this.hub.getDevices();
-        Device device = devices.get(UUID.fromString(id));
-        device.shutdown();
-        model.addAttribute("notification", "Thermostat has been toggled off.");
-        return thermostat(id, model);
-    }
-
-    @GetMapping("/hub/thermostat/changeUnit")
-    public String changeUnit(@RequestParam(name="id", required=true) String id, Model model)
-            throws Temperature.TemperatureOutofBoundsException
-    {
-        Map<UUID, Device> devices = this.hub.getDevices();
-        Device device = devices.get(UUID.fromString(id));
-        try {
-            ((Thermostat) device).scaleSwitch();
-        } catch (Temperature.TemperatureOutofBoundsException e) {
-            System.out.println("Temperature is out of bounds.");
-        }
-        model.addAttribute("notification", "The unit has changed.");
-        return thermostat(id, model);
->>>>>>> staging from master and reimplementation of
     }
     model.addAttribute("notification", "The unit has changed.");
     return thermostat(id, model);
