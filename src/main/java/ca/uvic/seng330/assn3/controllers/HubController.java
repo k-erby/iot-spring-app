@@ -33,7 +33,7 @@ public class HubController {
     }
 
     @GetMapping("/hub")
-    public String hub(Principal principal, Model model) {
+    public String hub(Principal principal, Model model) throws HubRegistrationException {
         currentUser = users.findByUsername(principal.getName()).get(0);
         
         if(!hub.getInstance().getUsers().contains(currentUser)) hub.registerUser(hub.getInstance(), currentUser);
