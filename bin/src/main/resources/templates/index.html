@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="../static/css/main.css" th:href="@{/css/main.css}" rel="stylesheet" />
+    <link href="../static/css/form.css" th:href="@{/css/form.css}" rel="stylesheet" />
+</head>
+<body>
+<div>
+    <main class="container _justify-center">
+        <form class="form-signin _direction-column _justify-center" action="/hub">
+            <h1 class="form-signin-heading _justify-center">Login</h1>
+            <input type="text" class="form-control" placeholder=" Username" id="username" name="username" />
+            <input type="password" class="form-control" placeholder=" Password" id="password" name="password"/>
+
+            <div class="_direction-row">
+                <a class="btn btn-link" type="submit" th:href="@{/new_user}">Sign Up</a>
+                <input class="btn btn-link" type="submit" value="Sign In"/>
+            </div>
+        </form>
+    </main>
+</div>
+</body>
+</html>

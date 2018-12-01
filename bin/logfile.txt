@@ -1,0 +1,18 @@
+bbece765-e7f4-45cf-badd-78f47e7384af registered to Hub.
+99a9f442-272b-46de-a012-57916d6f540a registered to Hub.
+Shutting down...
+Shutting down bbece765-e7f4-45cf-badd-78f47e7384af...
+Current Memory is
+Memory Capacity: 1024.00 MB
+Footage Captured: 0.00 MB
+Memory Used: 0.00%
+
+...success!
+Shutting down 99a9f442-272b-46de-a012-57916d6f540a...
+Current Memory is
+Memory Capacity: 1024.00 MB
+Footage Captured: 0.00 MB
+Memory Used: 0.00%
+
+...success!
+...shutdown successfully.

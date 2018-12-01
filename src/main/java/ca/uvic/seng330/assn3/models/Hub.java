@@ -289,33 +289,35 @@ public class Hub extends Device implements Mediator{
     
     public static void log(LogLevel l, String logMsg) {
 
+      String msg = "";
       switch (l) {
         case INFO:
           LOGGER.info(logMsg);
-          write("[INFO] "+logMsg);
+          msg = "[INFO] "+logMsg;
           break;
         case WARN:
           LOGGER.warn(logMsg);
-          write("[WARN] "+logMsg);
+          msg="[WARN] "+logMsg;
           break;
         case ERROR:
           LOGGER.error(logMsg);
-          write("[ERROR] "+logMsg);
+          msg="[ERROR] "+logMsg;
           break;
         case DEBUG:
           LOGGER.debug(logMsg);
-          write("[DEBUG] "+logMsg);
+          msg = "[DEBUG] "+logMsg;
           break;
         case TRACE:
           LOGGER.trace(logMsg);
           break;
         case NOTIFY:
           LOGGER.debug("IMPORTANT: MAKE SURE NOTIFICATION WAS HANDLED PROPERLY\n"+logMsg);
-          write("[NOTIFY] "+logMsg);
+          msg ="[NOTIFY] "+logMsg;
           break;
         default:
           break;
       }
+      if(LOGWRITER != null) write(msg);
     }
     
     private static void write(String msg) {
